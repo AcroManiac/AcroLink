@@ -41,6 +41,13 @@ class TrainingStudentMarks extends \Phalcon\Mvc\Model
     protected $mark;
 
     /**
+     *
+     * @var string
+     * @Column(type="string", length=255, nullable=true)
+     */
+    protected $comment;
+
+    /**
      * Method to set the value of field id
      *
      * @param integer $id
@@ -106,6 +113,19 @@ class TrainingStudentMarks extends \Phalcon\Mvc\Model
     }
 
     /**
+     * Method to set the value of field comment
+     *
+     * @param string $comment
+     * @return $this
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
      * Returns the value of field id
      *
      * @return integer
@@ -156,6 +176,16 @@ class TrainingStudentMarks extends \Phalcon\Mvc\Model
     }
 
     /**
+     * Returns the value of field comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
@@ -164,16 +194,6 @@ class TrainingStudentMarks extends \Phalcon\Mvc\Model
         $this->belongsTo('trainingPersonId', '\TrainingPersonLinks', 'id', ['alias' => 'TrainingPersonLinks']);
         $this->belongsTo('trainingPoseId', '\TrainingPoseLinks', 'id', ['alias' => 'TrainingPoseLinks']);
         $this->belongsTo('positionId', '\Positions', 'id', ['alias' => 'Positions']);
-    }
-
-    /**
-     * Returns table name mapped in the model.
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return 'TrainingStudentMarks';
     }
 
     /**
@@ -196,6 +216,16 @@ class TrainingStudentMarks extends \Phalcon\Mvc\Model
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
+    }
+
+    /**
+     * Returns table name mapped in the model.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return 'TrainingStudentMarks';
     }
 
 }
