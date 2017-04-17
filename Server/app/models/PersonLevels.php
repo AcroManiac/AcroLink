@@ -1,30 +1,22 @@
 <?php
 
-class EventParticipantHonors extends \Phalcon\Mvc\Model
+class PersonLevels extends \Phalcon\Mvc\Model
 {
 
     /**
      *
      * @var integer
      * @Primary
-     * @Identity
-     * @Column(type="integer", length=11, nullable=false)
+     * @Column(type="integer", length=4, nullable=false)
      */
     protected $id;
 
     /**
      *
-     * @var integer
-     * @Column(type="integer", length=11, nullable=false)
+     * @var string
+     * @Column(type="string", length=45, nullable=false)
      */
-    protected $eventPersonId;
-
-    /**
-     *
-     * @var integer
-     * @Column(type="integer", length=6, nullable=false)
-     */
-    protected $honorId;
+    protected $name;
 
     /**
      *
@@ -47,27 +39,14 @@ class EventParticipantHonors extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Method to set the value of field eventPersonId
+     * Method to set the value of field name
      *
-     * @param integer $eventPersonId
+     * @param string $name
      * @return $this
      */
-    public function setEventPersonId($eventPersonId)
+    public function setName($name)
     {
-        $this->eventPersonId = $eventPersonId;
-
-        return $this;
-    }
-
-    /**
-     * Method to set the value of field honorId
-     *
-     * @param integer $honorId
-     * @return $this
-     */
-    public function setHonorId($honorId)
-    {
-        $this->honorId = $honorId;
+        $this->name = $name;
 
         return $this;
     }
@@ -96,23 +75,13 @@ class EventParticipantHonors extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Returns the value of field eventPersonId
+     * Returns the value of field name
      *
-     * @return integer
+     * @return string
      */
-    public function getEventPersonId()
+    public function getName()
     {
-        return $this->eventPersonId;
-    }
-
-    /**
-     * Returns the value of field honorId
-     *
-     * @return integer
-     */
-    public function getHonorId()
-    {
-        return $this->honorId;
+        return $this->name;
     }
 
     /**
@@ -130,16 +99,27 @@ class EventParticipantHonors extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("acrolink");
-        $this->belongsTo('eventPersonId', '\EventPersonLinks', 'id', ['alias' => 'EventPersonLinks']);
-        $this->belongsTo('honorId', '\Honors', 'id', ['alias' => 'Honors']);
+        $this->setSchema("acrolink_development");
+        $this->hasMany('id', 'Events', 'levelId', ['alias' => 'Events']);
+        $this->hasMany('id', 'Persons', 'levelId', ['alias' => 'Persons']);
+        $this->hasMany('id', 'Trainings', 'levelId', ['alias' => 'Trainings']);
+    }
+
+    /**
+     * Returns table name mapped in the model.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return 'PersonLevels';
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return EventParticipantHonors[]|EventParticipantHonors
+     * @return PersonLevels[]|PersonLevels
      */
     public static function find($parameters = null)
     {
@@ -150,21 +130,11 @@ class EventParticipantHonors extends \Phalcon\Mvc\Model
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return EventParticipantHonors
+     * @return PersonLevels
      */
     public static function findFirst($parameters = null)
     {
         return parent::findFirst($parameters);
-    }
-
-    /**
-     * Returns table name mapped in the model.
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return 'EventParticipantHonors';
     }
 
 }

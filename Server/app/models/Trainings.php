@@ -7,7 +7,7 @@ class Trainings extends \Phalcon\Mvc\Model
      *
      * @var integer
      * @Primary
-     * @Column(type="integer", length=20, nullable=false)
+     * @Column(type="integer", length=11, nullable=false)
      */
     protected $id;
 
@@ -52,6 +52,13 @@ class Trainings extends \Phalcon\Mvc\Model
      * @Column(type="integer", length=11, nullable=true)
      */
     protected $placeId;
+
+    /**
+     *
+     * @var integer
+     * @Column(type="integer", length=4, nullable=false)
+     */
+    protected $levelId;
 
     /**
      *
@@ -152,6 +159,19 @@ class Trainings extends \Phalcon\Mvc\Model
     }
 
     /**
+     * Method to set the value of field levelId
+     *
+     * @param integer $levelId
+     * @return $this
+     */
+    public function setLevelId($levelId)
+    {
+        $this->levelId = $levelId;
+
+        return $this;
+    }
+
+    /**
      * Method to set the value of field statusId
      *
      * @param integer $statusId
@@ -232,6 +252,16 @@ class Trainings extends \Phalcon\Mvc\Model
     public function getPlaceId()
     {
         return $this->placeId;
+    }
+
+    /**
+     * Returns the value of field levelId
+     *
+     * @return integer
+     */
+    public function getLevelId()
+    {
+        return $this->levelId;
     }
 
     /**

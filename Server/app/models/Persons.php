@@ -73,6 +73,20 @@ class Persons extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
+     * @Column(type="integer", length=4, nullable=false)
+     */
+    protected $levelId;
+
+    /**
+     *
+     * @var string
+     * @Column(type="string", nullable=true)
+     */
+    protected $practiceStartDate;
+
+    /**
+     *
+     * @var integer
      * @Column(type="integer", length=6, nullable=true)
      */
     protected $country;
@@ -90,6 +104,13 @@ class Persons extends \Phalcon\Mvc\Model
      * @Column(type="string", nullable=true)
      */
     protected $details;
+
+    /**
+     *
+     * @var integer
+     * @Column(type="integer", length=4, nullable=false)
+     */
+    protected $status;
 
     /**
      *
@@ -216,6 +237,32 @@ class Persons extends \Phalcon\Mvc\Model
     }
 
     /**
+     * Method to set the value of field levelId
+     *
+     * @param integer $levelId
+     * @return $this
+     */
+    public function setLevelId($levelId)
+    {
+        $this->levelId = $levelId;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field practiceStartDate
+     *
+     * @param string $practiceStartDate
+     * @return $this
+     */
+    public function setPracticeStartDate($practiceStartDate)
+    {
+        $this->practiceStartDate = $practiceStartDate;
+
+        return $this;
+    }
+
+    /**
      * Method to set the value of field country
      *
      * @param integer $country
@@ -250,6 +297,19 @@ class Persons extends \Phalcon\Mvc\Model
     public function setDetails($details)
     {
         $this->details = $details;
+
+        return $this;
+    }
+
+    /**
+     * Method to set the value of field status
+     *
+     * @param integer $status
+     * @return $this
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
 
         return $this;
     }
@@ -358,6 +418,26 @@ class Persons extends \Phalcon\Mvc\Model
     }
 
     /**
+     * Returns the value of field levelId
+     *
+     * @return integer
+     */
+    public function getLevelId()
+    {
+        return $this->levelId;
+    }
+
+    /**
+     * Returns the value of field practiceStartDate
+     *
+     * @return string
+     */
+    public function getPracticeStartDate()
+    {
+        return $this->practiceStartDate;
+    }
+
+    /**
      * Returns the value of field country
      *
      * @return integer
@@ -385,6 +465,16 @@ class Persons extends \Phalcon\Mvc\Model
     public function getDetails()
     {
         return $this->details;
+    }
+
+    /**
+     * Returns the value of field status
+     *
+     * @return integer
+     */
+    public function getStatus()
+    {
+        return $this->status;
     }
 
     /**

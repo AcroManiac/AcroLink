@@ -8,14 +8,14 @@ class TrainingSocialLinks extends \Phalcon\Mvc\Model
      * @var integer
      * @Primary
      * @Identity
-     * @Column(type="integer", length=20, nullable=false)
+     * @Column(type="integer", length=11, nullable=false)
      */
     protected $id;
 
     /**
      *
      * @var integer
-     * @Column(type="integer", length=20, nullable=false)
+     * @Column(type="integer", length=11, nullable=false)
      */
     protected $trainingId;
 
