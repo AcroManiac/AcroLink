@@ -9,10 +9,10 @@ defined('APP_PATH') || define('APP_PATH', BASE_PATH . '/app');
 return new \Phalcon\Config([
     'database' => [
         'adapter'     => 'Mysql',
-        'host'        => 'localhost',
+        'host'        => 'acroyoga.veedo.ru',
         'username'    => 'acrolink_db_user',
         'password'    => 'xSd8Yrw7Vf',
-        'dbname'      => 'acrolink',
+        'dbname'      => 'acrolink_development',
         'charset'     => 'utf8',
     ],
     'application' => [
