@@ -100,7 +100,7 @@ class Countries extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("acrolink");
+        $this->setSchema($this->getConfig()->database->dbname);
         $this->hasMany('id', 'Persons', 'country', ['alias' => 'Persons']);
     }
 

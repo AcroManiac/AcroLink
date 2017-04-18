@@ -130,7 +130,7 @@ class SocialNetworks extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("acrolink");
+        $this->setSchema($this->getConfig()->database->dbname);
         $this->hasMany('id', 'EventSocialLinks', 'networkId', ['alias' => 'EventSocialLinks']);
         $this->hasMany('id', 'PersonSocialLinks', 'networkId', ['alias' => 'PersonSocialLinks']);
         $this->hasMany('id', 'TrainingSocialLinks', 'networkId', ['alias' => 'TrainingSocialLinks']);

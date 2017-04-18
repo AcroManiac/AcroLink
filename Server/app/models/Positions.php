@@ -100,7 +100,7 @@ class Positions extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("acrolink");
+        $this->setSchema($this->getConfig()->database->dbname);
         $this->hasMany('id', 'PersonPersonLinks', 'positionId', ['alias' => 'PersonPersonLinks']);
         $this->hasMany('id', 'PersonPositionLinks', 'positionId', ['alias' => 'PersonPositionLinks']);
         $this->hasMany('id', 'TrainingStudentMarks', 'positionId', ['alias' => 'TrainingStudentMarks']);

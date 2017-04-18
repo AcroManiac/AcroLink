@@ -100,7 +100,7 @@ class PlaceImageLink extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("acrolink");
+        $this->setSchema($this->getConfig()->database->dbname);
         $this->belongsTo('placeId', '\Places', 'id', ['alias' => 'Places']);
         $this->belongsTo('imageId', '\Images', 'id', ['alias' => 'Images']);
     }

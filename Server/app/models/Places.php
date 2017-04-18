@@ -190,7 +190,7 @@ class Places extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("acrolink");
+        $this->setSchema($this->getConfig()->database->dbname);
         $this->hasMany('id', 'Events', 'placeId', ['alias' => 'Events']);
         $this->hasMany('id', 'PlaceImageLink', 'placeId', ['alias' => 'PlaceImageLink']);
         $this->hasMany('id', 'Trainings', 'placeId', ['alias' => 'Trainings']);

@@ -100,7 +100,7 @@ class PersonRoleLinks extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("acrolink");
+        $this->setSchema($this->getConfig()->database->dbname);
         $this->belongsTo('personId', '\Persons', 'id', ['alias' => 'Persons']);
         $this->belongsTo('roleId', '\Roles', 'id', ['alias' => 'Roles']);
     }

@@ -130,7 +130,7 @@ class EventSocialLinks extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("acrolink");
+        $this->setSchema($this->getConfig()->database->dbname);
         $this->belongsTo('eventId', '\Events', 'id', ['alias' => 'Events']);
         $this->belongsTo('networkId', '\SocialNetworks', 'id', ['alias' => 'SocialNetworks']);
     }

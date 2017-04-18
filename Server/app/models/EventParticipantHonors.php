@@ -130,7 +130,7 @@ class EventParticipantHonors extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("acrolink");
+        $this->setSchema($this->getConfig()->database->dbname);
         $this->belongsTo('eventPersonId', '\EventPersonLinks', 'id', ['alias' => 'EventPersonLinks']);
         $this->belongsTo('honorId', '\Honors', 'id', ['alias' => 'Honors']);
     }

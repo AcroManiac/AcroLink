@@ -280,7 +280,7 @@ class Events extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("acrolink");
+        $this->setSchema($this->getConfig()->database->dbname);
         $this->hasMany('id', 'EventPersonLinks', 'eventId', ['alias' => 'EventPersonLinks']);
         $this->hasMany('id', 'EventSocialLinks', 'eventId', ['alias' => 'EventSocialLinks']);
         $this->belongsTo('imageId', '\Images', 'id', ['alias' => 'Images']);

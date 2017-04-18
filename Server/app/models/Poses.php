@@ -160,7 +160,7 @@ class Poses extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("acrolink");
+        $this->setSchema($this->getConfig()->database->dbname);
         $this->hasMany('id', 'TrainingPoseLinks', 'poseId', ['alias' => 'TrainingPoseLinks']);
         $this->belongsTo('typeId', '\PoseTypes', 'id', ['alias' => 'PoseTypes']);
         $this->belongsTo('imageId', '\Images', 'id', ['alias' => 'Images']);

@@ -70,7 +70,7 @@ class Roles extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("acrolink");
+        $this->setSchema($this->getConfig()->database->dbname);
         $this->hasMany('id', 'EventPersonLinks', 'roleId', ['alias' => 'EventPersonLinks']);
         $this->hasMany('id', 'PersonRoleLinks', 'roleId', ['alias' => 'PersonRoleLinks']);
         $this->hasMany('id', 'TrainingPersonLinks', 'roleId', ['alias' => 'TrainingPersonLinks']);

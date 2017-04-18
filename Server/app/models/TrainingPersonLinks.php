@@ -190,7 +190,7 @@ class TrainingPersonLinks extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("acrolink");
+        $this->setSchema($this->getConfig()->database->dbname);
         $this->hasMany('id', 'TrainingStudentMarks', 'trainingPersonId', ['alias' => 'TrainingStudentMarks']);
         $this->belongsTo('trainingId', '\Trainings', 'id', ['alias' => 'Trainings']);
         $this->belongsTo('personId', '\Persons', 'id', ['alias' => 'Persons']);
