@@ -100,7 +100,7 @@ class Positions extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema($this->getConfig()->database->dbname);
+        $this->setSchema($this->getDI()->getShared('config')->database->dbname);
         $this->hasMany('id', 'PersonPersonLinks', 'positionId', ['alias' => 'PersonPersonLinks']);
         $this->hasMany('id', 'PersonPositionLinks', 'positionId', ['alias' => 'PersonPositionLinks']);
         $this->hasMany('id', 'TrainingStudentMarks', 'positionId', ['alias' => 'TrainingStudentMarks']);

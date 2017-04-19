@@ -100,7 +100,7 @@ class Statuses extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema($this->getConfig()->database->dbname);
+        $this->setSchema($this->getDI()->getShared('config')->database->dbname);
         $this->hasMany('id', 'EventPersonLinks', 'statusId', ['alias' => 'EventPersonLinks']);
         $this->hasMany('id', 'Events', 'statusId', ['alias' => 'Events']);
         $this->hasMany('id', 'TrainingPersonLinks', 'statusId', ['alias' => 'TrainingPersonLinks']);

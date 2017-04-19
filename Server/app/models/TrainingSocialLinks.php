@@ -130,7 +130,7 @@ class TrainingSocialLinks extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema($this->getConfig()->database->dbname);
+        $this->setSchema($this->getDI()->getShared('config')->database->dbname);
         $this->belongsTo('trainingId', '\Trainings', 'id', ['alias' => 'Trainings']);
         $this->belongsTo('networkId', '\SocialNetworks', 'id', ['alias' => 'SocialNetworks']);
     }

@@ -190,7 +190,7 @@ class TrainingStudentMarks extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema($this->getConfig()->database->dbname);
+        $this->setSchema($this->getDI()->getShared('config')->database->dbname);
         $this->belongsTo('trainingPersonId', '\TrainingPersonLinks', 'id', ['alias' => 'TrainingPersonLinks']);
         $this->belongsTo('trainingPoseId', '\TrainingPoseLinks', 'id', ['alias' => 'TrainingPoseLinks']);
         $this->belongsTo('positionId', '\Positions', 'id', ['alias' => 'Positions']);

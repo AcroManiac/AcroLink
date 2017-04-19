@@ -514,7 +514,8 @@ class Persons extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema($this->getConfig()->database->dbname);
+        // $this->setSchema('acrolink_development');
+        $this->setSchema($this->getDI()->getShared('config')->database->dbname);
         $this->hasMany('id', 'EventPersonLinks', 'personId', ['alias' => 'EventPersonLinks']);
         $this->hasMany('id', 'PersonPersonLinks', 'firstPersonId', ['alias' => 'PersonPersonLinks']);
         $this->hasMany('id', 'PersonPersonLinks', 'secondPersonId', ['alias' => 'PersonPersonLinks']);

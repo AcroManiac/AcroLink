@@ -190,7 +190,7 @@ class EventPersonLinks extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema($this->getConfig()->database->dbname);
+        $this->setSchema($this->getDI()->getShared('config')->database->dbname);
         $this->hasMany('id', 'EventParticipantHonors', 'eventPersonId', ['alias' => 'EventParticipantHonors']);
         $this->belongsTo('eventId', '\Events', 'id', ['alias' => 'Events']);
         $this->belongsTo('personId', '\Persons', 'id', ['alias' => 'Persons']);

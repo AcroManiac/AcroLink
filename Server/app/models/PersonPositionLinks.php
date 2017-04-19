@@ -100,7 +100,7 @@ class PersonPositionLinks extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema($this->getConfig()->database->dbname);
+        $this->setSchema($this->getDI()->getShared('config')->database->dbname);
         $this->belongsTo('personId', '\Persons', 'id', ['alias' => 'Persons']);
         $this->belongsTo('positionId', '\Positions', 'id', ['alias' => 'Positions']);
     }

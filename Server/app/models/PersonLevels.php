@@ -99,7 +99,7 @@ class PersonLevels extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema($this->getConfig()->database->dbname);
+        $this->setSchema($this->getDI()->getShared('config')->database->dbname);
         $this->hasMany('id', 'Events', 'levelId', ['alias' => 'Events']);
         $this->hasMany('id', 'Persons', 'levelId', ['alias' => 'Persons']);
         $this->hasMany('id', 'Trainings', 'levelId', ['alias' => 'Trainings']);

@@ -100,7 +100,7 @@ class TrainingPoseLinks extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema($this->getConfig()->database->dbname);
+        $this->setSchema($this->getDI()->getShared('config')->database->dbname);
         $this->hasMany('id', 'TrainingStudentMarks', 'trainingPoseId', ['alias' => 'TrainingStudentMarks']);
         $this->belongsTo('trainingId', '\Trainings', 'id', ['alias' => 'Trainings']);
         $this->belongsTo('poseId', '\Poses', 'id', ['alias' => 'Poses']);
