@@ -3,6 +3,15 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { ProfilePage } from '../pages/profile/profile';
+import { TrainingsPage } from '../pages/trainings/trainings';
+import { EventsPage } from '../pages/events/events';
+import { PlacesPage } from '../pages/places/places';
+import { PosesPage } from '../pages/poses/poses';
+import { CommunityPage } from '../pages/community/community';
+import { SettingsPage } from '../pages/settings/settings';
+import { AboutPage } from '../pages/about/about';
+
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
@@ -12,7 +21,7 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = ProfilePage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -21,8 +30,17 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'Profile', component: ProfilePage },
+      { title: 'Trainings', component: TrainingsPage },
+      { title: 'Events', component: EventsPage },
+      { title: 'Places', component: PlacesPage },
+      { title: 'Poses', component: PosesPage },
+      { title: 'Community', component: CommunityPage },
+      { title: 'Settings', component: SettingsPage },
+      { title: 'About', component: AboutPage }
+
+      // { title: 'Home', component: HomePage },
+      // { title: 'List', component: ListPage }
     ];
 
   }
