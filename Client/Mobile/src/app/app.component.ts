@@ -12,8 +12,8 @@ import { CommunityPage } from '../pages/community/community';
 import { SettingsPage } from '../pages/settings/settings';
 import { AboutPage } from '../pages/about/about';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+// import { HomePage } from '../pages/home/home';
+// import { ListPage } from '../pages/list/list';
 
 @Component({
   templateUrl: 'app.html'
