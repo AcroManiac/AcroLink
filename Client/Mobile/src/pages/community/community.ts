@@ -26,7 +26,7 @@ export class CommunityPage {
 	}
 
 	loadPeople() {
-		this.communityService.load()
+		this.communityService.getData()
 			.then(data => {
 				this.people = data;
 			});
