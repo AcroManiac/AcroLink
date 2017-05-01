@@ -14,3 +14,12 @@ $router->addGet(
         "id"	 	 => 1
     ]
 );
+
+$router->addGet(
+	"/api/persons/list/{limit:[0-9]+}",
+    [
+        "controller" => "persons",
+        "action"     => "list",
+        "limit"	 	 => 1
+    ]
+);
