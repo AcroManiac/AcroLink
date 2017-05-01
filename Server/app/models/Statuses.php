@@ -105,6 +105,7 @@ class Statuses extends \Phalcon\Mvc\Model
         $this->hasMany('id', 'Events', 'statusId', ['alias' => 'Events']);
         $this->hasMany('id', 'TrainingPersonLinks', 'statusId', ['alias' => 'TrainingPersonLinks']);
         $this->hasMany('id', 'Trainings', 'statusId', ['alias' => 'Trainings']);
+        $this->hasMany('id', 'Persons', 'statusId', ['alias' => 'Persons']);
     }
 
     /**

@@ -110,7 +110,7 @@ class Persons extends \Phalcon\Mvc\Model
      * @var integer
      * @Column(type="integer", length=4, nullable=false)
      */
-    protected $status;
+    protected $statusId;
 
     /**
      *
@@ -302,14 +302,14 @@ class Persons extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Method to set the value of field status
+     * Method to set the value of field statusId
      *
-     * @param integer $status
+     * @param integer $statusId
      * @return $this
      */
-    public function setStatus($status)
+    public function setStatusId($statusId)
     {
-        $this->status = $status;
+        $this->statusId = $statusId;
 
         return $this;
     }
@@ -468,13 +468,13 @@ class Persons extends \Phalcon\Mvc\Model
     }
 
     /**
-     * Returns the value of field status
+     * Returns the value of field statusId
      *
      * @return integer
      */
-    public function getStatus()
+    public function getStatusId()
     {
-        return $this->status;
+        return $this->statusId;
     }
 
     /**
@@ -525,6 +525,8 @@ class Persons extends \Phalcon\Mvc\Model
         $this->hasMany('id', 'TrainingPersonLinks', 'personId', ['alias' => 'TrainingPersonLinks']);
         $this->belongsTo('avatar', '\Images', 'id', ['alias' => 'Images']);
         $this->belongsTo('country', '\Countries', 'id', ['alias' => 'Countries']);
+        $this->belongsTo('statusId', '\Statuses', 'id', ['alias' => 'Statuses']);
+        $this->belongsTo('levelId', '\PersonLevels', 'id', ['alias' => 'PersonLevels']);
     }
 
     /**
