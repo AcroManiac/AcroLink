@@ -579,8 +579,8 @@ class Persons extends \Phalcon\Mvc\Model
             'birthday'          => 'birthday',
             'levelId'           => 'levelId',
             'practiceStartDate' => 'practiceStartDate',
-            'country'           => 'country',
-            'avatar'            => 'avatar',
+            'countryId'         => 'countryId',
+            'avatarId'          => 'avatarId',
             'details'           => 'details',
             'statusId'          => 'statusId'
         ];
