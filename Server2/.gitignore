@@ -18,7 +18,7 @@ vendor/
 Thumbs.db
 UserInterfaceState.xcuserstate
 
-app/configs/default.php
-app/configs/server.development.php
+#app/configs/default.php
+#app/configs/server.development.php
 app/configs/server.staging.php
 app/configs/server.production.php
