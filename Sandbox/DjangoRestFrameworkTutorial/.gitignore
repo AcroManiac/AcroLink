@@ -10,7 +10,9 @@ log.txt
 *.sublime-workspace
 
 env/
+snippets/migrations/
 *.sqlite3
+*.pyc
 
 .DS_Store
 Thumbs.db
