@@ -7,13 +7,17 @@ from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 
-class Profile(AbstractUser):
+class UserLevel(models.Model):
+	name = models.TextField(max_length=20, default='Non-specified')
+
+class User(AbstractUser):
     phone = models.TextField(max_length=20, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     practice_start_date = models.DateField(null=True, blank=True)
     bio = models.TextField(max_length=500, blank=True)
     location = models.CharField(max_length=30, blank=True)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
-    # level = models.OneToOneField(Level)
+
+    level = models.OneToOneField(UserLevel, null=True)
     # status = models.OneToOneField(Status)
     # country = models.OneToOneField(Country)
