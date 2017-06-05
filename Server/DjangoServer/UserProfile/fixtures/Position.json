@@ -1,0 +1,23 @@
+[
+  {
+    "model": "UserProfile.Position",
+    "pk": 1,
+    "fields": {
+      "name": "Base"
+    }
+  },
+  {
+    "model": "UserProfile.Position",
+    "pk": 2,
+    "fields": {
+      "name": "Flyer"
+    }
+  },
+  {
+    "model": "UserProfile.Position",
+    "pk": 3,
+    "fields": {
+      "name": "Spotter"
+    }
+  }
+]

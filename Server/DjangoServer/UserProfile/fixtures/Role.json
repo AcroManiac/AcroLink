@@ -1,0 +1,23 @@
+[
+  {
+    "model": "UserProfile.Role",
+    "pk": 1,
+    "fields": {
+      "name": "Student"
+    }
+  },
+  {
+    "model": "UserProfile.Role",
+    "pk": 2,
+    "fields": {
+      "name": "Teacher"
+    }
+  },
+  {
+    "model": "UserProfile.Role",
+    "pk": 3,
+    "fields": {
+      "name": "Organizer"
+    }
+  }
+]

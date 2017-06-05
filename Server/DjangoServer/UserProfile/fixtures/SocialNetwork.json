@@ -1,0 +1,38 @@
+[
+  {
+    "model": "UserProfile.SocialNetwork",
+    "pk": 1,
+    "fields": {
+      "name": "Facebook",
+      "url": "https://www.facebook.com/",
+      "logo_url": "https://en.facebookbrand.com/wp-content/uploads/2016/05/FB-fLogo-Blue-broadcast-2.png"
+    }
+  },
+  {
+    "model": "UserProfile.SocialNetwork",
+    "pk": 2,
+    "fields": {
+      "name": "В Контакте",
+      "url": "https://vk.com/",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/VK.com-logo.svg/200px-VK.com-logo.svg.png"
+    }
+  },
+  {
+    "model": "UserProfile.SocialNetwork",
+    "pk": 3,
+    "fields": {
+      "name": "Одноклассники",
+      "url": "https://ok.ru/",
+      "logo_url": "https://upload.wikimedia.org/wikipedia/ru/archive/d/db/20150213095116%21%D0%9E%D0%B4%D0%BD%D0%BE%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BD%D0%B8%D0%BA%D0%B8.png"
+    }
+  },
+  {
+    "model": "UserProfile.SocialNetwork",
+    "pk": 4,
+    "fields": {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/",
+      "logo_url": "http://diylogodesigns.com/blog/wp-content/uploads/2016/05/instagram-Logo-PNG-Transparent-Background-download.png"
+    }
+  }
+]
