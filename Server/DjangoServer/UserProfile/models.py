@@ -15,7 +15,6 @@ class Level(models.Model):
 
 
 class Position(models.Model):
-	profile = models.ForeignKey('Profile', on_delete=models.CASCADE)
 	name = models.TextField(max_length=20, default='Base')
 
 	def __unicode__(self):
@@ -23,7 +22,6 @@ class Position(models.Model):
 		
 
 class Role(models.Model):
-	profile = models.ForeignKey('Profile', on_delete=models.CASCADE)
 	name = models.TextField(max_length=20, default='Student')
 
 	def __unicode__(self):
@@ -56,7 +54,7 @@ class SocialNetworkLink(models.Model):
 		
 
 class Profile(models.Model):
-	user = models.OneToOneField(User, on_delete=models.CASCADE)
+	user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
 	phone = models.TextField(max_length=20, blank=True)
 	birth_date = models.DateField(null=True, blank=True)
 	practice_start_date = models.DateField(null=True, blank=True)
@@ -64,8 +62,8 @@ class Profile(models.Model):
 	location = models.CharField(max_length=30, blank=True)
 	avatar = models.ImageField(upload_to='avatars/', null=True)
 
-	# position = models.ManyToOneField(Position, null=True)
-	# role = models.ManyToOneField(Role, null=True)
+	position = models.ManyToManyField('Position')
+	role = models.ManyToManyField('Role')
 	level = models.OneToOneField('Level', null=True)
 	country = models.OneToOneField('Country', null=True)
 	social_network = models.ManyToManyField('SocialNetwork', through='SocialNetworkLink')
