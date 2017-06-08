@@ -1,6 +1,6 @@
 [
   {
-    "model": "UserProfile.SocialNetwork",
+    "model": "reference.SocialNetwork",
     "pk": 1,
     "fields": {
       "name": "Facebook",
@@ -9,7 +9,7 @@
     }
   },
   {
-    "model": "UserProfile.SocialNetwork",
+    "model": "reference.SocialNetwork",
     "pk": 2,
     "fields": {
       "name": "В Контакте",
@@ -18,7 +18,7 @@
     }
   },
   {
-    "model": "UserProfile.SocialNetwork",
+    "model": "reference.SocialNetwork",
     "pk": 3,
     "fields": {
       "name": "Одноклассники",
@@ -27,7 +27,7 @@
     }
   },
   {
-    "model": "UserProfile.SocialNetwork",
+    "model": "reference.SocialNetwork",
     "pk": 4,
     "fields": {
       "name": "Instagram",

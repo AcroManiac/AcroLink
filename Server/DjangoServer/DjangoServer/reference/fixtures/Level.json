@@ -1,34 +1,34 @@
 [
   {
-    "model": "UserProfile.Level",
+    "model": "reference.Level",
     "pk": 1,
     "fields": {
       "name": "Beginner"
     }
   },
   {
-    "model": "UserProfile.Level",
+    "model": "reference.Level",
     "pk": 2,
     "fields": {
       "name": "Intermediate"
     }
   },
   {
-    "model": "UserProfile.Level",
+    "model": "reference.Level",
     "pk": 3,
     "fields": {
       "name": "Advanced"
     }
   },
   {
-    "model": "UserProfile.Level",
+    "model": "reference.Level",
     "pk": 4,
     "fields": {
       "name": "Guru"
     }
   },
   {
-    "model": "UserProfile.Level",
+    "model": "reference.Level",
     "pk": 5,
     "fields": {
       "name": "God"
