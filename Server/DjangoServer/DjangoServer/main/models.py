@@ -28,4 +28,3 @@ class Profile(models.Model):
 	level = models.OneToOneField('reference.Level', null=True)
 	country = models.OneToOneField('reference.Country', null=True)
 	social_network = models.ManyToManyField('reference.SocialNetwork', through='main.SocialNetworkLink')
-	# social_network = models.ManyToManyField('reference.SocialNetwork', through='reference.SocialNetworkLink')

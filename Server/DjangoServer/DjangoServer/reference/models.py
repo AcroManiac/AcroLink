@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 from django.db import models
-# from DjangoServer.main.models import Profile
 
 # Create your models here.
 
@@ -42,11 +41,3 @@ class SocialNetwork(models.Model):
 
 	def __unicode__(self):
 		return self.name
-
-# class SocialNetworkLink(models.Model):
-# 	profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-# 	social_network = models.ForeignKey(SocialNetwork, on_delete=models.CASCADE)
-# 	url = models.URLField(null=True)
-
-# 	def __unicode__(self):
-# 		return self.url
