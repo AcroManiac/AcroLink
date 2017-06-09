@@ -1,0 +1,155 @@
+[
+  {
+    "model": "main.Profile",
+    "pk": 1,
+    "fields": {
+      "user_id": "1",
+      "phone": "+79168102577",
+      "birth_date": "1978-12-28",
+      "practice_start_date": "2016-08-01",
+      "bio": "",
+      "location": "Москва",
+      "level_id": "2",
+      "country_id": "183"
+    }
+  },
+
+
+  {
+    "model": "main.profile_position",
+    "pk": 1,
+    "fields": {
+      "profile_id": "1",
+      "position_id": "1"
+    }
+  },
+  {
+    "model": "main.profile_position",
+    "pk": 2,
+    "fields": {
+      "profile_id": "1",
+      "position_id": "2"
+    }
+  },
+  {
+    "model": "main.profile_position",
+    "pk": 3,
+    "fields": {
+      "profile_id": "1",
+      "position_id": "3"
+    }
+  },
+
+
+  {
+    "model": "main.profile_role",
+    "pk": 1,
+    "fields": {
+      "profile_id": "1",
+      "role_id": "1"
+    }
+  },
+
+
+  {
+    "model": "main.socialnetworklink",
+    "pk": 1,
+    "fields": {
+      "profile_id": "1",
+      "social_network_id": "1",
+      "url": "https://www.facebook.com/profile.php?id=100009014526658"
+    }
+  },
+  {
+    "model": "main.socialnetworklink",
+    "pk": 2,
+    "fields": {
+      "profile_id": "1",
+      "social_network_id": "2",
+      "url": "https://vk.com/id281896738"
+    }
+  },
+
+
+
+
+
+  {
+    "model": "main.Profile",
+    "pk": 2,
+    "fields": {
+      "user_id": "2",
+      "phone": "+79637817954",
+      "birth_date": "1988-01-18",
+      "practice_start_date": "2012-01-01",
+      "bio": "",
+      "location": "Москва",
+      "level_id": "4",
+      "country_id": "183"
+    }
+  },
+
+
+  {
+    "model": "main.profile_position",
+    "pk": 4,
+    "fields": {
+      "profile_id": "2",
+      "position_id": "1"
+    }
+  },
+  {
+    "model": "main.profile_position",
+    "pk": 5,
+    "fields": {
+      "profile_id": "2",
+      "position_id": "2"
+    }
+  },
+  {
+    "model": "main.profile_position",
+    "pk": 6,
+    "fields": {
+      "profile_id": "2",
+      "position_id": "3"
+    }
+  },
+
+
+  {
+    "model": "main.profile_role",
+    "pk": 2,
+    "fields": {
+      "profile_id": "2",
+      "role_id": "2"
+    }
+  },
+  {
+    "model": "main.profile_role",
+    "pk": 3,
+    "fields": {
+      "profile_id": "2",
+      "role_id": "3"
+    }
+  },
+
+
+  {
+    "model": "main.socialnetworklink",
+    "pk": 3,
+    "fields": {
+      "profile_id": "2",
+      "social_network_id": "1",
+      "url": "https://www.facebook.com/yaroslav.tua?fref=ts"
+    }
+  },
+  {
+    "model": "main.socialnetworklink",
+    "pk": 4,
+    "fields": {
+      "profile_id": "2",
+      "social_network_id": "2",
+      "url": "https://vk.com/yaroslav.acro"
+    }
+  }
+]
