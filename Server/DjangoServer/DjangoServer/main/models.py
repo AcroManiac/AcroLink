@@ -25,6 +25,6 @@ class Profile(models.Model):
 
 	position = models.ManyToManyField('reference.Position')
 	role = models.ManyToManyField('reference.Role')
-	level = models.OneToOneField('reference.Level', null=True)
-	country = models.OneToOneField('reference.Country', null=True)
+	level = models.ForeignKey('reference.Level', null=True)
+	country = models.ForeignKey('reference.Country', null=True)
 	social_network = models.ManyToManyField('reference.SocialNetwork', through='main.SocialNetworkLink')
