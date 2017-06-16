@@ -18,19 +18,26 @@ from itertools import chain
 
 # Create your views here.
 
-class ReferenceViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    This viewset automatically provides `list` and `detail` actions.
-    """
+# MAKE ALL THE STANDARD WAY!!!!!!
+
+@api_view(['GET'])
+def reference_data(request):
+
     levels = Level.objects.all()
+
+    import pdb; pdb.set_trace()
+
     positions = Position.objects.all()
     roles = Role.objects.all()
     countries = Country.objects.all()
     social_networks = SocialNetwork.objects.all()
 
-    queryset = list(chain(levels, positions, roles, countries, social_networks))
+    # import pdb; pdb.set_trace()
 
-    serializer_class = ReferenceSerializer
+    return Response({
+    	'levels': levels,
+    	# 'positions': positions,
+    	})
 
 
 # @api_view(['GET'])
