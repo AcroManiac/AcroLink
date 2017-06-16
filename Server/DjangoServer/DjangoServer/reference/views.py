@@ -11,33 +11,48 @@ from rest_framework.decorators import api_view
 from rest_framework.decorators import detail_route
 
 from models import *
-from serializers import ReferenceSerializer
-
-from itertools import chain
-
+from serializers import *
 
 # Create your views here.
 
-# MAKE ALL THE STANDARD WAY!!!!!!
+class LevelViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    This viewset automatically provides `list` and `detail` actions.
+    """
+    queryset = Level.objects.all()
+    serializer_class = LevelSerializer
 
-@api_view(['GET'])
-def reference_data(request):
 
-    levels = Level.objects.all()
+class PositionViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    This viewset automatically provides `list` and `detail` actions.
+    """
+    queryset = Position.objects.all()
+    serializer_class = PositionSerializer
 
-    import pdb; pdb.set_trace()
 
-    positions = Position.objects.all()
-    roles = Role.objects.all()
-    countries = Country.objects.all()
-    social_networks = SocialNetwork.objects.all()
+class RoleViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    This viewset automatically provides `list` and `detail` actions.
+    """
+    queryset = Role.objects.all()
+    serializer_class = RoleSerializer
 
-    # import pdb; pdb.set_trace()
 
-    return Response({
-    	'levels': levels,
-    	# 'positions': positions,
-    	})
+class CountryViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    This viewset automatically provides `list` and `detail` actions.
+    """
+    queryset = Country.objects.all()
+    serializer_class = CountrySerializer
+
+
+class SocialNetworkViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    This viewset automatically provides `list` and `detail` actions.
+    """
+    queryset = SocialNetwork.objects.all()
+    serializer_class = SocialNetworkSerializer
 
 
 # @api_view(['GET'])
