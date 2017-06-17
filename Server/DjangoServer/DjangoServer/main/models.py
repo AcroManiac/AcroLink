@@ -22,9 +22,11 @@ class Profile(models.Model):
 	bio = models.TextField(max_length=500, blank=True)
 	location = models.CharField(max_length=30, blank=True)
 	avatar = models.ImageField(upload_to='avatars/', null=True)
+	score = models.IntegerField(null=False, blank=False, default=0)
+
+	level = models.ForeignKey('reference.Level', null=True)
+	country = models.ForeignKey('reference.Country', null=True)
 
 	position = models.ManyToManyField('reference.Position')
 	role = models.ManyToManyField('reference.Role')
-	level = models.ForeignKey('reference.Level', null=True)
-	country = models.ForeignKey('reference.Country', null=True)
 	social_network = models.ManyToManyField('reference.SocialNetwork', through='main.SocialNetworkLink')

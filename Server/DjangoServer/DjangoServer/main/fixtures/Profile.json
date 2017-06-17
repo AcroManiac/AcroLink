@@ -9,8 +9,9 @@
       "practice_start_date": "2016-08-01",
       "bio": "",
       "location": "Москва",
-      "level_id": "2",
-      "country_id": "183"
+      "level_id": "1",
+      "country_id": "183",
+      "score": "0"
     }
   },
 
@@ -84,8 +85,9 @@
       "practice_start_date": "2012-01-01",
       "bio": "",
       "location": "Москва",
-      "level_id": "4",
-      "country_id": "183"
+      "level_id": "1",
+      "country_id": "183",
+      "score": "0"
     }
   },
 
