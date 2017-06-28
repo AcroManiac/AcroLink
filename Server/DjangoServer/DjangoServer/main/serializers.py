@@ -25,3 +25,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = (
         	'id', 'phone', 'birth_date', 'practice_start_date', 'bio', 'location', 'avatar',
         	'user', 'position', 'role', 'country', 'social_network')
+
+    # Watch this to see how to update profile in one request:
+    # http://django-rest-auth.readthedocs.io/en/latest/faq.html
