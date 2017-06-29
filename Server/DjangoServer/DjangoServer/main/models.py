@@ -2,6 +2,9 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.dispatch import receiver
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 
 # Create your models here.
 
@@ -30,3 +33,13 @@ class Profile(models.Model):
 	position = models.ManyToManyField('reference.Position')
 	role = models.ManyToManyField('reference.Role')
 	social_network = models.ManyToManyField('reference.SocialNetwork', through='main.SocialNetworkLink')
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+
