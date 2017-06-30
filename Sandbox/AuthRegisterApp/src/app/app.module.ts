@@ -14,7 +14,8 @@ import { AuthProvider } from '../providers/auth-provider';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
