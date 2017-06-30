@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.ionicframework.authregisterapp113999" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>AuthRegisterApp</name>
-    <description>Test application for authentication/registration services</description>
+    <description>Test application for authentication and registration services</description>
     <author email="artem.orlov@gmail.com" href="http://acroyoga.veedo.ru/">AcroLink Team</author>
     <content src="index.html" />
     <access origin="*" />
