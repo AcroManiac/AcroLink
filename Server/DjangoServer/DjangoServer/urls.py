@@ -24,13 +24,13 @@ from rest_framework_swagger.views import get_swagger_view
 
 urlpatterns = [
     
-    # url(r'^account/', include('allauth.urls')),
-    # url(r'^accounts/profile/$', RedirectView.as_view(url='/', permanent=True), name='profile-redirect'),
     url(r'^docs/$', get_swagger_view(title='API Docs'), name='api_docs'),
 
     url(r'^api/v1/admin/', include(admin.site.urls)),
     url(r'^api/v1/rest-auth/', include('rest_auth.urls')),
     url(r'^api/v1/rest-auth/registration/', include('rest_auth.registration.urls')),
+    # url(r'^api/v1/account/', include('allauth.urls')),
+    # url(r'^api/v1/accounts/profile/$', RedirectView.as_view(url='/', permanent=True), name='profile-redirect'),
 
     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/v1/', include(mainRouter.urls)),
