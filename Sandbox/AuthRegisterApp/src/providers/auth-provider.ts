@@ -30,12 +30,12 @@ export class AuthProvider {
 			let headers = new Headers();
 			headers.append('Authorization', this.token);
 
-			// this.http.get('https://YOUR_HEROKU_APP.herokuapp.com/api/auth/protected', {headers: headers})
-			// 	.subscribe(res => {
-			// 		resolve(res);
-			// 	}, (err) => {
-			// 		reject(err);
-			// 	}); 
+			this.http.get('http://127.0.0.1:8000/api/v1/profiles/', {headers: headers})
+				.subscribe(res => {
+					resolve(res);
+				}, (err) => {
+					reject(err);
+				}); 
 
   		}); 		
 
@@ -50,7 +50,7 @@ export class AuthProvider {
 	    let headers = new Headers();
 	    headers.append('Content-Type', 'application/json');
 
-	    this.http.post('https://127.0.0.1:8000/api/v1/rest-auth/register', JSON.stringify(details), {headers: headers})
+	    this.http.post('http://127.0.0.1:8000/api/v1/rest-auth/register/', JSON.stringify(details), {headers: headers})
 	      .subscribe(res => {
 
 	      	let data = res.json();
@@ -73,7 +73,7 @@ export class AuthProvider {
 	    let headers = new Headers();
 	    headers.append('Content-Type', 'application/json');
 
-	    this.http.post('https://127.0.0.1:8000/api/v1/rest-auth/login', JSON.stringify(credentials), {headers: headers})
+	    this.http.post('http://127.0.0.1:8000/api/v1/rest-auth/login/', JSON.stringify(credentials), {headers: headers})
 	      .subscribe(res => {
 
 	      	let data = res.json();
