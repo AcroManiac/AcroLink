@@ -22,6 +22,8 @@ from reference.urls import router as referenceRouter
 from django.views.generic import RedirectView
 from rest_framework_swagger.views import get_swagger_view
 
+from allauth.account.views import confirm_email as allauthemailconfirmation
+
 urlpatterns = [
     
     url(r'^docs/$', get_swagger_view(title='API Docs'), name='api_docs'),
@@ -29,6 +31,7 @@ urlpatterns = [
     url(r'^api/v1/admin/', include(admin.site.urls)),
     url(r'^api/v1/rest-auth/', include('rest_auth.urls')),
     url(r'^api/v1/rest-auth/registration/', include('rest_auth.registration.urls')),
+    url(r'^account-confirm-email/(?P<key>[-:\w]+)/$', allauthemailconfirmation, name='account_confirm_email'),
     # url(r'^api/v1/account/', include('allauth.urls')),
     # url(r'^api/v1/accounts/profile/$', RedirectView.as_view(url='/', permanent=True), name='profile-redirect'),
 
