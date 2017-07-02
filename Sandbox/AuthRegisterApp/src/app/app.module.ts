@@ -9,6 +9,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login-page/login-page';
+import { SignupPage } from '../pages/signup-page/signup-page';
 
 import { AuthProvider } from '../providers/auth-provider';
 
@@ -16,7 +17,8 @@ import { AuthProvider } from '../providers/auth-provider';
   declarations: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    SignupPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import { AuthProvider } from '../providers/auth-provider';
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    SignupPage
   ],
   providers: [
     StatusBar,

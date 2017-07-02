@@ -45,12 +45,14 @@ export class AuthProvider {
 
   createAccount(details){
 
+  	console.log("createAccount(): Details: " + JSON.stringify(details));
+
   	return new Promise((resolve, reject) => {
 
 	    let headers = new Headers();
 	    headers.append('Content-Type', 'application/json');
 
-	    this.http.post('http://127.0.0.1:8000/api/v1/rest-auth/register/', JSON.stringify(details), {headers: headers})
+	    this.http.post('http://127.0.0.1:8000/api/v1/rest-auth/registration/', JSON.stringify(details), {headers: headers})
 	      .subscribe(res => {
 
 	      	let data = res.json();
@@ -59,6 +61,7 @@ export class AuthProvider {
 	        resolve(data);
 
 	      }, (err) => {
+	      	console.log("createAccount(): Details: " + JSON.stringify(err));
 	      	reject(err);
 	      });
 

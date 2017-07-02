@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth-provider';
 import { HomePage } from '../home/home';
+import { SignupPage } from '../signup-page/signup-page';
 
 /**
  * Generated class for the LoginPage page.
@@ -64,7 +65,7 @@ export class LoginPage {
 	}
 
 	launchSignup(){
-	    // this.navCtrl.push(SignupPage);
+	    this.navCtrl.push(SignupPage);
 	}
 
 	showLoader(){
