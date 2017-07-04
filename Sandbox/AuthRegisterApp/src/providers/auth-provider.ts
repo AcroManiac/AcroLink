@@ -51,49 +51,65 @@ export class AuthProvider {
 
   	console.log("createAccount(): Details: " + JSON.stringify(details));
 
-	let headers = new Headers();
-	headers.append('Content-Type', 'application/json');
+  	return new Promise((resolve, reject) => {
 
-	this.http.post('http://127.0.0.1:8000/api/v1/rest-auth/registration/', JSON.stringify(details), {headers: headers})
-		.map(res => res.json())
-	  	.subscribe((data) => {
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/json');
 
-	  	this.token = data.token;
-	    this.storage.set('token', data.token);
+		return this.http.post('http://127.0.0.1:8000/api/v1/rest-auth/registration/', JSON.stringify(details), {headers: headers})
+			.map(res => res.json())
+		  	.subscribe((data) => {
 
-	  }, (err) => {
-	  	console.log("createAccount(): Error: " + JSON.stringify(err));
-	  	
-	  	let alert = this.alertCtrl.create({
-			title: 'Register Error',
-			subTitle: JSON.stringify(err),
-			buttons: ['OK'] });
-		alert.present();
-	  });
+		  	this.token = data.token;
+		    this.storage.set('token', data.token);
+
+		    resolve(data);
+
+		  }, (err) => {
+		  	console.log("createAccount(): Error: " + JSON.stringify(err));
+		  	
+		  	let alert = this.alertCtrl.create({
+				title: 'Register Error',
+				subTitle: JSON.stringify(err),
+				buttons: ['OK'] });
+			alert.present();
+
+			reject(err);
+		  });
+
+	});
 
   }
 
   login(credentials){
 
-	let headers = new Headers();
-	headers.append('Content-Type', 'application/json');
+  	return new Promise((resolve, reject) => {
 
-	this.http.post('http://127.0.0.1:8000/api/v1/rest-auth/login/', JSON.stringify(credentials), {headers: headers})
-	  .map(res => res.json())
-	  .subscribe((data) => {
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/json');
 
-	  	this.token = data.token;
-	    this.storage.set('token', data.token);
+		return this.http.post('http://127.0.0.1:8000/api/v1/rest-auth/login/', JSON.stringify(credentials), {headers: headers})
+		  .map(res => res.json())
+		  .subscribe((data) => {
 
-	  }, (err) => {
-	  	console.log("login(): Error: " + JSON.stringify(err));
-	  	
-	  	let alert = this.alertCtrl.create({
-			title: 'Login Error',
-			subTitle: JSON.stringify(err),
-			buttons: ['OK'] });
-		alert.present();
-	  });
+		  	this.token = data.token;
+		    this.storage.set('token', data.token);
+
+		    resolve(data);
+
+		  }, (err) => {
+		  	console.log("login(): Error: " + JSON.stringify(err));
+		  	
+		  	let alert = this.alertCtrl.create({
+				title: 'Login Error',
+				subTitle: JSON.stringify(err),
+				buttons: ['OK'] });
+			alert.present();
+
+			reject(err);
+		  });
+
+	});
 
   }
 
