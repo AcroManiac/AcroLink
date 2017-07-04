@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '=!we=y!cmimvsz+kprweq896e7&@sho)i50^$akryaqw9ruxrd'
+SECRET_KEY = os.environ.get('ACROLINK_SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -97,11 +97,11 @@ WSGI_APPLICATION = 'DjangoServer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'acrolink_development',
-        'USER': 'acrolink_db_user',
-        'PASSWORD': 'xSd8Yrw7Vf',
-        'HOST': '91.232.134.182',
-        'PORT': '5432',
+        'NAME': os.environ.get('ACROLINK_DATABASE_NAME', ''),
+        'USER': os.environ.get('ACROLINK_DATABASE_USER', ''),
+        'PASSWORD': os.environ.get('ACROLINK_DATABASE_PASSWORD', ''),
+        'HOST': os.environ.get('ACROLINK_DATABASE_HOST', ''),
+        'PORT': os.environ.get('ACROLINK_DATABASE_PORT', ''),
     }
 }
 
@@ -153,17 +153,11 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
-EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'postmaster@mg.veedo.ru'
-EMAIL_HOST_PASSWORD = '794448bfeef3dcc7738411178c9028c8'
-
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'mediaserver.monit@veedo.ru'
-# EMAIL_HOST_PASSWORD = 'W47Sq14R'
+EMAIL_HOST = os.environ.get('ACROLINK_EMAIL_HOST', '')
+EMAIL_PORT = os.environ.get('ACROLINK_EMAIL_PORT', '')
+EMAIL_USE_SSL = os.environ.get('ACROLINK_EMAIL_USE_SSL', '')
+EMAIL_HOST_USER = os.environ.get('ACROLINK_EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.environ.get('ACROLINK_EMAIL_HOST_PASSWORD', '')
 
 #Following is added to enable registration with email instead of username
 AUTHENTICATION_BACKENDS = (
