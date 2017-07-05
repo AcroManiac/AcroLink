@@ -32,8 +32,8 @@ urlpatterns = [
     url(r'^api/v1/rest-auth/', include('rest_auth.urls')),
     url(r'^api/v1/rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^account-confirm-email/(?P<key>[-:\w]+)/$', allauthemailconfirmation, name='account_confirm_email'),
-    # url(r'^api/v1/account/', include('allauth.urls')),
-    # url(r'^api/v1/accounts/profile/$', RedirectView.as_view(url='/', permanent=True), name='profile-redirect'),
+    url(r'^api/v1/accounts/', include('allauth.urls')),
+    url(r'^api/v1/accounts/profile/$', RedirectView.as_view(url='/', permanent=True), name='profile-redirect'),
 
     # url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api/v1/', include(mainRouter.urls)),
