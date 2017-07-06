@@ -147,11 +147,16 @@ STATIC_URL = '/static/'
 
 SITE_ID = 1
 REST_SESSION_LOGIN = True
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+EMAIL_SUBJECT_PREFIX = os.environ.get('ACROLINK_EMAIL_HOST', '')
+SERVER_EMAIL = os.environ.get('ACROLINK_EMAIL_HOST_USER', '')
+DEFAULT_FROM_EMAIL = os.environ.get('ACROLINK_EMAIL_HOST_USER', '')
 
 EMAIL_HOST = os.environ.get('ACROLINK_EMAIL_HOST', '')
 EMAIL_PORT = os.environ.get('ACROLINK_EMAIL_PORT', '')
