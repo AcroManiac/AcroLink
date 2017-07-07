@@ -12,6 +12,9 @@ import { CommunityPage } from '../pages/community/community';
 import { SettingsPage } from '../pages/settings/settings';
 import { AboutPage } from '../pages/about/about';
 
+import {AuthService} from '../providers/auth-service';
+import {TranslateService} from '@ngx-translate/core';
+
 // import { HomePage } from '../pages/home/home';
 // import { ListPage } from '../pages/list/list';
 
@@ -25,7 +28,13 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public authService: AuthService,
+    translate: TranslateService) {
+    
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -57,6 +66,10 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
+    if (page.method && page.method === 'logout') {
+      this.authService.logout();
+    }
+
     this.nav.setRoot(page.component);
   }
 }
