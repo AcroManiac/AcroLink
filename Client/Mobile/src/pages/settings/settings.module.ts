@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { CommunityPage } from './community';
+import { SettingsPage } from './settings';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
-    CommunityPage,
+    SettingsPage,
   ],
   imports: [
-    IonicPageModule.forChild(CommunityPage),
+    IonicPageModule.forChild(SettingsPage),
     TranslateModule.forChild()
   ],
   exports: [
-    CommunityPage
+    SettingsPage
   ]
 })
-export class CommunityPageModule {}
+export class SettingsPageModule {}

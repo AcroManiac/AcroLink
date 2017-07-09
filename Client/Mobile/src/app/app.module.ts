@@ -10,21 +10,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { MyApp } from './app.component';
-import { ProfilePage } from '../pages/profile/profile';
-import { TrainingsPage } from '../pages/trainings/trainings';
-import { EventsPage } from '../pages/events/events';
-import { PlacesPage } from '../pages/places/places';
-import { PosesPage } from '../pages/poses/poses';
-import { CommunityPage } from '../pages/community/community';
-import { SettingsPage } from '../pages/settings/settings';
-import { AboutPage } from '../pages/about/about';
-
-// import { HomePage } from '../pages/home/home';
-// import { ListPage } from '../pages/list/list';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 
 let storage = new Storage({});
@@ -44,17 +31,6 @@ export function createTranslateLoader(http: Http) {
 @NgModule({
   declarations: [
     MyApp,
-    ProfilePage,
-    TrainingsPage,
-    EventsPage,
-    PlacesPage,
-    PosesPage,
-    CommunityPage,
-    SettingsPage,
-    AboutPage
-
-    // HomePage,
-    // ListPage
   ],
   imports: [
     BrowserModule,
@@ -72,17 +48,6 @@ export function createTranslateLoader(http: Http) {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    ProfilePage,
-    TrainingsPage,
-    EventsPage,
-    PlacesPage,
-    PosesPage,
-    CommunityPage,
-    SettingsPage,
-    AboutPage
-
-    // HomePage,
-    // ListPage
   ],
   providers: [
     StatusBar,
@@ -93,7 +58,7 @@ export function createTranslateLoader(http: Http) {
       useFactory: getAuthHttp,
       deps: [Http]
     },
-    AuthService, AuthServiceProvider
+    AuthService
   ]
 })
 export class AppModule {}
