@@ -1,8 +1,8 @@
 export class UserModel {
  
-  public name: string;
   public email: string;
-  public password: string;
-  public confirm_password?: string;
+  public username: string;
+  public password1: string;
+  public password2: string;
    
 }

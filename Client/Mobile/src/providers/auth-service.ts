@@ -24,6 +24,7 @@ export class AuthService {
   }
 
   register(userData: UserModel) {
+    console.log('AuthService:register: SignUp Data = ' + JSON.stringify(userData));
 
     return this.http.post(this.cfg.apiUrl + this.cfg.user.register, userData)
       .toPromise()
