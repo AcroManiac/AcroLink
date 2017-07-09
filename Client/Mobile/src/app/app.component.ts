@@ -37,7 +37,7 @@ export class MyApp {
       { title: 'Community', component: 'CommunityPage' },
       { title: 'Settings', component: 'SettingsPage' },
       { title: 'About', component: 'AboutPage' },
-      { title: 'page.logout', component: 'LoginPage', method: 'logout' }
+      { title: 'Logout', component: 'LoginPage', method: 'logout' }
     ];
 
   }

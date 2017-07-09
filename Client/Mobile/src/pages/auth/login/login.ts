@@ -46,6 +46,9 @@ export class LoginPage {
   }
 
   login() {
+
+    this.showLoader();
+    
     //use this.loginData.value to authenticate the user
     this.authService.login(this.loginData.value)
       .then(() => {
@@ -64,10 +67,10 @@ export class LoginPage {
   }
 
   showLoader() {
-	this.loading = this.loadingCtrl.create({
-		content: 'Authenticating...'
-	});
-	this.loading.present();
+  	this.loading = this.loadingCtrl.create({
+  		content: 'Authenticating...'
+  	});
+  	this.loading.present();
   }
 
   /**

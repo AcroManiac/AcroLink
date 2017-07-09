@@ -1,10 +1,11 @@
-import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
-import {AuthHttp, tokenNotExpired} from 'angular2-jwt';
-import {Storage} from '@ionic/storage';
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { AuthHttp, tokenNotExpired } from 'angular2-jwt';
+import { AlertController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import { UserModel } from '../models/user.model';
+import { CredentialsModel } from '../models/credentials.model';
 import 'rxjs/add/operator/toPromise';
-import {UserModel} from '../models/user.model';
-import {CredentialsModel} from '../models/credentials.model';
 
 import *  as AppConfig from '../app/config';
 
@@ -16,7 +17,8 @@ export class AuthService {
   constructor(
     private storage: Storage,
     private http: Http,
-    private authHttp: AuthHttp) {
+    private authHttp: AuthHttp,
+    private alertCtrl: AlertController) {
 
     this.cfg = AppConfig.cfg;
   }
@@ -26,22 +28,24 @@ export class AuthService {
     return this.http.post(this.cfg.apiUrl + this.cfg.user.register, userData)
       .toPromise()
       .then(data => this.saveData(data))
-      .catch(e => console.log("reg error", e));
+      .catch(e => console.log("AuthService:register: Registration error ", e));
 
   }
 
   login(credentials: CredentialsModel) {
+    console.log('AuthService:login: Login URL = ' + this.cfg.apiUrl + this.cfg.user.login);
+    // console.log('AuthService:login: Login Credentials = ' + JSON.stringify(credentials));
 
     return this.http.post(this.cfg.apiUrl + this.cfg.user.login, credentials)
       .toPromise()
       .then(data => this.saveData(data))
-      .catch(e => console.log('login error', e));
-
+      .catch(e => console.log('AuthService:login: Login error ', e));
   }
 
   saveData(data: any) {
 
     let rs = data.json();
+    console.log('AuthService:saveData: ' + JSON.stringify(rs));
 
     this.storage.set("user", rs.user);
     this.storage.set("id_token", rs.token);
