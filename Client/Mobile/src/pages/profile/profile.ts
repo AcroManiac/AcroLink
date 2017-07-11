@@ -1,30 +1,41 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
-import {Storage} from '@ionic/storage';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { ProtectedPage } from '../protected/protected';
+import { Storage } from '@ionic/storage';
+import { ProfileService } from '../../providers/profile-service';
+// import { ProfileModel } from '../../models/profile.model';
 
 @IonicPage()
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html'
 })
-export class ProfilePage {
+export class ProfilePage extends ProtectedPage {
+
+  public profile: any;
 
   constructor(
-  	public navCtrl: NavController, 
-    public storage: Storage) {
+  	public navCtrl: NavController,
+    public navParams: NavParams,
+    public menuCtrl: MenuController,
+    public storage: Storage,
+    public profileService: ProfileService) {
 
+    super(navCtrl, navParams, storage);
   }
 
-  ionViewCanEnter() {
+  ionViewWillEnter() {
 
-    this.storage.get('id_token').then(id_token => {
-      if (id_token === null) {
-        this.navCtrl.setRoot('LoginPage');
-        return false;
+    this.storage.get('user').then(user => {
+
+      console.log('ProfilePage:ionViewWillEnter:user: ' + JSON.stringify(user));
+      if (user !== null) {
+        this.profileService.getOne(user.pk).then(profile => {
+          this.profile = profile;
+          console.log('ProfilePage:ionViewWillEnter:profile: ' + this.profile);
+        });
       }
     });
-
-    return true;
   }
 
 }

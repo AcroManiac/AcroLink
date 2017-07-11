@@ -12,8 +12,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ProfileProvider } from '../providers/profile/profile';
-import { ProfileServiceProvider } from '../providers/profile-service/profile-service';
+import { ProfileService } from '../providers/profile-service';
 
 
 let storage = new Storage({});
@@ -60,7 +59,8 @@ export function createTranslateLoader(http: Http) {
       useFactory: getAuthHttp,
       deps: [Http]
     },
-    AuthService, ProfileProvider, ProfileServiceProvider
+    AuthService,
+    ProfileService,
   ]
 })
 export class AppModule {}

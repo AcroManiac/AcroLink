@@ -23,12 +23,15 @@ export class ProfileService {
   }
 
   getOne(id: number) {
-    return this.authHttp.get(this.cfg.apiUrl + this.cfg.profiles + '/' + id)
+
+    console.log('ProfileService:getOne(' + id +') URL = ' + this.cfg.apiUrl + this.cfg.profiles + '/' + id);
+    return this.authHttp.get(this.cfg.apiUrl + this.cfg.profiles + '/16/') // + id)
       .toPromise()
       .then(rs => {
         console.log(rs, rs.json());
         return rs.json().profile;
       });
+      // .catch(e => console.log("ProfileService:getOne: HTTP GET error ", e));
   }
 
   update(profile: ProfileModel) {
