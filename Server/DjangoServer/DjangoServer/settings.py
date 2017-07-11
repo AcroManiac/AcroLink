@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('ACROLINK_SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.82']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.1.49']
 
 
 # Application definition
@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'corsheaders',
 
-    # 'UserProfile',
     'DjangoServer.main',
     'DjangoServer.reference',
 ]
@@ -153,7 +152,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_EMAIL_SUBJECT_PREFIX = '[AcroLink]'
+ACCOUNT_EMAIL_SUBJECT_PREFIX = '[AcroLink] '
 
 EMAIL_SUBJECT_PREFIX = os.environ.get('ACROLINK_EMAIL_HOST', '')
 SERVER_EMAIL = os.environ.get('ACROLINK_EMAIL_HOST_USER', '')
