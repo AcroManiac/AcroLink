@@ -17,6 +17,8 @@ import { ProfileService } from '../providers/profile-service';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions, storage: Storage) {
   return new AuthHttp(new AuthConfig({
+    tokenName: 'token',
+    headerPrefix: 'JWT',
     noJwtError: true,
     globalHeaders: [{'Accept':'application/json'}],
     tokenGetter: (() => storage.get('id_token')),

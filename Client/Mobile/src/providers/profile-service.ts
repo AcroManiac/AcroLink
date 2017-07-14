@@ -30,21 +30,8 @@ export class ProfileService {
 
   getOne(id: number) {
 
-    // let options = new RequestOptions({});
-
-    // this.storage.get('id_token').then((val) => {
-    //   console.log('ProfileService:getOne:id_token: ', val);
-
-    //   let authHeader =  new Headers({
-    //            "Content-Type": "application/json",
-    //            "Authorization": "Bearer " + val
-    //   });
-    //   options = new RequestOptions({headers: authHeader});
-    // });
-
     console.log('ProfileService:getOne(' + id +') URL = ' + this.cfg.apiUrl + this.cfg.profiles + '/' + id);
     return this.authHttp.get(this.cfg.apiUrl + this.cfg.profiles + '/16/') // + id)
-    // return this.http.get(this.cfg.apiUrl + this.cfg.profiles + '/16/', options)
       .toPromise()
       .then(rs => {
         console.log(rs, rs.json());

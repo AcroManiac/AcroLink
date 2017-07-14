@@ -32,7 +32,7 @@ export class ProfilePage extends ProtectedPage {
       if (user !== null) {
         this.profileService.getOne(user.pk).then(profile => {
           this.profile = profile;
-          console.log('ProfilePage:ionViewWillEnter:profile: ' + this.profile);
+          console.log('ProfilePage:ionViewWillEnter:profile: ' + JSON.stringify(this.profile));
         });
       }
     });
