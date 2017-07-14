@@ -5,9 +5,6 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import *  as AppConfig from '../app/config';
 
-// import { Http, Headers, RequestOptions } from '@angular/http';
-// import { Storage } from '@ionic/storage';
-
 /*
   Generated class for the ProfileService provider.
 
@@ -20,8 +17,6 @@ export class ProfileService {
   private cfg: any;
 
   constructor(
-    // private storage: Storage,
-    // private http: Http,
     public authHttp: AuthHttp) {
     console.log('ProfileService: constructor');
 
@@ -31,23 +26,23 @@ export class ProfileService {
   getOne(id: number) {
 
     console.log('ProfileService:getOne(' + id +') URL = ' + this.cfg.apiUrl + this.cfg.profiles + '/' + id);
-    return this.authHttp.get(this.cfg.apiUrl + this.cfg.profiles + '/16/') // + id)
+    return this.authHttp.get(this.cfg.apiUrl + this.cfg.profiles + '/' + id + '/')
+      .map(res => res.json())
       .toPromise()
-      .then(rs => {
-        console.log(rs, rs.json());
-        return rs.json().profile;
-      })
-      .catch(e => console.log("ProfileService:getOne: HTTP GET error ", e));
+      .then(data => {
+        // console.log('ProfileService:getOne:data: ' + JSON.stringify(data));
+        return data;
+      });
   }
 
   update(profile: ProfileModel) {
     return this.authHttp.put(this.cfg.apiUrl + this.cfg.profiles + '/' + profile.id, profile)
+      .map(res => res.json())
       .toPromise()
-      .then(rs => {
-        console.log(rs, rs.json());
-        return rs.json();
-      })
-      .catch(e => console.log("ProfileService:update: Profile error", e));
+      .then(data => {
+        console.log(JSON.stringify(data));
+        return data;
+      });
   }
 
 }

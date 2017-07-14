@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, AlertController } from 'ionic-angular';
 import { ProtectedPage } from '../protected/protected';
 import { Storage } from '@ionic/storage';
 import { ProfileService } from '../../providers/profile-service';
@@ -18,6 +18,7 @@ export class ProfilePage extends ProtectedPage {
   	public navCtrl: NavController,
     public navParams: NavParams,
     public menuCtrl: MenuController,
+    private alertCtrl: AlertController,
     public storage: Storage,
     public profileService: ProfileService) {
 
@@ -30,9 +31,20 @@ export class ProfilePage extends ProtectedPage {
 
       console.log('ProfilePage:ionViewWillEnter:user: ' + JSON.stringify(user));
       if (user !== null) {
-        this.profileService.getOne(user.pk).then(profile => {
-          this.profile = profile;
+        this.profileService.getOne(user.pk)
+        .then(data => {
+          this.profile = data;
           console.log('ProfilePage:ionViewWillEnter:profile: ' + JSON.stringify(this.profile));
+        })
+        .catch(err => {
+          console.log("ProfilePage:ionViewWillEnter:err: " + JSON.stringify(err.json()));
+
+          let alert = this.alertCtrl.create({
+            title: 'Profile error',
+            subTitle: err.json().detail,
+            buttons: ['OK']
+          });
+          alert.present();
         });
       }
     });
