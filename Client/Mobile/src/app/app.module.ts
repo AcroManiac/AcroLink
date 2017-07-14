@@ -17,10 +17,10 @@ import { ProfileService } from '../providers/profile-service';
 
 let storage = new Storage({});
 
-export function getAuthHttp(http) {
+export function authHttpServiceFactory(http: Http) {
   return new AuthHttp(new AuthConfig({
     noJwtError: true,
-    globalHeaders: [{'Accept': 'application/json'}],
+    globalHeaders: [{'Accept':'application/json'}],
     tokenGetter: (() => storage.get('id_token')),
   }), http);
 }
@@ -34,10 +34,10 @@ export function createTranslateLoader(http: Http) {
     MyApp,
   ],
   imports: [
+    IonicStorageModule.forRoot({name: '__acrolink'}),
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -56,7 +56,7 @@ export function createTranslateLoader(http: Http) {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {
       provide: AuthHttp,
-      useFactory: getAuthHttp,
+      useFactory: authHttpServiceFactory,
       deps: [Http]
     },
     AuthService,

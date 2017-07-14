@@ -5,6 +5,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import *  as AppConfig from '../app/config';
 
+// import { Http, Headers, RequestOptions } from '@angular/http';
+// import { Storage } from '@ionic/storage';
+
 /*
   Generated class for the ProfileService provider.
 
@@ -16,7 +19,10 @@ export class ProfileService {
 
   private cfg: any;
 
-  constructor(public authHttp: AuthHttp) {
+  constructor(
+    // private storage: Storage,
+    // private http: Http,
+    public authHttp: AuthHttp) {
     console.log('ProfileService: constructor');
 
     this.cfg = AppConfig.cfg;
@@ -24,14 +30,27 @@ export class ProfileService {
 
   getOne(id: number) {
 
+    // let options = new RequestOptions({});
+
+    // this.storage.get('id_token').then((val) => {
+    //   console.log('ProfileService:getOne:id_token: ', val);
+
+    //   let authHeader =  new Headers({
+    //            "Content-Type": "application/json",
+    //            "Authorization": "Bearer " + val
+    //   });
+    //   options = new RequestOptions({headers: authHeader});
+    // });
+
     console.log('ProfileService:getOne(' + id +') URL = ' + this.cfg.apiUrl + this.cfg.profiles + '/' + id);
     return this.authHttp.get(this.cfg.apiUrl + this.cfg.profiles + '/16/') // + id)
+    // return this.http.get(this.cfg.apiUrl + this.cfg.profiles + '/16/', options)
       .toPromise()
       .then(rs => {
         console.log(rs, rs.json());
         return rs.json().profile;
-      });
-      // .catch(e => console.log("ProfileService:getOne: HTTP GET error ", e));
+      })
+      .catch(e => console.log("ProfileService:getOne: HTTP GET error ", e));
   }
 
   update(profile: ProfileModel) {
