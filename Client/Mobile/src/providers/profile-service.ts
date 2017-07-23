@@ -23,14 +23,15 @@ export class ProfileService {
     this.cfg = AppConfig.cfg;
   }
 
-  getOne(id: number) {
+  getMe() {
 
-    console.log('ProfileService:getOne(' + id +') URL = ' + this.cfg.apiUrl + this.cfg.profiles + '/' + id);
-    return this.authHttp.get(this.cfg.apiUrl + this.cfg.profiles + '/' + id + '/')
+    var requestUrl = this.cfg.apiUrl + this.cfg.user.me;
+    console.log('ProfileService:getMe: URL = ' + requestUrl);
+    return this.authHttp.get(requestUrl)
       .map(res => res.json())
       .toPromise()
       .then(data => {
-        // console.log('ProfileService:getOne:data: ' + JSON.stringify(data));
+        console.log('ProfileService:getMe:data: ' + JSON.stringify(data));
         return data;
       });
   }

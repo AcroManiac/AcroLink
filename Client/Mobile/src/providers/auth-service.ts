@@ -29,7 +29,7 @@ export class AuthService {
     return this.http.post(this.cfg.apiUrl + this.cfg.user.register, userData)
       .toPromise()
       .then(data => this.saveData(data))
-      .catch(e => console.log("AuthService:register: Registration error ", e));
+      .catch(e => console.error("AuthService:register: Registration error ", JSON.stringify(e)));
 
   }
 
@@ -40,13 +40,13 @@ export class AuthService {
     return this.http.post(this.cfg.apiUrl + this.cfg.user.login, credentials)
       .toPromise()
       .then(data => this.saveData(data))
-      .catch(e => console.log('AuthService:login: Login error ', e));
+      .catch(e => console.error('AuthService:login: Login error ', JSON.stringify(e)))
   }
 
   saveData(data: any) {
 
     let rs = data.json();
-    console.log('AuthService:saveData: ' + JSON.stringify(rs));
+    // console.log('AuthService:saveData: ' + JSON.stringify(rs));
 
     this.storage.set("user", rs.user);
     this.storage.set("id_token", rs.token);

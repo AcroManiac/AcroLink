@@ -29,15 +29,15 @@ export class ProfilePage extends ProtectedPage {
 
     this.storage.get('user').then(user => {
 
-      console.log('ProfilePage:ionViewWillEnter:user: ' + JSON.stringify(user));
+      // console.log('ProfilePage:ionViewWillEnter:user: ' + JSON.stringify(user));
       if (user !== null) {
-        this.profileService.getOne(user.pk)
+        this.profileService.getMe()
         .then(data => {
           this.profile = data;
-          console.log('ProfilePage:ionViewWillEnter:profile: ' + JSON.stringify(this.profile));
+          // console.log('ProfilePage:ionViewWillEnter:profile: ' + JSON.stringify(this.profile));
         })
         .catch(err => {
-          console.log("ProfilePage:ionViewWillEnter:err: " + JSON.stringify(err.json()));
+          console.error("ProfilePage:ionViewWillEnter:err: " + JSON.stringify(err.json()));
 
           let alert = this.alertCtrl.create({
             title: 'Profile error',

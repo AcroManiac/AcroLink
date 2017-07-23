@@ -4,7 +4,8 @@ export let cfg = {
   tokenName: 'token',
   user: {
     register: '/rest-auth/registration/',
-    login: '/rest-auth/login/'
+    login: '/rest-auth/login/',
+    me: '/rest-auth/user/'
   },
   profiles: '/profiles'
 };
