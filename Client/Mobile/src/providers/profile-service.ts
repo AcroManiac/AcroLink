@@ -16,7 +16,8 @@ export class ProfileService {
 
   private cfg: any;
 
-  constructor(public authHttp: AuthHttp) {
+  constructor(
+    public authHttp: AuthHttp) {
     console.log('ProfileService: constructor');
 
     this.cfg = AppConfig.cfg;
@@ -25,23 +26,23 @@ export class ProfileService {
   getOne(id: number) {
 
     console.log('ProfileService:getOne(' + id +') URL = ' + this.cfg.apiUrl + this.cfg.profiles + '/' + id);
-    return this.authHttp.get(this.cfg.apiUrl + this.cfg.profiles + '/16/') // + id)
+    return this.authHttp.get(this.cfg.apiUrl + this.cfg.profiles + '/' + id + '/')
+      .map(res => res.json())
       .toPromise()
-      .then(rs => {
-        console.log(rs, rs.json());
-        return rs.json().profile;
+      .then(data => {
+        // console.log('ProfileService:getOne:data: ' + JSON.stringify(data));
+        return data;
       });
-      // .catch(e => console.log("ProfileService:getOne: HTTP GET error ", e));
   }
 
   update(profile: ProfileModel) {
     return this.authHttp.put(this.cfg.apiUrl + this.cfg.profiles + '/' + profile.id, profile)
+      .map(res => res.json())
       .toPromise()
-      .then(rs => {
-        console.log(rs, rs.json());
-        return rs.json();
-      })
-      .catch(e => console.log("ProfileService:update: Profile error", e));
+      .then(data => {
+        console.log(JSON.stringify(data));
+        return data;
+      });
   }
 
 }

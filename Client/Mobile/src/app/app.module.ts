@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule, Http } from '@angular/http';
+import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
@@ -15,14 +15,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ProfileService } from '../providers/profile-service';
 
 
-let storage = new Storage({});
-
-export function getAuthHttp(http) {
+export function authHttpServiceFactory(http: Http, options: RequestOptions, storage: Storage) {
   return new AuthHttp(new AuthConfig({
+    tokenName: 'token',
+    headerPrefix: 'JWT',
     noJwtError: true,
-    globalHeaders: [{'Accept': 'application/json'}],
+    globalHeaders: [{'Accept':'application/json'}],
     tokenGetter: (() => storage.get('id_token')),
-  }), http);
+  }), http, options);
 }
 
 export function createTranslateLoader(http: Http) {
@@ -34,10 +34,13 @@ export function createTranslateLoader(http: Http) {
     MyApp,
   ],
   imports: [
+    IonicStorageModule.forRoot({
+      name: '__acrolink',
+      driverOrder: ['sqlite', 'indexeddb', 'websql']
+    }),
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -56,8 +59,8 @@ export function createTranslateLoader(http: Http) {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     {
       provide: AuthHttp,
-      useFactory: getAuthHttp,
-      deps: [Http]
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions, Storage]
     },
     AuthService,
     ProfileService,
