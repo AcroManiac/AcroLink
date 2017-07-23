@@ -6,15 +6,9 @@ from DjangoServer.reference.serializers import RoleSerializer
 from DjangoServer.reference.serializers import CountrySerializer
 from DjangoServer.reference.serializers import SocialNetworkSerializer
 
-class UserSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'first_name', 'last_name', 'email')
-
 
 class ProfileSerializer(serializers.ModelSerializer):
-    user = UserSerializer(many=False, read_only=True)
+    # user = UserSerializer(many=False, read_only=True)
     position = PositionSerializer(many=True, read_only=True)
     role = RoleSerializer(many=True, read_only=True)
     country = CountrySerializer(many=False, read_only=True)
@@ -28,3 +22,26 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     # Watch this to see how to update profile in one request:
     # http://django-rest-auth.readthedocs.io/en/latest/faq.html
+
+
+class UserSerializer(serializers.ModelSerializer):
+    # nest the profile inside the user serializer
+    profile = ProfileSerializer()
+
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'profile')
+        read_only_fields = ('email', )
+
+    def update(self, instance, validated_data):
+        """Update user and profile. Assumes there is a profile for every user."""
+        profile_data = validated_data.pop('profile')
+        instance = super(UserSerializer, self).update(instance, validated_data)
+
+        # get and update user profile
+        profile = instance.profile
+        if profile_data:
+            for attr, value in profile_data.items():
+                setattr(profile, attr, value)
+            profile.save()
+        return instance

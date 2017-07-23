@@ -186,6 +186,10 @@ REST_FRAMEWORK = {
 
 REST_USE_JWT = True
 
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'DjangoServer.main.serializers.UserSerializer'
+}
+
 SWAGGER_SETTINGS = {
     'LOGIN_URL': 'login',
     'LOGOUT_URL': 'logout',
