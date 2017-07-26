@@ -3,8 +3,9 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import {AuthService} from '../providers/auth-service';
-import {TranslateService} from '@ngx-translate/core';
+import { AuthService } from '../providers/auth-service';
+import { ReferenceService } from '../providers/reference-service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,6 +22,7 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public authService: AuthService,
+    public refService: ReferenceService,
     translate: TranslateService) {
     
     this.initializeApp();
@@ -40,6 +42,8 @@ export class MyApp {
       { title: 'Logout', component: 'LoginPage', method: 'logout' }
     ];
 
+    this.getReferenceData();
+
   }
 
   initializeApp() {
@@ -49,6 +53,30 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  getReferenceData() {
+
+    this.refService.getLevel()
+      .catch(err => {
+          console.error("MyApp:getReferenceData:getLevel: " + JSON.stringify(err.json()));
+        });
+    this.refService.getPosition()
+      .catch(err => {
+          console.error("MyApp:getReferenceData:getPosition: " + JSON.stringify(err.json()));
+        });
+    this.refService.getRole()
+      .catch(err => {
+          console.error("MyApp:getReferenceData:getRole: " + JSON.stringify(err.json()));
+        });
+    this.refService.getCountry()
+      .catch(err => {
+          console.error("MyApp:getReferenceData:getCountry: " + JSON.stringify(err.json()));
+        });
+    this.refService.getSocialNetwork()
+      .catch(err => {
+          console.error("MyApp:getReferenceData:getSocialNetwork: " + JSON.stringify(err.json()));
+        });
   }
 
   openPage(page) {

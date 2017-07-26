@@ -7,5 +7,12 @@ export let cfg = {
     login: '/rest-auth/login/',
     me: '/rest-auth/user/'
   },
-  profiles: '/profiles'
+  profiles: '/profiles',
+  reference: {
+  	level: '/reference/level/',
+  	position: '/reference/position/',
+  	role: '/reference/role/',
+  	country: '/reference/country/',
+  	social_network: '/reference/social_network/'
+  }
 };

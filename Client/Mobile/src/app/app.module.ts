@@ -13,6 +13,7 @@ import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ProfileService } from '../providers/profile-service';
+import { ReferenceService } from '../providers/reference-service';
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions, storage: Storage) {
@@ -64,6 +65,7 @@ export function createTranslateLoader(http: Http) {
     },
     AuthService,
     ProfileService,
+    ReferenceService,
   ]
 })
 export class AppModule {}
