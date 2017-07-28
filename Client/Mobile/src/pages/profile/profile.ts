@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, MenuController, AlertController } 
 import { ProtectedPage } from '../protected/protected';
 import { Storage } from '@ionic/storage';
 import { ProfileService } from '../../providers/profile-service';
+import { Observable } from 'rxjs/Observable';
 // import { ProfileModel } from '../../models/profile.model';
 
 @IonicPage()
@@ -12,7 +13,7 @@ import { ProfileService } from '../../providers/profile-service';
 })
 export class ProfilePage extends ProtectedPage {
 
-  public profile: any;
+  public profile: Observable<any>;
 
   constructor(
   	public navCtrl: NavController,
@@ -23,9 +24,6 @@ export class ProfilePage extends ProtectedPage {
     public profileService: ProfileService) {
 
     super(navCtrl, navParams, storage);
-  }
-
-  ionViewWillEnter() {
 
     this.storage.get('user').then(user => {
 
@@ -48,6 +46,31 @@ export class ProfilePage extends ProtectedPage {
         });
       }
     });
+  }
+
+  ionViewWillEnter() {
+
+    // this.storage.get('user').then(user => {
+
+    //   // console.log('ProfilePage:ionViewWillEnter:user: ' + JSON.stringify(user));
+    //   if (user !== null) {
+    //     this.profileService.getMe()
+    //     .then(data => {
+    //       this.profile = data;
+    //       // console.log('ProfilePage:ionViewWillEnter:profile: ' + JSON.stringify(this.profile));
+    //     })
+    //     .catch(err => {
+    //       console.error("ProfilePage:ionViewWillEnter:err: " + JSON.stringify(err.json()));
+
+    //       let alert = this.alertCtrl.create({
+    //         title: 'Profile error',
+    //         subTitle: err.json().detail,
+    //         buttons: ['OK']
+    //       });
+    //       alert.present();
+    //     });
+    //   }
+    // });
   }
 
 }
