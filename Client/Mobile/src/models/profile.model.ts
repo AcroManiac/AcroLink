@@ -8,6 +8,9 @@ export class ProfileModel {
   public location?: string;
   public avatar?: string;
   public score?: number;
+
+  public first_name?: string;
+  public last_name?: string;
    
 }
 
