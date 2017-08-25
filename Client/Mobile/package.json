@@ -26,6 +26,7 @@
         "@ngx-translate/core": "^6.0.1",
         "@ngx-translate/http-loader": "0.0.3",
         "angular2-jwt": "^0.2.3",
+        "cordova-android": "^6.2.3",
         "cordova-plugin-console": "1.0.5",
         "cordova-plugin-device": "1.1.4",
         "cordova-plugin-splashscreen": "~4.0.1",
@@ -41,10 +42,8 @@
     },
     "devDependencies": {
         "@ionic/app-scripts": "1.3.0",
-        "@ionic/cli-plugin-cordova": "1.6.2",
-        "@ionic/cli-plugin-ionic-angular": "1.4.1",
         "@ionic/cli-plugin-proxy": "1.4.1",
-        "ionic": "3.7.0",
+        "ionic": "3.9.2",
         "typescript": "~2.2.1"
     },
     "cordovaPlugins": [
@@ -66,6 +65,9 @@
             "cordova-plugin-whitelist": {},
             "ionic-plugin-keyboard": {},
             "cordova-sqlite-storage": {}
-        }
+        },
+        "platforms": [
+            "android"
+        ]
     }
 }
