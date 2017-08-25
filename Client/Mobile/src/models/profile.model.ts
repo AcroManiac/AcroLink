@@ -1,4 +1,6 @@
-export class ProfileModel {
+import { UserModel } from './user.model';
+
+export class ProfileModel extends UserModel {
  
   public id: number;
   public phone?: string;
@@ -11,6 +13,11 @@ export class ProfileModel {
 
   public first_name?: string;
   public last_name?: string;
+
+  public country_id?: number;
+  public level_id?: number;
+  public position_id?: number;
+  public role_id: number;
    
 }
 
