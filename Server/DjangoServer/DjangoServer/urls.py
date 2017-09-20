@@ -16,8 +16,8 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.routers import DefaultRouter
-from main.urls import router as mainRouter
-from reference.urls import router as referenceRouter
+from .main.urls import router as mainRouter
+from .reference.urls import router as referenceRouter
 
 from django.views.generic import RedirectView
 from rest_framework_swagger.views import get_swagger_view

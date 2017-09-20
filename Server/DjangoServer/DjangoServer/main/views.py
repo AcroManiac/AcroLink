@@ -10,9 +10,9 @@ from rest_framework.reverse import reverse
 from rest_framework.decorators import api_view
 from rest_framework.decorators import detail_route
 
-from models import Profile
+from .models import Profile
 from django.contrib.auth.models import User
-from serializers import ProfileSerializer
+from .serializers import ProfileSerializer
 
 
 # Create your views here.

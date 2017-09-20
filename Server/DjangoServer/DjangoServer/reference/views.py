@@ -10,8 +10,8 @@ from rest_framework.reverse import reverse
 from rest_framework.decorators import api_view
 from rest_framework.decorators import detail_route
 
-from models import *
-from serializers import *
+from .models import *
+from .serializers import *
 
 # Create your views here.
 
