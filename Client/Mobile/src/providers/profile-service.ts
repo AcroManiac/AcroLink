@@ -23,8 +23,21 @@ export class ProfileService {
     this.cfg = AppConfig.cfg;
   }
 
-  getMe() {
+  getData(): Promise<ProfileModel> {
+    var requestUrl = this.cfg.apiUrl + this.cfg.user.me;
+    console.log('ProfileService:getData: URL = ' + requestUrl);
+    return this.authHttp.get(requestUrl)
+      .toPromise()
+      .then(response => response.json() as ProfileModel);
+      // .catch(this.handleError);
+  }
 
+  private handleError(error: any): Promise<any> {
+    console.error('ProfileService: An error occurred', JSON.stringify(error)); // for demo purposes only
+    return Promise.reject(error.message || error);
+  }
+
+  getMe() {
     var requestUrl = this.cfg.apiUrl + this.cfg.user.me;
     console.log('ProfileService:getMe: URL = ' + requestUrl);
     return this.authHttp.get(requestUrl)

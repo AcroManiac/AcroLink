@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, AlertController, LoadingController } from 'ionic-angular';
 import { ProtectedPage } from '../protected/protected';
 import { Storage } from '@ionic/storage';
 import { ProfileService } from '../../providers/profile-service';
@@ -12,7 +12,9 @@ import { ProfileModel } from '../../models/profile.model';
 })
 export class ProfilePage extends ProtectedPage {
 
-  profile: ProfileModel = <ProfileModel> {first_name: '', last_name: ''};
+  profile: ProfileModel = new ProfileModel();
+  loading: any;
+  // profile: ProfileModel = <ProfileModel> {first_name: '', last_name: ''};
 
   constructor(
   	public navCtrl: NavController,
@@ -20,35 +22,49 @@ export class ProfilePage extends ProtectedPage {
     public menuCtrl: MenuController,
     private alertCtrl: AlertController,
     public storage: Storage,
-    public profileService: ProfileService) {
+    public profileService: ProfileService,
+    public loadingCtrl: LoadingController) {
 
     super(navCtrl, navParams, storage);
+    this.loading = this.loadingCtrl.create({content: 'Loading profile...'});
   }
 
-  ionViewWillEnter() {
-
-    this.storage.get('user').then(user => {
-
-      // console.log('ProfilePage:ionViewWillEnter:user: ' + JSON.stringify(user));
-      if (user !== null) {
-        this.profileService.getMe()
-        .then(data => {
-          // console.log('ProfilePage:ionViewWillEnter:profile: ' + JSON.stringify(this.profile));
-          this.fillProfileData(data);
-        })
-        .catch(err => {
-          console.error("ProfilePage:ionViewWillEnter:err: " + JSON.stringify(err.json()));
-
-          let alert = this.alertCtrl.create({
-            title: 'Profile error',
-            subTitle: err.json().detail,
-            buttons: ['OK']
-          });
-          alert.present();
-        });
-      }
-    });
+  ionViewDidLoad() {
+    this.loading.present();
+    this.profileService.getData()
+      .then(data => {
+        console.log('ProfilePage:ionViewDidLoad:profile: ' + JSON.stringify(data));
+        this.fillProfileData(data);
+        this.loading.dismiss();
+      })
+      .catch(this.loading.dismiss());
   }
+
+  // ionViewWillEnter() {
+
+  //   this.storage.get('user').then(user => {
+
+  //     // console.log('ProfilePage:ionViewWillEnter:user: ' + JSON.stringify(user));
+  //     if (user !== null) {
+  //       this.profileService.getMe()
+  //       .then(data => {
+  //         // console.log('ProfilePage:ionViewWillEnter:profile: ' + JSON.stringify(this.profile));
+  //         this.fillProfileData(data);
+  //         this.loading.dismiss();
+  //       })
+  //       .catch(err => {
+  //         console.error("ProfilePage:ionViewWillEnter:err: " + JSON.stringify(err.json()));
+
+  //         let alert = this.alertCtrl.create({
+  //           title: 'Profile error',
+  //           subTitle: err.json().detail,
+  //           buttons: ['OK']
+  //         });
+  //         alert.present();
+  //       });
+  //     }
+  //   });
+  // }
 
   fillProfileData(data: any) {
     this.profile.first_name = data.first_name;
