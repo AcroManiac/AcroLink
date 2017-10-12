@@ -42,7 +42,7 @@ export class MyApp {
       { title: 'Logout', component: 'LoginPage', method: 'logout' }
     ];
 
-    this.getReferenceData();
+    // this.getReferenceData();
 
   }
 

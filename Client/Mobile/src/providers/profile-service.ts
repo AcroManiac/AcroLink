@@ -28,8 +28,8 @@ export class ProfileService {
     console.log('ProfileService:getData: URL = ' + requestUrl);
     return this.authHttp.get(requestUrl)
       .toPromise()
-      .then(response => response.json() as ProfileModel);
-      // .catch(this.handleError);
+      .then(response => response.json() as ProfileModel)
+      .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {

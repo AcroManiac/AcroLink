@@ -37,7 +37,18 @@ export class ProfilePage extends ProtectedPage {
         this.fillProfileData(data);
         this.loading.dismiss();
       })
-      .catch(this.loading.dismiss());
+      .catch(err => {
+          console.error("ProfilePage:ionViewWillEnter:err: " + JSON.stringify(err.json()));
+
+          this.loading.dismiss();
+
+          let alert = this.alertCtrl.create({
+            title: 'Profile error',
+            subTitle: err.json().detail,
+            buttons: ['OK']
+          });
+          alert.present();
+        });
   }
 
   // ionViewWillEnter() {

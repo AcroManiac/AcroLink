@@ -4,7 +4,7 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header class="login-header auth-header">
 
   <ion-navbar>
     <ion-title>{{ 'page.login' | translate }}</ion-title>
@@ -13,9 +13,38 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="login-content auth-content">
 
-  <ion-grid>
+  <form class="login-form auth-form" [formGroup]="loginData" (ngSubmit)="login()">
+    <ion-item>
+      <ion-input type="email" placeholder="{{ 'label.email' | translate }}" formControlName="email"></ion-input>
+    </ion-item>
+    <show-hide-container>
+      <ion-item>
+        <ion-input type="password" placeholder="{{ 'label.password' | translate }}" formControlName="password" show-hide-input></ion-input>
+      </ion-item>
+    </show-hide-container>
+
+    <button ion-button block class="auth-action-button login-button" type="submit" [disabled]="!loginData.valid">{{'button.login' | translate}}</button>
+
+  </form>
+
+  <ion-row class="alt-options">
+    <ion-col no-padding width-50>
+      <button ion-button block clear class="forgot-button" (click)="goToForgotPassword()">{{'button.forgotten_password' | translate }}</button>
+    </ion-col>
+    <ion-col no-padding width-50>
+      <button ion-button block clear class="signup-button" (click)="goToSignup()">{{'button.new_registration' | translate}}</button>
+    </ion-col>
+  </ion-row>
+
+  <p class="auth-divider">
+    Or
+  </p>
+
+  <button ion-button block class="facebook-auth-button" (click)="doFacebookLogin()">Log in with Facebook</button>
+
+  <!-- <ion-grid>
     <ion-row justify-content-around>
       <ion-col col-sm-6 col-md-6 col-lg-4 col-xl-3  align-self-center>
         <form [formGroup]="loginData" (ngSubmit)="login()"  *ngIf="!showRoleSelection">
@@ -40,13 +69,8 @@
             <button ion-button clear block (click)="openPage('ForgotPage')">{{ 'button.forgotten_password' | translate }}</button>
           </ion-col>
         </ion-row>
-        
       </ion-col>
-
     </ion-row>
-    
-    
-    
-  </ion-grid>
+  </ion-grid> -->
 
 </ion-content>

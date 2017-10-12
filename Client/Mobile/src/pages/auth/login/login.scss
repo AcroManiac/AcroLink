@@ -1,21 +1,35 @@
 page-login {
+	.login-content
+	{
+		.alt-options
+		{
+			.button
+			{
+				margin: 0px;
+				padding: 0px;
+				font-size: 1.4rem;
+			}
 
-  scroll-content {
-    display: flex;
-    flex-direction: column;
-  }
+			.forgot-button
+			{
+				color: $white-d;
 
-  ion-item.item-ios {
-    padding-left: 0;
-  }
-  
-  ion-grid {
-    padding: 0;
-    height: 100%;
-  }
+				.button-inner
+				{
+					@include justify-content(flex-start);
+				}
+			}
 
-  ion-row {
-    flex: 1;
-  }
+			.signup-button
+			{
+				font-weight: 500;
+				color: $theme-color-2;
 
+				.button-inner
+				{
+					@include justify-content(flex-end);
+				}
+			}
+		}
+	}
 }

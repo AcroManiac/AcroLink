@@ -73,6 +73,36 @@ export class LoginPage {
   	this.loading.present();
   }
 
+  doFacebookLogin() {
+    this.loading = this.loadingCtrl.create();
+
+    // // Here we will check if the user is already logged in because we don't want to ask users to log in each time they open the app
+    // // let this = this;
+
+    // this.facebookLoginService.getFacebookUser()
+    // .then((data) => {
+    //    // user is previously logged with FB and we have his data we will let him access the app
+    //   this.navCtrl.setRoot(this.main_page.component);
+    // }, (error) => {
+    //   //we don't have the user data so we will ask him to log in
+    //   this.facebookLoginService.doFacebookLogin()
+    //   .then((res) => {
+    //     this.loading.dismiss();
+    //     this.navCtrl.setRoot(this.main_page.component);
+    //   }, (err) => {
+    //     console.log("Facebook Login error", err);
+    //   });
+    // });
+  }
+
+  goToSignup() {
+    this.openPage('SignupPage');
+  }
+
+  goToForgotPassword() {
+    this.openPage('ForgotPasswordPage');
+  }
+
   /**
    * Opens a page
    * 

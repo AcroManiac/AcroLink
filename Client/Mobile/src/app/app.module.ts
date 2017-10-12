@@ -66,6 +66,6 @@ export function createTranslateLoader(http: Http) {
     AuthService,
     ProfileService,
     ReferenceService,
-  ]
+  ],
 })
 export class AppModule {}
