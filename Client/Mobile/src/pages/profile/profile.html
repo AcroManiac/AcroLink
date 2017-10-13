@@ -4,62 +4,106 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Profile</ion-title>
+    <ion-title>{{'page.profile' | translate}}</ion-title>
   </ion-navbar>
-  
+
 </ion-header>
 
-<ion-content padding>
+<ion-content class="profile-content">
 
-	<ion-list>
+  <div class="user-details">
+    <ion-row class="user-main-data-row">
+      <ion-col no-padding width-33>
+        <preload-image class="user-image" [ratio]="{w:1, h:1}" [(src)]="profile.avatar" alt="profile.user.name" title="profile.avatar"></preload-image>
+      </ion-col>
+      <ion-col no-padding>
+        <ion-row class="social-presence-row">
+          <ion-col width-50 class="social-presence-item">
+            <a (click)="goToFollowersList()">
+              <h2 class="social-presence-value">{{profile.followers}}</h2>
+              <h4 class="social-presence-title">{{'FOLLOWERS' | translate }}</h4>
+            </a>
+          </ion-col>
+          <ion-col width-50 class="social-presence-item">
+            <a (click)="goToFollowingList()">
+              <h2 class="social-presence-value">{{profile.following}}</h2>
+              <h4 class="social-presence-title">{{'FOLLOWING' | translate }}</h4>
+            </a>
+          </ion-col>
+        </ion-row>
+        <ion-row class="profile-action-row">
+          <ion-col no-padding>
+            <button ion-button block small (click)="goToSettings()">
+              {{'button.edit' | translate}}
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row wrap class="user-bio-row">
+      <ion-col no-padding width-50>
+        <h2 class="user-name">{{profile.first_name}} {{profile.last_name}}</h2>
+      </ion-col>
+      <ion-col no-padding width-50>
+        <span class="user-location">{{profile.location}}</span>
+      </ion-col>
+      <ion-col no-padding width-100>
+        <p class="user-description">
+          {{profile.bio}}
+        </p>
+      </ion-col>
+    </ion-row>
+    <ion-segment class="user-content-segment" [(ngModel)]="display" (ionChange)="onSegmentChanged($event)">
+      <ion-segment-button value="grid" (ionSelect)="onSegmentSelected($event)">
+        {{'GRID' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="list" (ionSelect)="onSegmentSelected($event)">
+        {{'LIST' | translate}}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 
-		<ion-item>
-			<ion-label color="primary">First Name</ion-label>
-			<ion-input placeholder="first name" [(ngModel)]="profile.first_name"></ion-input>
-		</ion-item>
-
-		<ion-item>
-			<ion-label color="primary">Last Name</ion-label>
-			<ion-input placeholder="last name" [(ngModel)]="profile.last_name"></ion-input>
-		</ion-item>
-
-		<ion-item>
-			<ion-label>Username</ion-label>
-			<!-- <ion-label [(ngModel)]="profile.username"></ion-label> -->
-		</ion-item>
-
-		<ion-item>
-			<ion-label>Email</ion-label>
-			<!-- <ion-label [(ngModel)]="profile.email"></ion-label> -->
-		</ion-item>
-
-		<ion-item>
-			<ion-label color="primary">Birth Date</ion-label>
-		  <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="profile.birth_date"></ion-datetime>
-		</ion-item>
-
-		<ion-item>
-			<ion-label color="primary">Practice Start Date</ion-label>
-		  <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="profile.practice_start_date"></ion-datetime>
-		</ion-item>
-
-		<ion-item>
-			<ion-label color="primary">Country</ion-label>
-			<ion-select [(ngModel)]="profile.country">
-				<ion-option *ngFor="let country of countries" value="{{ country.id }}">{{ country.name }}</ion-option>
-			</ion-select>
-		</ion-item>
-
-		<ion-item>
-			<ion-label color="primary">Location</ion-label>
-			<ion-input placeholder="city" [(ngModel)]="profile.location"></ion-input>
-		</ion-item>
-
-		<ion-item>
-			<ion-label color="primary">Bio</ion-label>
-			<ion-input placeholder="biography" [(ngModel)]="profile.bio"></ion-input>
-		</ion-item>
-
-	</ion-list>
+  <!-- <div [ngSwitch]="display" class="user-content">
+    <div *ngSwitchCase="'list'" class="list-view">
+      <div class="list-item" *ngFor="let post of profile.posts">
+        <span class="item-date">{{post.date}}</span>
+        <ion-card>
+          <preload-image [ratio]="{w:1, h:1}" [src]="post.image" title=""></preload-image>
+          <ion-card-content>
+            <p class="item-text">
+              {{post.description}}
+            </p>
+          </ion-card-content>
+          <ion-row no-padding class="actions-row">
+            <ion-col no-padding width-30 text-left>
+              <button class="action-button" ion-button clear small color="danger" icon-left>
+                <ion-icon isActive="{{post.liked}}" name='heart'></ion-icon>
+                  {{post.likes}} {{'LIKES' | translate}}
+              </button>
+            </ion-col>
+            <ion-col no-padding width-45 text-center>
+              <button class="action-button" ion-button clear small color="danger" icon-left>
+                <ion-icon name='chatbubbles'></ion-icon>
+                  {{post.comments}} {{'COMMENTS' | translate}}
+              </button>
+            </ion-col>
+            <ion-col no-padding width-25 text-right>
+              <button class="action-button" ion-button clear small color="danger" icon-left (click)="sharePost(post)">
+                <ion-icon name='share-alt'></ion-icon>
+                {{'SHARE' | translate}}
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </div>
+    </div>
+    <div *ngSwitchCase="'grid'" class="grid-view">
+      <ion-row wrap class="grid-row">
+        <ion-col width-33 class="grid-item" *ngFor="let post of profile.posts">
+          <preload-image [ratio]="{w:1, h:1}" [src]="post.image" title="ion2FullApp"></preload-image>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div> -->
   
 </ion-content>
