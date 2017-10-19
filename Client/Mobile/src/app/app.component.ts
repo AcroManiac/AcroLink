@@ -37,9 +37,8 @@ export class MyApp {
       { title: 'Places', component: 'PlacesPage' },
       { title: 'Poses', component: 'PosesPage' },
       { title: 'Community', component: 'CommunityPage' },
-      { title: 'Settings', component: 'SettingsPage' },
       { title: 'About', component: 'AboutPage' },
-      { title: 'Logout', component: 'LoginPage', method: 'logout' }
+      // { title: 'Logout', component: 'LoginPage', method: 'logout' }
     ];
 
     // this.getReferenceData();

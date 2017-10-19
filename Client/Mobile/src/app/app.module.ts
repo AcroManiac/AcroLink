@@ -12,7 +12,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MyApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ProfileService } from '../providers/profile-service';
+import { ProfileService } from '../providers/profile.service';
 import { ReferenceService } from '../providers/reference-service';
 
 
