@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { LanguageModel } from "./language.model";
+import { LanguageModel } from "../models/language.model";
 
 @Injectable()
 export class LanguageService {

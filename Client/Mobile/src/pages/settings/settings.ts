@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, LoadingController, Platform } from 'ionic-angular';
+import { NavController, ModalController, LoadingController, AlertController, Platform } from 'ionic-angular';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import 'rxjs/Rx';
@@ -14,61 +14,82 @@ import { AppRate } from '@ionic-native/app-rate';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Crop } from '@ionic-native/crop';
 
+import { ReferenceService } from '../../providers/reference.service';
+import { CountryModel, LevelModel, PositionModel, RoleModel } from '../../models/reference.model';
+
 @Component({
   selector: 'settings-page',
   templateUrl: 'settings.html'
 })
 export class SettingsPage {
   settingsForm: FormGroup;
-  // make WalkthroughPage the root (or first) page
-  rootPage: any = WalkthroughPage;
+  // make ProfilePage the root (or first) page
+  rootPage: any = 'ProfilePage';
   loading: any;
 
   profile: ProfileModel = new ProfileModel();
   languages: Array<LanguageModel>;
+  countries: Array<CountryModel>;
+  levels: Array<LevelModel>;
+  positions: Array<PositionModel>;
+  roles: Array<RoleModel>;
 
   constructor(
     public nav: NavController,
     public modal: ModalController,
     public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController,
     public translate: TranslateService,
     public languageService: LanguageService,
     public profileService: ProfileService,
+    public referenceService: ReferenceService,
     public appRate: AppRate,
     public imagePicker: ImagePicker,
     public cropService: Crop,
     public platform: Platform
   ) {
-    this.loading = this.loadingCtrl.create();
+    this.loading = this.loadingCtrl.create({content: 'Loading profile...'});
 
     this.languages = this.languageService.getLanguages();
+    
+    this.getReferenceData();
 
     this.settingsForm = new FormGroup({
-      name: new FormControl(),
+      first_name: new FormControl(),
+      last_name: new FormControl(),
+      phone: new FormControl(),
+      birth_date: new FormControl(),
+      practice_start_date: new FormControl(),
       location: new FormControl(),
-      description: new FormControl(),
-      currency: new FormControl(),
-      weather: new FormControl(),
-      notifications: new FormControl(),
-      language: new FormControl()
+      bio: new FormControl(),
+      country: new FormControl(),
+      level: new FormControl(),
+      position: new FormControl(),
+      role: new FormControl()
     });
   }
 
   ionViewDidLoad() {
     this.loading.present();
     this.profileService.getData().then(data => {
-      this.profile.user = data.user;
+      console.log('SettingsPage:ionViewDidLoad:profile: ' + JSON.stringify(data));
+      this.profile = data;
 
       // setValue: With setValue, you assign every form control value at once by passing in a data object whose properties exactly match the form model behind the FormGroup.
       // patchValue: With patchValue, you can assign values to specific controls in a FormGroup by supplying an object of key/value pairs for just the controls of interest.
       // More info: https://angular.io/docs/ts/latest/guide/reactive-forms.html#!#populate-the-form-model-with-_setvalue_-and-_patchvalue_
       this.settingsForm.patchValue({
-        name: data.user.name,
-        location: data.user.location,
-        description: data.user.about,
-        currency: 'dollar',
-        weather: 'fahrenheit',
-        notifications: true,
+        first_name: data.first_name,
+        last_name: data.last_name,
+        phone: data.phone,
+        birth_date: data.birth_date,
+        practice_start_date: data.practice_start_date,
+        location: data.location,
+        bio: data.bio,
+        country: this.countries[189],
+        level: this.levels[0],
+        position: this.positions[0],
+        role: this.roles[0],
         language: this.languages[0]
       });
 
@@ -77,6 +98,18 @@ export class SettingsPage {
       this.settingsForm.get('language').valueChanges.subscribe((lang) => {
         this.setLanguage(lang);
       });
+    })
+    .catch(err => {
+      console.error("SettingsPage:ionViewWillEnter:err: " + JSON.stringify(err.json()));
+
+      this.loading.dismiss();
+
+      let alert = this.alertCtrl.create({
+        title: 'Profile error',
+        subTitle: err.json().detail,
+        buttons: ['OK']
+      });
+      alert.present();
     });
   }
 
@@ -86,13 +119,13 @@ export class SettingsPage {
   }
 
   showTermsModal() {
-    let modal = this.modal.create(TermsOfServicePage);
-    modal.present();
+    // let modal = this.modal.create(TermsOfServicePage);
+    // modal.present();
   }
 
   showPrivacyModal() {
-    let modal = this.modal.create(PrivacyPolicyPage);
-    modal.present();
+    // let modal = this.modal.create(PrivacyPolicyPage);
+    // modal.present();
   }
 
   setLanguage(lang: LanguageModel){
@@ -104,6 +137,30 @@ export class SettingsPage {
 
     this.translate.setDefaultLang(language_to_set);
     this.translate.use(language_to_set);
+  }
+
+  getReferenceData() {
+
+    this.referenceService.getLevel()
+      .catch(err => {
+          console.error("SettingsPage:getReferenceData:getLevel: " + JSON.stringify(err.json()));
+        });
+    this.referenceService.getPosition()
+      .catch(err => {
+          console.error("SettingsPage:getReferenceData:getPosition: " + JSON.stringify(err.json()));
+        });
+    this.referenceService.getRole()
+      .catch(err => {
+          console.error("SettingsPage:getReferenceData:getRole: " + JSON.stringify(err.json()));
+        });
+    this.referenceService.getCountry()
+      .catch(err => {
+          console.error("SettingsPage:getReferenceData:getCountry: " + JSON.stringify(err.json()));
+        });
+    this.referenceService.getSocialNetwork()
+      .catch(err => {
+          console.error("SettingsPage:getReferenceData:getSocialNetwork: " + JSON.stringify(err.json()));
+        });
   }
 
   rateApp(){
@@ -130,9 +187,9 @@ export class SettingsPage {
                this.cropService.crop(results[i], {quality: 75}).then(
                  newImage => {
                    this.profileService.setUserImage(newImage);
-                   this.profile.user.image = newImage;
+                   // this.profile.user.image = newImage;
                  },
-                 error => console.error("Error cropping image", error)
+                 error => console.error("SettingsPage:openImagePicker(): Error cropping image", error)
                );
              }
            }, (err) => console.log(err)

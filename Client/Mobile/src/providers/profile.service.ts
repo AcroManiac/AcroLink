@@ -37,6 +37,14 @@ export class ProfileService {
     return Promise.reject(error.message || error);
   }
 
+  getUserImage(){
+    // return this.nativeStorage.getItem('profileImage');
+  }
+
+  setUserImage(newImage){
+    // this.nativeStorage.setItem('profileImage', newImage);
+  }
+
   getMe() {
     var requestUrl = this.cfg.apiUrl + this.cfg.user.me;
     console.log('ProfileService:getMe: URL = ' + requestUrl);

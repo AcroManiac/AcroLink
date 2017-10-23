@@ -3,6 +3,12 @@
 	[
 		{
 			"path": "."
+		},
+		{
+			"path": "/home/artem/disk2/Projects/ion2FullApp-ELITE-version"
+		},
+		{
+			"path": "/home/artem/disk2/Projects/AcroLink/Server/DjangoServer"
 		}
 	]
 }

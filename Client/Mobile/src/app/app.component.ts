@@ -4,13 +4,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AuthService } from '../providers/auth-service';
-import { ReferenceService } from '../providers/reference-service';
+// import { ReferenceService } from '../providers/reference.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class AcroLinkApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = 'ProfilePage';
@@ -22,7 +22,7 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public authService: AuthService,
-    public refService: ReferenceService,
+    // public refService: ReferenceService,
     translate: TranslateService) {
     
     this.initializeApp();
@@ -54,29 +54,29 @@ export class MyApp {
     });
   }
 
-  getReferenceData() {
+  // getReferenceData() {
 
-    this.refService.getLevel()
-      .catch(err => {
-          console.error("MyApp:getReferenceData:getLevel: " + JSON.stringify(err.json()));
-        });
-    this.refService.getPosition()
-      .catch(err => {
-          console.error("MyApp:getReferenceData:getPosition: " + JSON.stringify(err.json()));
-        });
-    this.refService.getRole()
-      .catch(err => {
-          console.error("MyApp:getReferenceData:getRole: " + JSON.stringify(err.json()));
-        });
-    this.refService.getCountry()
-      .catch(err => {
-          console.error("MyApp:getReferenceData:getCountry: " + JSON.stringify(err.json()));
-        });
-    this.refService.getSocialNetwork()
-      .catch(err => {
-          console.error("MyApp:getReferenceData:getSocialNetwork: " + JSON.stringify(err.json()));
-        });
-  }
+  //   this.refService.getLevel()
+  //     .catch(err => {
+  //         console.error("AcroLinkApp:getReferenceData:getLevel: " + JSON.stringify(err.json()));
+  //       });
+  //   this.refService.getPosition()
+  //     .catch(err => {
+  //         console.error("AcroLinkApp:getReferenceData:getPosition: " + JSON.stringify(err.json()));
+  //       });
+  //   this.refService.getRole()
+  //     .catch(err => {
+  //         console.error("AcroLinkApp:getReferenceData:getRole: " + JSON.stringify(err.json()));
+  //       });
+  //   this.refService.getCountry()
+  //     .catch(err => {
+  //         console.error("AcroLinkApp:getReferenceData:getCountry: " + JSON.stringify(err.json()));
+  //       });
+  //   this.refService.getSocialNetwork()
+  //     .catch(err => {
+  //         console.error("AcroLinkApp:getReferenceData:getSocialNetwork: " + JSON.stringify(err.json()));
+  //       });
+  // }
 
   openPage(page) {
     // Reset the content nav to have just this page

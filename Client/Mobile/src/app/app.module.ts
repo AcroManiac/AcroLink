@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
@@ -9,11 +10,11 @@ import { AuthService } from '../providers/auth-service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { MyApp } from './app.component';
+import { AcroLinkApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ProfileService } from '../providers/profile.service';
-import { ReferenceService } from '../providers/reference-service';
+import { ReferenceService } from '../providers/reference.service';
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions, storage: Storage) {
@@ -26,13 +27,13 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions, stor
   }), http, options);
 }
 
-export function createTranslateLoader(http: Http) {
+export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
   declarations: [
-    MyApp,
+    AcroLinkApp,
   ],
   imports: [
     IonicStorageModule.forRoot({
@@ -41,7 +42,8 @@ export function createTranslateLoader(http: Http) {
     }),
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp),
+    HttpClientModule,
+    IonicModule.forRoot(AcroLinkApp),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -52,7 +54,7 @@ export function createTranslateLoader(http: Http) {
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    AcroLinkApp,
   ],
   providers: [
     StatusBar,
