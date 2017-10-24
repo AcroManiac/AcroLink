@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, AlertController, LoadingController } from 'ionic-angular';
 import { ProtectedPage } from '../protected/protected';
+import { SettingsPage } from '../settings/settings';
 import { Storage } from '@ionic/storage';
 import { ProfileService } from '../../providers/profile.service';
 import { ProfileModel } from '../../models/profile.model';
@@ -26,7 +27,7 @@ export class ProfilePage extends ProtectedPage {
     public storage: Storage,
     public profileService: ProfileService,
     public loadingCtrl: LoadingController,
-    // public socialSharing: SocialSharing
+    // public socialSharing: SocialSharing,
    ) {
     super(navCtrl, navParams, storage);
     this.loading = this.loadingCtrl.create({content: 'Loading profile...'});
@@ -89,9 +90,18 @@ export class ProfilePage extends ProtectedPage {
   // }
 
   goToSettings() {
-    // // close the menu when clicking a link from the menu
-    // this.menu.close();
-    // this.app.getRootNav().push(SettingsPage);
+    // close the menu when clicking a link from the menu
+    this.menuCtrl.close();
+    this.navCtrl.push('SettingsPage');
+  }
+
+  /**
+   * Opens a page
+   * 
+   * @param page string Page name
+   */
+  openPage(page: string) {
+    this.navCtrl.push(page);
   }
 
   // onSegmentChanged(segmentButton: SegmentButton) {

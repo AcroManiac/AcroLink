@@ -5,19 +5,20 @@
     "name": "Name",
     "password": "Password",
     "confirm_password" : "Confirm password",
-    "title" : "Title",
-    "author_name": "Author",
-    "pages": "Pages"
   },
   "button" : {
     "login" : "Login",
+    "logout": "Logout",
     "register" : "Register",
     "new_registration" : "New registration",
     "forgotten_password" : "Forgotten password?",
     "submit" : "Submit",
     "add_book": "Add new book",
     "edit": "Edit",
-    "delete": "Delete"
+    "delete": "Delete",
+    "save": "Save",
+    "ok": "OK",
+    "cancel": "Cancel",
   },
   "page" : {
     "login" : "Login",
@@ -25,11 +26,21 @@
     "register" : "New registration",
     "forgotten_password" : "Password recovery",
     "profile" : "Profile",
-    "books" : {
-      "list" : "My books",
-      "add": "Add book",
-      "edit" : "Edit book",
-      "preview": "Preview"
+    "settings": {
+      "name": "Settings",
+      "change_avatar": "Change profile image",
+      "first_name": "Name",
+      "last_name": "Last name",
+      "country": "Country",
+      "location": "Location",
+      "phone": "Phone",
+      "bith_date": "Birth date",
+      "practice_start_date": "Practice start date",
+      "biography": "Details",
+      "person_data": "Person data",
+      "acroyoga_data": "Acroyoga data",
+      "application": "Application settings",
+      "language": "Select your language",
     }
   }
 }

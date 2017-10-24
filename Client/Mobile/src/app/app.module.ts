@@ -9,11 +9,15 @@ import { Storage } from '@ionic/storage';
 import { AuthService } from '../providers/auth-service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AppRate } from '@ionic-native/app-rate';
+import { Crop } from '@ionic-native/crop';
+import { ImagePicker } from '@ionic-native/image-picker';
 
 import { AcroLinkApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ProfileService } from '../providers/profile.service';
+import { LanguageService } from '../providers/language.service';
 import { ReferenceService } from '../providers/reference.service';
 
 
@@ -57,6 +61,9 @@ export function createTranslateLoader(http: HttpClient) {
     AcroLinkApp,
   ],
   providers: [
+    AppRate,
+    Crop,
+    ImagePicker,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
@@ -67,6 +74,7 @@ export function createTranslateLoader(http: HttpClient) {
     },
     AuthService,
     ProfileService,
+    LanguageService,
     ReferenceService,
   ],
 })

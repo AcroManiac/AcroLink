@@ -1,27 +1,28 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, LoadingController, AlertController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { FormGroup, FormControl } from '@angular/forms';
 
 import 'rxjs/Rx';
 
 import { ProfileModel } from '../../models/profile.model';
 import { ProfileService } from '../../providers/profile.service';
-
-import { TranslateService } from '@ngx-translate/core';
-import { LanguageService } from "../../providers/language.service";
-import { LanguageModel } from "../../models/language.model";
-import { AppRate } from '@ionic-native/app-rate';
-import { ImagePicker } from '@ionic-native/image-picker';
-import { Crop } from '@ionic-native/crop';
-
 import { ReferenceService } from '../../providers/reference.service';
 import { CountryModel, LevelModel, PositionModel, RoleModel } from '../../models/reference.model';
+import { ProtectedPage } from '../protected/protected';
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../providers/language.service';
+import { LanguageModel } from '../../models/language.model';
+import { AppRate } from '@ionic-native/app-rate';
+import { Crop } from '@ionic-native/crop';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { Storage } from '@ionic/storage';
 
+@IonicPage()
 @Component({
   selector: 'settings-page',
   templateUrl: 'settings.html'
 })
-export class SettingsPage {
+export class SettingsPage extends ProtectedPage {
   settingsForm: FormGroup;
   // make ProfilePage the root (or first) page
   rootPage: any = 'ProfilePage';
@@ -35,10 +36,11 @@ export class SettingsPage {
   roles: Array<RoleModel>;
 
   constructor(
-    public nav: NavController,
-    public modal: ModalController,
+    public navCtrl: NavController,
+    public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
+    public storage: Storage,
     public translate: TranslateService,
     public languageService: LanguageService,
     public profileService: ProfileService,
@@ -46,8 +48,8 @@ export class SettingsPage {
     public appRate: AppRate,
     public imagePicker: ImagePicker,
     public cropService: Crop,
-    public platform: Platform
   ) {
+    super(navCtrl, navParams, storage);
     this.loading = this.loadingCtrl.create({content: 'Loading profile...'});
 
     this.languages = this.languageService.getLanguages();
@@ -65,15 +67,19 @@ export class SettingsPage {
       country: new FormControl(),
       level: new FormControl(),
       position: new FormControl(),
-      role: new FormControl()
+      role: new FormControl(),
+      language: new FormControl()
     });
   }
 
   ionViewDidLoad() {
     this.loading.present();
     this.profileService.getData().then(data => {
-      console.log('SettingsPage:ionViewDidLoad:profile: ' + JSON.stringify(data));
-      this.profile = data;
+      
+      this.fillProfileData(data);
+      console.log('SettingsPage:ionViewDidLoad:profile: ' + JSON.stringify(this.profile));
+
+      this.loading.dismiss();
 
       // setValue: With setValue, you assign every form control value at once by passing in a data object whose properties exactly match the form model behind the FormGroup.
       // patchValue: With patchValue, you can assign values to specific controls in a FormGroup by supplying an object of key/value pairs for just the controls of interest.
@@ -81,51 +87,58 @@ export class SettingsPage {
       this.settingsForm.patchValue({
         first_name: data.first_name,
         last_name: data.last_name,
-        phone: data.phone,
-        birth_date: data.birth_date,
-        practice_start_date: data.practice_start_date,
-        location: data.location,
-        bio: data.bio,
-        country: this.countries[189],
-        level: this.levels[0],
-        position: this.positions[0],
-        role: this.roles[0],
+        phone: this.profile.phone,
+        birth_date: this.profile.birth_date,
+        practice_start_date: this.profile.practice_start_date,
+        location: this.profile.location,
+        bio: this.profile.bio,
+        country: this.referenceService.country[182],
+        level: this.referenceService.level[0],
+        position: this.referenceService.position[0],
+        role: this.referenceService.role[0],
         language: this.languages[0]
       });
-
-      this.loading.dismiss();
 
       this.settingsForm.get('language').valueChanges.subscribe((lang) => {
         this.setLanguage(lang);
       });
-    })
-    .catch(err => {
-      console.error("SettingsPage:ionViewWillEnter:err: " + JSON.stringify(err.json()));
 
-      this.loading.dismiss();
+    // })
+    // .catch(err => {
+    //   console.error("SettingsPage:ionViewWillEnter: " + JSON.stringify(err));
 
-      let alert = this.alertCtrl.create({
-        title: 'Profile error',
-        subTitle: err.json().detail,
-        buttons: ['OK']
-      });
-      alert.present();
+    //   this.loading.dismiss();
+
+    //   let alert = this.alertCtrl.create({
+    //     title: 'Profile error',
+    //     subTitle: err.detail,
+    //     buttons: ['OK']
+    //   });
+    //   alert.present();
     });
+  }
+
+  fillProfileData(data: any) {
+    this.profile.first_name = data.first_name;
+    this.profile.last_name = data.last_name;
+    this.profile.username = data.username;
+    this.profile.email = data.email;
+
+    this.profile.id = data.profile.id;
+    this.profile.phone = data.profile.phone;
+    this.profile.birth_date = data.profile.birth_date;
+    this.profile.practice_start_date = data.profile.practice_start_date;
+    this.profile.bio = data.profile.bio;
+    this.profile.location = data.profile.location;
+    this.profile.avatar = data.profile.avatar;
+    // this.profile.score = data.profile.score;
+
+    // this.profile.country_id = data.country.id;
   }
 
   logout() {
     // navigate to the new page if it is not the current page
-    this.nav.setRoot(this.rootPage);
-  }
-
-  showTermsModal() {
-    // let modal = this.modal.create(TermsOfServicePage);
-    // modal.present();
-  }
-
-  showPrivacyModal() {
-    // let modal = this.modal.create(PrivacyPolicyPage);
-    // modal.present();
+    this.navCtrl.setRoot(this.rootPage);
   }
 
   setLanguage(lang: LanguageModel){
@@ -164,13 +177,13 @@ export class SettingsPage {
   }
 
   rateApp(){
-    this.appRate.preferences.storeAppURL = {
-      ios: '<my_app_id>',
-      android: 'market://details?id=<package_name>',
-      windows: 'ms-windows-store://review/?ProductId=<Store_ID>'
-    };
+    // this.appRate.preferences.storeAppURL = {
+    //   ios: '<my_app_id>',
+    //   android: 'market://details?id=<package_name>',
+    //   windows: 'ms-windows-store://review/?ProductId=<Store_ID>'
+    // };
 
-    this.appRate.promptForRating(true);
+    // this.appRate.promptForRating(true);
   }
 
   openImagePicker(){
