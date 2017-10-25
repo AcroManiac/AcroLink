@@ -1,0 +1,44 @@
+{
+  "label": {
+    "email": "Адрес Email",
+    "name": "Имя",
+    "password": "Пароль",
+    "confirm_password" : "Подтверждение пароля"
+  },
+  "button" : {
+    "login" : "Вход",
+    "logout": "Выход",
+    "register" : "Регистрация",
+    "new_registration" : "Новая регистрация",
+    "forgotten_password" : "Восстановить пароль",
+    "submit" : "Отправить",
+    "edit": "Редактировать",
+    "delete": "Удалить",
+    "save": "Сохранить",
+    "ok": "OK",
+    "cancel": "Отмена"
+  },
+  "page" : {
+    "login" : "Вход",
+    "logout" : "Выход",
+    "register" : "Новая регистрация",
+    "forgotten_password" : "Восстановление пароля",
+    "profile" : "Профиль",
+    "settings": {
+      "name": "Редактировать профиль",
+      "change_avatar": "Другое фото",
+      "first_name": "Имя",
+      "last_name": "Фамилия",
+      "country": "Страна",
+      "location": "Локация",
+      "phone": "Телефон",
+      "bith_date": "Дата рождения",
+      "practice_start_date": "Дата начала практики",
+      "biography": "О себе",
+      "person_data": "Личная информация",
+      "acroyoga_data": "Акройога",
+      "application": "Настройки приложения",
+      "language": "Выберите язык интерфейса"
+    }
+  }
+}

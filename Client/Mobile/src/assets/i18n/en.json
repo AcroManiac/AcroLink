@@ -1,10 +1,9 @@
 {
   "label": {
     "email": "Email address",
-    "password": "Password",
     "name": "Name",
     "password": "Password",
-    "confirm_password" : "Confirm password",
+    "confirm_password" : "Confirm password"
   },
   "button" : {
     "login" : "Login",
@@ -13,12 +12,11 @@
     "new_registration" : "New registration",
     "forgotten_password" : "Forgotten password?",
     "submit" : "Submit",
-    "add_book": "Add new book",
     "edit": "Edit",
     "delete": "Delete",
     "save": "Save",
     "ok": "OK",
-    "cancel": "Cancel",
+    "cancel": "Cancel"
   },
   "page" : {
     "login" : "Login",
@@ -40,7 +38,7 @@
       "person_data": "Person data",
       "acroyoga_data": "Acroyoga data",
       "application": "Application settings",
-      "language": "Select your language",
+      "language": "Select your language"
     }
   }
 }

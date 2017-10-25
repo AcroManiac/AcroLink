@@ -38,39 +38,21 @@ export class ProfilePage extends ProtectedPage {
     this.profileService.getData()
       .then(data => {
         console.log('ProfilePage:ionViewDidLoad:profile: ' + JSON.stringify(data));
-        this.fillProfileData(data);
+        this.profile.fillData(data);
         this.loading.dismiss();
       })
-      .catch(err => {
-          console.error("ProfilePage:ionViewWillEnter:err: " + JSON.stringify(err.json()));
+      .catch(error => {
+          console.error("ProfilePage:ionViewWillEnter:error: " + JSON.stringify(error.json()));
 
           this.loading.dismiss();
 
           let alert = this.alertCtrl.create({
             title: 'Profile error',
-            subTitle: err.json().detail,
+            subTitle: error.json().detail,
             buttons: ['OK']
           });
           alert.present();
         });
-  }
-
-  fillProfileData(data: any) {
-    this.profile.first_name = data.first_name;
-    this.profile.last_name = data.last_name;
-    this.profile.username = data.username;
-    this.profile.email = data.email;
-
-    this.profile.id = data.profile.id;
-    this.profile.phone = data.profile.phone;
-    this.profile.birth_date = data.profile.birth_date;
-    this.profile.practice_start_date = data.profile.practice_start_date;
-    this.profile.bio = data.profile.bio;
-    this.profile.location = data.profile.location;
-    this.profile.avatar = data.profile.avatar;
-    // this.profile.score = data.profile.score;
-
-    // this.profile.country_id = data.country.id;
   }
 
   // goToFollowersList() {
@@ -88,12 +70,6 @@ export class ProfilePage extends ProtectedPage {
   //     list: this.profile.following
   //   });
   // }
-
-  goToSettings() {
-    // close the menu when clicking a link from the menu
-    this.menuCtrl.close();
-    this.navCtrl.push('SettingsPage');
-  }
 
   /**
    * Opens a page

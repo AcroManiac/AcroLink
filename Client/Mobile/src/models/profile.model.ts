@@ -18,6 +18,24 @@ export class ProfileModel extends UserModel {
   public level_id?: number;
   public position_id?: number;
   public role_id: number;
+
+  fillData(data: any) {
+    this.first_name = data.first_name;
+    this.last_name = data.last_name;
+    this.username = data.username;
+    this.email = data.email;
+
+    this.id = data.profile.id;
+    this.phone = data.profile.phone;
+    this.birth_date = data.profile.birth_date;
+    this.practice_start_date = data.profile.practice_start_date;
+    this.bio = data.profile.bio;
+    this.location = data.profile.location;
+    this.avatar = data.profile.avatar;
+    // this.score = data.profile.score;
+
+    // this.country_id = data.country.id;
+  }
    
 }
 

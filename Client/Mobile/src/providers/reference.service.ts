@@ -106,4 +106,34 @@ export class ReferenceService {
       });
   }
 
+
+  /////////////////////////////////////////////////////////////////////////////
+  getData() {
+
+    this.getLevel().then(
+      this.getPosition().then(
+        this.getRole().then(
+          this.getCountry().then(
+            this.getSocialNetwork()
+            .catch(err => {
+                console.error("ReferenceService:getData:getSocialNetwork: " + JSON.stringify(err.json()));
+              })
+            )
+            .catch(err => {
+                console.error("ReferenceService:getData:getCountry: " + JSON.stringify(err.json()));
+              })
+          )
+          .catch(err => {
+              console.error("ReferenceService:getData:getRole: " + JSON.stringify(err.json()));
+            })
+        )
+      .catch(err => {
+          console.error("ReferenceService:getData:getPosition: " + JSON.stringify(err.json()));
+        })
+    )
+    .catch(err => {
+        console.error("ReferenceService:getData:getLevel: " + JSON.stringify(err.json()));
+      });
+  }
+
 }

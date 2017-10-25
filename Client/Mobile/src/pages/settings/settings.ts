@@ -54,7 +54,7 @@ export class SettingsPage extends ProtectedPage {
 
     this.languages = this.languageService.getLanguages();
     
-    this.getReferenceData();
+    this.referenceService.getData();
 
     this.settingsForm = new FormGroup({
       first_name: new FormControl(),
@@ -76,7 +76,7 @@ export class SettingsPage extends ProtectedPage {
     this.loading.present();
     this.profileService.getData().then(data => {
       
-      this.fillProfileData(data);
+      this.profile.fillData(data);
       console.log('SettingsPage:ionViewDidLoad:profile: ' + JSON.stringify(this.profile));
 
       this.loading.dismiss();
@@ -85,55 +85,37 @@ export class SettingsPage extends ProtectedPage {
       // patchValue: With patchValue, you can assign values to specific controls in a FormGroup by supplying an object of key/value pairs for just the controls of interest.
       // More info: https://angular.io/docs/ts/latest/guide/reactive-forms.html#!#populate-the-form-model-with-_setvalue_-and-_patchvalue_
       this.settingsForm.patchValue({
-        first_name: data.first_name,
-        last_name: data.last_name,
-        phone: this.profile.phone,
-        birth_date: this.profile.birth_date,
-        practice_start_date: this.profile.practice_start_date,
-        location: this.profile.location,
-        bio: this.profile.bio,
-        country: this.referenceService.country[182],
-        level: this.referenceService.level[0],
-        position: this.referenceService.position[0],
-        role: this.referenceService.role[0],
-        language: this.languages[0]
+        first_name:           this.profile.first_name,
+        last_name:            this.profile.last_name,
+        phone:                this.profile.phone,
+        birth_date:           this.profile.birth_date,
+        practice_start_date:  this.profile.practice_start_date,
+        location:             this.profile.location,
+        bio:                  this.profile.bio,
+        country:              this.referenceService.country[0], //182],
+        level:                this.referenceService.level[0],
+        position:             this.referenceService.position[0],
+        role:                 this.referenceService.role[0],
+        language:             this.languages[0]
       });
 
       this.settingsForm.get('language').valueChanges.subscribe((lang) => {
         this.setLanguage(lang);
       });
 
-    // })
-    // .catch(err => {
-    //   console.error("SettingsPage:ionViewWillEnter: " + JSON.stringify(err));
+    });
+    // .catch(error => {
+    //   console.error("SettingsPage:ionViewWillEnter: " + JSON.stringify(error));
 
     //   this.loading.dismiss();
 
     //   let alert = this.alertCtrl.create({
     //     title: 'Profile error',
-    //     subTitle: err.detail,
+    //     subTitle: error.detail,
     //     buttons: ['OK']
     //   });
     //   alert.present();
-    });
-  }
-
-  fillProfileData(data: any) {
-    this.profile.first_name = data.first_name;
-    this.profile.last_name = data.last_name;
-    this.profile.username = data.username;
-    this.profile.email = data.email;
-
-    this.profile.id = data.profile.id;
-    this.profile.phone = data.profile.phone;
-    this.profile.birth_date = data.profile.birth_date;
-    this.profile.practice_start_date = data.profile.practice_start_date;
-    this.profile.bio = data.profile.bio;
-    this.profile.location = data.profile.location;
-    this.profile.avatar = data.profile.avatar;
-    // this.profile.score = data.profile.score;
-
-    // this.profile.country_id = data.country.id;
+    // });
   }
 
   logout() {
@@ -150,30 +132,6 @@ export class SettingsPage extends ProtectedPage {
 
     this.translate.setDefaultLang(language_to_set);
     this.translate.use(language_to_set);
-  }
-
-  getReferenceData() {
-
-    this.referenceService.getLevel()
-      .catch(err => {
-          console.error("SettingsPage:getReferenceData:getLevel: " + JSON.stringify(err.json()));
-        });
-    this.referenceService.getPosition()
-      .catch(err => {
-          console.error("SettingsPage:getReferenceData:getPosition: " + JSON.stringify(err.json()));
-        });
-    this.referenceService.getRole()
-      .catch(err => {
-          console.error("SettingsPage:getReferenceData:getRole: " + JSON.stringify(err.json()));
-        });
-    this.referenceService.getCountry()
-      .catch(err => {
-          console.error("SettingsPage:getReferenceData:getCountry: " + JSON.stringify(err.json()));
-        });
-    this.referenceService.getSocialNetwork()
-      .catch(err => {
-          console.error("SettingsPage:getReferenceData:getSocialNetwork: " + JSON.stringify(err.json()));
-        });
   }
 
   rateApp(){

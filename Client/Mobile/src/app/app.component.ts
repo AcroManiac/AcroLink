@@ -27,7 +27,7 @@ export class AcroLinkApp {
     
     this.initializeApp();
 
-    translate.setDefaultLang('en');
+    translate.setDefaultLang('ru');
 
     // used for an example of ngFor and navigation
     this.pages = [
@@ -38,7 +38,7 @@ export class AcroLinkApp {
       { title: 'Poses', component: 'PosesPage' },
       { title: 'Community', component: 'CommunityPage' },
       { title: 'About', component: 'AboutPage' },
-      // { title: 'Logout', component: 'LoginPage', method: 'logout' }
+      { title: 'Logout', component: 'LoginPage', method: 'logout' }
     ];
 
     // this.getReferenceData();
