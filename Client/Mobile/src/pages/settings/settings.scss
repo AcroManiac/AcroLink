@@ -105,6 +105,27 @@ settings-page {
 			margin-bottom: 80px;
 		}
 
+		.form-section
+		{
+			padding: 0px 14px;
+
+			.item:first-child
+			{
+				margin-top: 20px;
+			}
+		}
+
+		.section-title
+		{
+			font-size: 1.8rem;
+			line-height: 1.2;
+			letter-spacing: 1.1px;
+			text-align: center;
+			color: $theme-color-2;
+			font-weight: 400;
+			margin: 0px;
+		}
+
 		@include radio-tags-styles($white, $theme-color-1, $white);
 
 		.radio-tags

@@ -32,13 +32,19 @@
       "country": "Страна",
       "location": "Локация",
       "phone": "Телефон",
-      "bith_date": "Дата рождения",
+      "birth_date": "Дата рождения",
       "practice_start_date": "Дата начала практики",
       "biography": "О себе",
       "person_data": "Личная информация",
       "acroyoga_data": "Акройога",
       "application": "Настройки приложения",
       "language": "Выберите язык интерфейса"
-    }
+    },
+    "trainings" : "Тренировки",
+    "events" : "События",
+    "places" : "Места",
+    "poses" : "Справочник",
+    "community" : "Сообщество",
+    "about" : "О программе"
   }
 }

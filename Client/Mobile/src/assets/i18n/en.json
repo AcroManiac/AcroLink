@@ -32,13 +32,19 @@
       "country": "Country",
       "location": "Location",
       "phone": "Phone",
-      "bith_date": "Birth date",
+      "birth_date": "Birth date",
       "practice_start_date": "Practice start date",
       "biography": "Details",
       "person_data": "Person data",
       "acroyoga_data": "Acroyoga data",
       "application": "Application settings",
       "language": "Select your language"
-    }
+    },
+    "trainings" : "Trainings",
+    "events" : "Events",
+    "places" : "Places",
+    "poses" : "Poses",
+    "community" : "Community",
+    "about" : "About"
   }
 }

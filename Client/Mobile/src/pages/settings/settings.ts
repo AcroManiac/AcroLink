@@ -92,7 +92,7 @@ export class SettingsPage extends ProtectedPage {
         practice_start_date:  this.profile.practice_start_date,
         location:             this.profile.location,
         bio:                  this.profile.bio,
-        country:              this.referenceService.country[0], //182],
+        country:              this.referenceService.country[182],  // Russia
         level:                this.referenceService.level[0],
         position:             this.referenceService.position[0],
         role:                 this.referenceService.role[0],

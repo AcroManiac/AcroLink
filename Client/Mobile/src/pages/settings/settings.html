@@ -28,57 +28,63 @@
   </div>
 
   <form [formGroup]="settingsForm" class="settings-form">
-    <h2 class="section-title">{{'page.settings.person_data' | translate}}</h2>
-    <ion-list class="user-data-content">
-      <ion-item>
-        <ion-label stacked>{{ 'page.settings.first_name' | translate }}</ion-label>
-        <ion-input type="text" formControlName="first_name"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>{{ 'page.settings.last_name' | translate }}</ion-label>
-        <ion-input type="text" formControlName="last_name"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>{{'page.settings.country' | translate}}</ion-label>
-        <ion-select formControlName="country" cancelText="{{ 'button.cancel' | translate }}" okText="{{ 'button.ok' | translate }}">
-          <ion-option *ngFor="let item of countries" [value]="item" >{{item.name}}</ion-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>{{ 'page.settings.location' | translate }}</ion-label>
-        <ion-input type="text" formControlName="location"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>{{ 'page.settings.phone' | translate }}</ion-label>
-        <ion-input type="text" formControlName="phone"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>{{ 'page.settings.birth_date' | translate }}</ion-label>
-        <ion-datetime formControlName="birth_date" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY"></ion-datetime>
-      </ion-item>
-    </ion-list>
+    <section class="form-section">
+      <h2 class="section-title">{{'page.settings.person_data' | translate}}</h2>
+      <ion-list class="user-data-content">
+        <ion-item>
+          <ion-label stacked>{{ 'page.settings.first_name' | translate }}</ion-label>
+          <ion-input type="text" formControlName="first_name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{ 'page.settings.last_name' | translate }}</ion-label>
+          <ion-input type="text" formControlName="last_name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>{{'page.settings.country' | translate}}</ion-label>
+          <ion-select formControlName="country" cancelText="{{ 'button.cancel' | translate }}" okText="{{ 'button.ok' | translate }}">
+            <ion-option *ngFor="let item of countries" [value]="item" >{{item.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{ 'page.settings.location' | translate }}</ion-label>
+          <ion-input type="text" formControlName="location"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{ 'page.settings.phone' | translate }}</ion-label>
+          <ion-input type="text" formControlName="phone"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{ 'page.settings.birth_date' | translate }}</ion-label>
+          <ion-datetime formControlName="birth_date" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY"></ion-datetime>
+        </ion-item>
+      </ion-list>
+    </section>
 
-    <ion-list class="user-data-content">
-      <h2 class="section-title">{{'page.settings.acroyoga_data' | translate}}</h2>
-      <ion-item>
-        <ion-label stacked>{{ 'page.settings.practice_start_date' | translate }}</ion-label>
-        <ion-datetime formControlName="practice_start_date" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY"></ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-label stacked>{{ 'page.settings.biography' | translate }}</ion-label>
-        <ion-textarea formControlName="bio" rows="5" placeholder="Your description here..."></ion-textarea>
-      </ion-item>
-    </ion-list>
+    <section class="form-section">
+      <ion-list class="user-data-content">
+        <h2 class="section-title">{{'page.settings.acroyoga_data' | translate}}</h2>
+        <ion-item>
+          <ion-label stacked>{{ 'page.settings.practice_start_date' | translate }}</ion-label>
+          <ion-datetime formControlName="practice_start_date" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>{{ 'page.settings.biography' | translate }}</ion-label>
+          <ion-textarea formControlName="bio" rows="5" placeholder="Your description here..."></ion-textarea>
+        </ion-item>
+      </ion-list>
+    </section>
 
-    <ion-list class="user-data-content">
-      <h2 class="section-title">{{'page.settings.application' | translate}}</h2>
-      <ion-item>
-        <ion-label>{{ 'page.settings.language' | translate }}</ion-label>
-        <ion-select formControlName="language" cancelText="{{ 'button.cancel' | translate }}" okText="{{ 'button.ok' | translate }}">
-          <ion-option *ngFor="let language of languages" [value]="language">{{ language.name }}</ion-option>
-        </ion-select>
-      </ion-item>
-    </ion-list>
+    <section class="form-section">
+      <ion-list class="user-data-content">
+        <h2 class="section-title">{{'page.settings.application' | translate}}</h2>
+        <ion-item>
+          <ion-label>{{ 'page.settings.language' | translate }}</ion-label>
+          <ion-select formControlName="language" cancelText="{{ 'button.cancel' | translate }}" okText="{{ 'button.ok' | translate }}">
+            <ion-option *ngFor="let language of languages" [value]="language">{{ language.name }}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </section>
 
   </form>
 

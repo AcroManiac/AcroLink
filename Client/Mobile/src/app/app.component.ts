@@ -4,8 +4,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AuthService } from '../providers/auth-service';
-// import { ReferenceService } from '../providers/reference.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
 
 @Component({
   templateUrl: 'app.html'
@@ -15,31 +16,44 @@ export class AcroLinkApp {
 
   rootPage: any = 'ProfilePage';
 
-  pages: Array<{title: string, component: any, method?: any}>;
+  pages: Array<{title: string, icon: string, component: any, method?: any}>;
 
   constructor(
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public authService: AuthService,
-    // public refService: ReferenceService,
-    translate: TranslateService) {
-    
+    public translate: TranslateService) {
+
+    translate.setDefaultLang('en');
+    translate.use('en');
+
     this.initializeApp();
 
-    translate.setDefaultLang('ru');
-
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Profile', component: 'ProfilePage' },
-      { title: 'Trainings', component: 'TrainingsPage' },
-      { title: 'Events', component: 'EventsPage' },
-      { title: 'Places', component: 'PlacesPage' },
-      { title: 'Poses', component: 'PosesPage' },
-      { title: 'Community', component: 'CommunityPage' },
-      { title: 'About', component: 'AboutPage' },
-      { title: 'Logout', component: 'LoginPage', method: 'logout' }
-    ];
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) =>
+      {
+        Observable.forkJoin(
+          this.translate.get('page.profile'),
+          this.translate.get('page.trainings'),
+          this.translate.get('page.events'),
+          this.translate.get('page.places'),
+          this.translate.get('page.poses'),
+          this.translate.get('page.community'),
+          this.translate.get('page.about'),
+          this.translate.get('page.logout')
+        ).subscribe(data => {
+          this.pages = [
+            { title: data[0], icon: 'person', component: 'ProfilePage' },
+            { title: data[1], icon: 'calendar', component: 'TrainingsPage' },
+            { title: data[2], icon: 'clock', component: 'EventsPage' },
+            { title: data[3], icon: 'ion-location', component: 'PlacesPage' },
+            { title: data[4], icon: 'grid', component: 'PosesPage' },
+            { title: data[5], icon: 'person-stalker', component: 'CommunityPage' },
+            { title: data[6], icon: 'information-circled', component: 'AboutPage' },
+            { title: data[7], icon: 'log-out', component: 'LoginPage', method: 'logout' }
+          ];
+        });
+      });
 
     // this.getReferenceData();
 
@@ -53,30 +67,6 @@ export class AcroLinkApp {
       this.splashScreen.hide();
     });
   }
-
-  // getReferenceData() {
-
-  //   this.refService.getLevel()
-  //     .catch(err => {
-  //         console.error("AcroLinkApp:getReferenceData:getLevel: " + JSON.stringify(err.json()));
-  //       });
-  //   this.refService.getPosition()
-  //     .catch(err => {
-  //         console.error("AcroLinkApp:getReferenceData:getPosition: " + JSON.stringify(err.json()));
-  //       });
-  //   this.refService.getRole()
-  //     .catch(err => {
-  //         console.error("AcroLinkApp:getReferenceData:getRole: " + JSON.stringify(err.json()));
-  //       });
-  //   this.refService.getCountry()
-  //     .catch(err => {
-  //         console.error("AcroLinkApp:getReferenceData:getCountry: " + JSON.stringify(err.json()));
-  //       });
-  //   this.refService.getSocialNetwork()
-  //     .catch(err => {
-  //         console.error("AcroLinkApp:getReferenceData:getSocialNetwork: " + JSON.stringify(err.json()));
-  //       });
-  // }
 
   openPage(page) {
     // Reset the content nav to have just this page

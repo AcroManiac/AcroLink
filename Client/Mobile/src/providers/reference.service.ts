@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthHttp } from 'angular2-jwt';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import *  as AppConfig from '../app/config';
@@ -110,30 +112,38 @@ export class ReferenceService {
   /////////////////////////////////////////////////////////////////////////////
   getData() {
 
-    this.getLevel().then(
-      this.getPosition().then(
-        this.getRole().then(
-          this.getCountry().then(
-            this.getSocialNetwork()
-            .catch(err => {
-                console.error("ReferenceService:getData:getSocialNetwork: " + JSON.stringify(err.json()));
-              })
-            )
-            .catch(err => {
-                console.error("ReferenceService:getData:getCountry: " + JSON.stringify(err.json()));
-              })
-          )
-          .catch(err => {
-              console.error("ReferenceService:getData:getRole: " + JSON.stringify(err.json()));
-            })
-        )
-      .catch(err => {
-          console.error("ReferenceService:getData:getPosition: " + JSON.stringify(err.json()));
-        })
-    )
-    .catch(err => {
-        console.error("ReferenceService:getData:getLevel: " + JSON.stringify(err.json()));
-      });
+    Observable.forkJoin(
+      this.getLevel(),
+      this.getPosition(),
+      this.getRole(),
+      this.getCountry(),
+      this.getSocialNetwork()
+    );
+
+    // this.getLevel().then(
+    //   this.getPosition().then(
+    //     this.getRole().then(
+    //       this.getCountry().then(
+    //         this.getSocialNetwork()
+    //         .catch(err => {
+    //             console.error("ReferenceService:getData:getSocialNetwork: " + JSON.stringify(err.json()));
+    //           })
+    //         )
+    //         .catch(err => {
+    //             console.error("ReferenceService:getData:getCountry: " + JSON.stringify(err.json()));
+    //           })
+    //       )
+    //       .catch(err => {
+    //           console.error("ReferenceService:getData:getRole: " + JSON.stringify(err.json()));
+    //         })
+    //     )
+    //   .catch(err => {
+    //       console.error("ReferenceService:getData:getPosition: " + JSON.stringify(err.json()));
+    //     })
+    // )
+    // .catch(err => {
+    //     console.error("ReferenceService:getData:getLevel: " + JSON.stringify(err.json()));
+    //   });
   }
 
 }
