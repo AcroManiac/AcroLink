@@ -126,6 +126,8 @@ export class SettingsPage extends ProtectedPage {
   setLanguage(lang: LanguageModel){
     let language_to_set = this.translate.getDefaultLang();
 
+    console.log('SettingsPage:setLanguage:lang: ' + JSON.stringify(lang));
+
     if(lang){
       language_to_set = lang.code;
     }
@@ -158,9 +160,9 @@ export class SettingsPage extends ProtectedPage {
                this.cropService.crop(results[i], {quality: 75}).then(
                  newImage => {
                    this.profileService.setUserImage(newImage);
-                   // this.profile.user.image = newImage;
+                   this.profile.avatar = newImage;
                  },
-                 error => console.error("SettingsPage:openImagePicker(): Error cropping image", error)
+                 error => console.error("SettingsPage:openImagePicker(): Error cropping image", JSON.stringify(error))
                );
              }
            }, (err) => console.log(err)
