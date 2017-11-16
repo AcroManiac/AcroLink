@@ -1,0 +1,51 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons left>
+      <button  ion-button icon-only solid (click)="cancelData()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{'Search place on map'}}</ion-title>
+    <ion-buttons right>
+      <button  ion-button icon-only solid (click)="applyData()">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+	<ion-row no-padding class="map-row">
+    <ion-col no-padding class="map-col">
+      <div class="search-container">
+        <ion-toolbar class="search-toolbar transparent-background">
+        <!-- <ion-toolbar class="search-toolbar"> -->
+          <ion-buttons start>
+            <button ion-button icon-only (click)="geolocateMe()" class="geolocation-button" [ngClass]="{'using-geolocation': map_model.using_geolocation}">
+              <ion-icon name="locate"></ion-icon>
+            </button>
+          </ion-buttons>
+          <ion-searchbar class="search-places-bar" placeholder="Search places near location" [(ngModel)]="map_model.search_query" (ionInput)="searchPlacesPredictions(map_model.search_query)" (ionClear)="clearSearch()"></ion-searchbar>
+        </ion-toolbar>
+        <ion-list [hidden]="map_model.search_places_predictions.length == 0" class="search-options-list">
+          <ion-item *ngFor="let place of map_model.search_places_predictions" tappable (click)="selectSearchResult(place)">
+            {{ place.description }}
+          </ion-item>
+        </ion-list>
+      </div>
+
+      <div class="map-container">
+        <google-map [options]="map_model.map_options"></google-map>
+      </div>
+    </ion-col>
+</ion-row>
+</ion-content>
+
+<!-- <ion-content class="search-place-content">
+  <div class="search-place-container">
+    <search-place-container></search-place-container>
+  </div>
+</ion-content>
+ -->
