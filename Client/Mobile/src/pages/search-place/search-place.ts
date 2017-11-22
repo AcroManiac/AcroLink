@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { GoogleMap } from "../../components/google-map/google-map";
 import { GoogleMapsService } from "../../providers/google-maps.service";
 import { MapsModel, MapPlace } from '../../models/maps.model';
-import { AddressModel } from '../../models/address.model';
+import { LocationModel } from '../../models/location.model';
 
 @IonicPage()
 @Component({
@@ -20,7 +20,7 @@ export class SearchPlacePage {
   @ViewChild(GoogleMap) _GoogleMap: GoogleMap;
 
   map_model: MapsModel = new MapsModel();
-  address_model: AddressModel = new AddressModel();
+  location_model: LocationModel = new LocationModel();
 
   constructor(
   	public viewCtrl: ViewController,
@@ -117,30 +117,30 @@ export class SearchPlacePage {
           let addressType = place_details.address_components[i].types[0];
           switch(addressType) {
             case 'street_number':
-              env.address_model.street_number = place_details.address_components[i].short_name;
+              env.location_model.street_number = place_details.address_components[i].short_name;
               break;
             case 'route':
-              env.address_model.route = place_details.address_components[i].long_name;
+              env.location_model.route = place_details.address_components[i].long_name;
               break;
             case 'locality':
-              env.address_model.locality = place_details.address_components[i].long_name;
+              env.location_model.locality = place_details.address_components[i].long_name;
               break;
             case 'administrative_area_level_1':
-              env.address_model.state = place_details.address_components[i].short_name;
+              env.location_model.state = place_details.address_components[i].short_name;
               break;
             case 'country':
-              env.address_model.country = place_details.address_components[i].long_name;
-              env.address_model.country_code = place_details.address_components[i].short_name;
+              env.location_model.country = place_details.address_components[i].long_name;
+              env.location_model.country_code = place_details.address_components[i].short_name;
               break;
             case 'postal_code':
-              env.address_model.postal_code = place_details.address_components[i].short_name;
+              env.location_model.postal_code = place_details.address_components[i].short_name;
               break;
           }
         }
 
-        env.address_model.latitude   = place_details.geometry.location.lat();
-        env.address_model.longtitude = place_details.geometry.location.lng();
-        env.address_model.placeId    = place_details.place_id;
+        env.location_model.latitude   = place_details.geometry.location.lat();
+        env.location_model.longtitude = place_details.geometry.location.lng();
+        env.location_model.placeId    = place_details.place_id;
 
       },
       e => {
@@ -154,7 +154,7 @@ export class SearchPlacePage {
 
   clearSearch(){
     let env = this;
-    env.address_model = new AddressModel();
+    env.location_model = new LocationModel();
   }
 
   geolocateMe(){
@@ -178,7 +178,7 @@ export class SearchPlacePage {
 
   applyData() {
    let env = this;
-   this.viewCtrl.dismiss(env.address_model);
+   this.viewCtrl.dismiss(env.location_model);
   }
 
   cancelData() {

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 import 'rxjs/Rx';
 
 import { ProfileModel } from '../../models/profile.model';
 import { ProfileService } from '../../providers/profile.service';
-import { ReferenceService } from '../../providers/reference.service';
+// import { ReferenceService } from '../../providers/reference.service';
 import { CountryModel, LevelModel, PositionModel, RoleModel } from '../../models/reference.model';
 import { ProtectedPage } from '../protected/protected';
 import { TranslateService } from '@ngx-translate/core';
@@ -29,11 +29,14 @@ export class SettingsPage extends ProtectedPage {
   loading: any;
 
   profile: ProfileModel = new ProfileModel();
-  languages: Array<LanguageModel>;
-  countries: Array<CountryModel>;
-  levels: Array<LevelModel>;
-  positions: Array<PositionModel>;
-  roles: Array<RoleModel>;
+  languages: Array<LanguageModel> = [
+      { name: 'English', code: 'en' },
+      { name: 'Русский', code: 'ru' }
+    ];
+  // countries: Array<CountryModel>;
+  // levels: Array<LevelModel>;
+  // positions: Array<PositionModel>;
+  // roles: Array<RoleModel>;
 
   constructor(
     public navCtrl: NavController,
@@ -44,31 +47,47 @@ export class SettingsPage extends ProtectedPage {
     public translate: TranslateService,
     public languageService: LanguageService,
     public profileService: ProfileService,
-    public referenceService: ReferenceService,
+    // public referenceService: ReferenceService,
     public appRate: AppRate,
     public imagePicker: ImagePicker,
     public cropService: Crop,
+    public formBuilder: FormBuilder,
   ) {
     super(navCtrl, navParams, storage);
     this.loading = this.loadingCtrl.create({content: 'Loading profile...'});
 
-    this.languages = this.languageService.getLanguages();
+    // this.languages = this.languageService.getLanguages();
     
-    this.referenceService.getData();
+    // this.referenceService.getData();
 
-    this.settingsForm = new FormGroup({
-      first_name: new FormControl(),
-      last_name: new FormControl(),
-      phone: new FormControl(),
-      birth_date: new FormControl(),
-      practice_start_date: new FormControl(),
-      location: new FormControl(),
-      bio: new FormControl(),
-      country: new FormControl(),
-      level: new FormControl(),
-      position: new FormControl(),
-      role: new FormControl(),
-      language: new FormControl()
+    this.settingsForm = this.formBuilder.group({
+      first_name: [''],
+      last_name: [''],
+      phone: [''],
+      birth_date: [''],
+      language: [''],
+
+      location: this.formBuilder.group({
+        street_number: [''],
+        route: [''],
+        locality: [''],
+        state: [''],
+        country: [''],
+        country_code: [''],
+        postal_code: [''],
+        latitude: [''],
+        longtitude: [''],
+        placeId: ['']
+      }),
+
+      acroyoga: this.formBuilder.group({
+        practice_start_date: [''],
+        bio: [''],
+        level: [''],
+        position: [''],
+        role: ['']
+      }),
+
     });
   }
 
@@ -89,14 +108,28 @@ export class SettingsPage extends ProtectedPage {
         last_name:            this.profile.last_name,
         phone:                this.profile.phone,
         birth_date:           this.profile.birth_date,
-        practice_start_date:  this.profile.practice_start_date,
-        location:             this.profile.location,
-        bio:                  this.profile.bio,
-        country:              this.referenceService.country[182],  // Russia
-        level:                this.referenceService.level[0],
-        position:             this.referenceService.position[0],
-        role:                 this.referenceService.role[0],
-        language:             this.languages[0]
+        language:             this.languages[0],
+
+        location: {
+          street_number:      this.profile.location.street_number,
+          route:              this.profile.location.route,
+          locality:           this.profile.location.locality,
+          state:              this.profile.location.state,
+          country:            this.profile.location.country,
+          country_code:       this.profile.location.country_code,
+          postal_code:        this.profile.location.postal_code,
+          latitude:           this.profile.location.latitude,
+          longtitude:         this.profile.location.longtitude,
+          placeId:            this.profile.location.placeId
+        },
+
+        acroyoga: {
+          practice_start_date:  this.profile.practice_start_date,
+          bio:                  this.profile.bio,
+          // level:                this.referenceService.level[0],
+          // position:             this.referenceService.position[0],
+          // role:                 this.referenceService.role[0],
+        }
       });
 
       this.settingsForm.get('language').valueChanges.subscribe((lang) => {

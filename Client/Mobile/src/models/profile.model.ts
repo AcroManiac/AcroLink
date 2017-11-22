@@ -1,4 +1,5 @@
 import { UserModel } from './user.model';
+import { LocationModel } from './location.model';
 
 export class ProfileModel extends UserModel {
  
@@ -7,17 +8,17 @@ export class ProfileModel extends UserModel {
   public birth_date?: string;
   public practice_start_date?: string;
   public bio?: string;
-  public location?: string;
   public avatar?: string;
   public score?: number;
 
   public first_name?: string;
   public last_name?: string;
 
-  public country_id?: number;
   public level_id?: number;
   public position_id?: number;
   public role_id: number;
+
+  public location: LocationModel;
 
   fillData(data: any) {
     this.first_name = data.first_name;
@@ -30,11 +31,10 @@ export class ProfileModel extends UserModel {
     this.birth_date = data.profile.birth_date;
     this.practice_start_date = data.profile.practice_start_date;
     this.bio = data.profile.bio;
-    this.location = data.profile.location;
     this.avatar = data.profile.avatar;
     // this.score = data.profile.score;
 
-    // this.country_id = data.country.id;
+    this.location = data.location;
   }
    
 }

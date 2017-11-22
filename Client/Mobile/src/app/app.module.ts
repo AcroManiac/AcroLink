@@ -12,6 +12,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRate } from '@ionic-native/app-rate';
 import { Crop } from '@ionic-native/crop';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { AcroLinkApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -19,6 +20,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ProfileService } from '../providers/profile.service';
 import { LanguageService } from '../providers/language.service';
 import { ReferenceService } from '../providers/reference.service';
+import { GoogleMapsService } from '../providers/google-maps.service';
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions, storage: Storage) {
@@ -76,6 +78,8 @@ export function createTranslateLoader(httpClient: HttpClient) {
     ProfileService,
     LanguageService,
     ReferenceService,
+    GoogleMapsService,
+    Geolocation,
   ],
 })
 export class AppModule {}

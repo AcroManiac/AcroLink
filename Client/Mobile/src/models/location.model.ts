@@ -1,4 +1,4 @@
-export class AddressModel {
+export class LocationModel {
 
 	constructor(
 		public street_number: 	string = '',

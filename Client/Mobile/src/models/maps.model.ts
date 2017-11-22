@@ -34,7 +34,8 @@ export class MapsModel {
 		this.nearby_places = [];
 
 		// To clear previous directions
-		this.directions_display.setDirections({routes: []});
+		// this.directions_display.setDirections({routes: []});
+		this.directions_display.set('directions', null);
 
 		// To remove all previous markers from the map
 		this.map_places.forEach((place) => {
