@@ -1,24 +1,39 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import Profile
+from DjangoServer.reference.serializers import SexSerializer
+from DjangoServer.reference.serializers import LevelSerializer
 from DjangoServer.reference.serializers import PositionSerializer
 from DjangoServer.reference.serializers import RoleSerializer
-from DjangoServer.reference.serializers import CountrySerializer
-from DjangoServer.reference.serializers import SocialNetworkSerializer
+# from DjangoServer.reference.serializers import CountrySerializer
+# from DjangoServer.reference.serializers import SocialNetworkSerializer
 
 
-class ProfileSerializer(serializers.ModelSerializer):
-    # user = UserSerializer(many=False, read_only=True)
-    position = PositionSerializer(many=True, read_only=True)
-    role = RoleSerializer(many=True, read_only=True)
-    country = CountrySerializer(many=False, read_only=True)
-    social_network = SocialNetworkSerializer(many=True, read_only=True)
+class LocationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
         fields = (
-        	'id', 'phone', 'birth_date', 'practice_start_date', 'bio', 'location', 'avatar',
-        	'user', 'position', 'role', 'country', 'social_network')
+            'id', 'street_number', 'route', 'locality', 'state', 'country', 'postal_code',
+            'country_code', 'latitude', 'longtitude', 'place_id')
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    # user = UserSerializer(many=False, read_only=True)
+    sex = SexSerializer(many=False)
+    location = LocationSerializer(many=False)
+    level = LevelSerializer(many=False)
+    position = PositionSerializer(many=True, read_only=True)
+    role = RoleSerializer(many=True, read_only=True)
+    # country = CountrySerializer(many=False, read_only=True)
+    # social_network = SocialNetworkSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Profile
+        fields = (
+        	'id', 'phone', 'sex', 'birth_date', 'practice_start_date', 'bio', 'location', 'avatar',
+        	'karma', 'user', 'level', 'position', 'role')
+        #, 'country', 'social_network')
 
     # Watch this to see how to update profile in one request:
     # http://django-rest-auth.readthedocs.io/en/latest/faq.html

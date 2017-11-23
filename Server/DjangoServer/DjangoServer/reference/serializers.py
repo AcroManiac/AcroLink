@@ -1,6 +1,12 @@
 from rest_framework import serializers
 from .models import *
 
+class SexSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Sex
+        fields = ('id', 'name')
+
 class LevelSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -21,15 +27,15 @@ class RoleSerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
-class CountrySerializer(serializers.ModelSerializer):
+# class CountrySerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = Country
-        fields = ('id', 'code', 'name')
+#     class Meta:
+#         model = Country
+#         fields = ('id', 'code', 'name')
 
 
-class SocialNetworkSerializer(serializers.ModelSerializer):
+# class SocialNetworkSerializer(serializers.ModelSerializer):
 
-    class Meta:
-        model = SocialNetwork
-        fields = ('id', 'name', 'url', 'logo_url')
+#     class Meta:
+#         model = SocialNetwork
+#         fields = ('id', 'name', 'url', 'logo_url')

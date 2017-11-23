@@ -15,6 +15,13 @@ from .serializers import *
 
 # Create your views here.
 
+class SexViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    This viewset automatically provides `list` and `detail` actions.
+    """
+    queryset = Sex.objects.all()
+    serializer_class = SexSerializer
+
 class LevelViewSet(viewsets.ReadOnlyModelViewSet):
     """
     This viewset automatically provides `list` and `detail` actions.
@@ -39,20 +46,20 @@ class RoleViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = RoleSerializer
 
 
-class CountryViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    This viewset automatically provides `list` and `detail` actions.
-    """
-    queryset = Country.objects.all()
-    serializer_class = CountrySerializer
+# class CountryViewSet(viewsets.ReadOnlyModelViewSet):
+#     """
+#     This viewset automatically provides `list` and `detail` actions.
+#     """
+#     queryset = Country.objects.all()
+#     serializer_class = CountrySerializer
 
 
-class SocialNetworkViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    This viewset automatically provides `list` and `detail` actions.
-    """
-    queryset = SocialNetwork.objects.all()
-    serializer_class = SocialNetworkSerializer
+# class SocialNetworkViewSet(viewsets.ReadOnlyModelViewSet):
+#     """
+#     This viewset automatically provides `list` and `detail` actions.
+#     """
+#     queryset = SocialNetwork.objects.all()
+#     serializer_class = SocialNetworkSerializer
 
 
 # @api_view(['GET'])

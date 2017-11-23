@@ -26,7 +26,7 @@ class Location(models.Model):
 	country_code = models.TextField(max_length=4, blank=True)
 	latitude = models.TextField(max_length=32, blank=True)
 	longtitude = models.TextField(max_length=32, blank=True)
-	placeId = models.TextField(max_length=256, blank=True)
+	place_id = models.TextField(max_length=256, blank=True)
 
 
 class Profile(models.Model):
@@ -39,7 +39,7 @@ class Profile(models.Model):
 	avatar = models.ImageField(upload_to='avatars/', null=True)
 	karma = models.IntegerField(null=False, blank=False, default=0)
 
-	location = models.OneToOneField('Location', on_delete=models.CASCADE)
+	location = models.OneToOneField('Location', null=True, on_delete=models.CASCADE)
 
 	level = models.ForeignKey('reference.Level', null=True)
 	position = models.ManyToManyField('reference.Position')
