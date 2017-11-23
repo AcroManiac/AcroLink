@@ -1,0 +1,23 @@
+[
+  {
+    "model": "reference.Sex",
+    "pk": 1,
+    "fields": {
+      "name": "Male"
+    }
+  },
+  {
+    "model": "reference.Sex",
+    "pk": 2,
+    "fields": {
+      "name": "Female"
+    }
+  },
+  {
+    "model": "reference.Sex",
+    "pk": 3,
+    "fields": {
+      "name": "Other"
+    }
+  }
+]

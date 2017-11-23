@@ -31,6 +31,7 @@ class Location(models.Model):
 
 class Profile(models.Model):
 	user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
+	sex = models.ForeignKey('reference.Sex', null=True)
 	phone = models.TextField(max_length=20, blank=True)
 	birth_date = models.DateField(null=True, blank=True)
 	practice_start_date = models.DateField(null=True, blank=True)
