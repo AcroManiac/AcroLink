@@ -48,8 +48,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth.registration',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.vk',
+    # 'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.vk',
     'rest_framework_swagger',
     'corsheaders',
 
