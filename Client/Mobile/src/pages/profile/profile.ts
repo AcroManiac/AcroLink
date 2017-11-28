@@ -52,6 +52,8 @@ export class ProfilePage extends ProtectedPage {
             buttons: ['OK']
           });
           alert.present();
+
+          this.openPage('LoginPage');
         });
   }
 
