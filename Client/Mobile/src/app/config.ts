@@ -1,6 +1,7 @@
 export let cfg = {
-  // apiUrl: 'http://books.prodio.bg/api',
   apiUrl: 'http://acrolink.org/api/v1',
+  // apiUrl: 'http://192.168.1.80:8000/api/v1',
+  // apiUrl: 'http://52.57.67.183:8000/api/v1',
   tokenName: 'token',
   user: {
     register: '/rest-auth/registration/',
