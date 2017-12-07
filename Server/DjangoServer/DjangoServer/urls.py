@@ -28,7 +28,7 @@ urlpatterns = [
     
     url(r'^docs/$', get_swagger_view(title='API Docs'), name='api_docs'),
 
-    url(r'^api/v1/admin/', include(admin.site.urls)),
+    url(r'^api/v1/admin/', admin.site.urls),
     url(r'^api/v1/rest-auth/', include('rest_auth.urls')),
     url(r'^api/v1/rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^api/v1/accounts/', include('allauth.urls')),
