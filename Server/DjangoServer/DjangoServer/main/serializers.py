@@ -32,7 +32,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = (
         	'id', 'phone', 'sex', 'birth_date', 'practice_start_date', 'bio', 'location', 'avatar',
-        	'karma', 'user', 'level', 'position', 'role')
+        	'score', 'user', 'level', 'position', 'role')
         #, 'country', 'social_network')
 
     # Watch this to see how to update profile in one request:

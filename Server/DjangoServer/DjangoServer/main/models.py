@@ -31,19 +31,19 @@ class Location(models.Model):
 
 class Profile(models.Model):
 	user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
-	sex = models.ForeignKey('reference.Sex', null=True)
+	sex = models.ForeignKey('reference.Sex', null=True, blank=True, on_delete=models.CASCADE)
 	phone = models.TextField(max_length=20, blank=True)
 	birth_date = models.DateField(null=True, blank=True)
 	practice_start_date = models.DateField(null=True, blank=True)
 	bio = models.TextField(max_length=500, blank=True)
-	avatar = models.ImageField(upload_to='avatars/', null=True)
-	karma = models.IntegerField(null=False, blank=False, default=0)
+	avatar = models.ImageField(upload_to='avatars/', blank=True)
+	score = models.IntegerField(null=False, blank=False, default=0)
 
-	location = models.OneToOneField('Location', null=True, on_delete=models.CASCADE)
+	location = models.OneToOneField('Location', null=True, blank=True, on_delete=models.CASCADE)
 
-	level = models.ForeignKey('reference.Level', null=True)
-	position = models.ManyToManyField('reference.Position')
-	role = models.ManyToManyField('reference.Role')
+	level = models.ForeignKey('reference.Level', null=True, blank=True, on_delete=models.CASCADE)
+	position = models.ManyToManyField('reference.Position', blank=True)
+	role = models.ManyToManyField('reference.Role', blank=True)
 	# social_network = models.ManyToManyField('reference.SocialNetwork', through='main.SocialNetworkLink')
 
 @receiver(post_save, sender=User)
