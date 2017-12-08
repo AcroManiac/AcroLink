@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'rest_framework_swagger',
     'corsheaders',
 
+    # 'rolepermissions',
+
     'DjangoServer.main',
     'DjangoServer.reference',
 ]
