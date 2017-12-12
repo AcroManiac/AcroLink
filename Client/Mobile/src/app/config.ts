@@ -1,5 +1,5 @@
 export let cfg = {
-  apiUrl: 'http://acrolink.org/api/v1',
+  apiUrl: 'https://acrolink.org/api/v1',
   // apiUrl: 'http://192.168.1.80:8000/api/v1',
   // apiUrl: 'http://52.57.67.183:8000/api/v1',
   tokenName: 'token',
