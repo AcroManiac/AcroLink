@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 import { AuthService } from '../providers/auth-service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
@@ -23,7 +24,8 @@ export class AcroLinkApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public authService: AuthService,
-    public translate: TranslateService) {
+    public translate: TranslateService,
+    private googleAnalytics: GoogleAnalytics) {
 
     translate.setDefaultLang('en');
     translate.use('en');
@@ -61,6 +63,17 @@ export class AcroLinkApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
+
+      // Start Google Analytics tracker
+      this.googleAnalytics.startTrackerWithId('UA-111128784-1')
+        .then(() => {
+          console.log('AcroLinkApp:initializeApp(): Google analytics is ready now');
+          //the component is ready and you can call any method here 
+          this.googleAnalytics.debugMode();
+          this.googleAnalytics.setAllowIDFACollection(true);
+        })
+        .catch(e => console.error('AcroLinkApp:initializeApp(): Error starting GoogleAnalytics', e));
+
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();

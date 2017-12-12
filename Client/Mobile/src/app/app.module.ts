@@ -13,6 +13,7 @@ import { AppRate } from '@ionic-native/app-rate';
 import { Crop } from '@ionic-native/crop';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Geolocation } from '@ionic-native/geolocation';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 import { AcroLinkApp } from './app.component';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -80,6 +81,7 @@ export function createTranslateLoader(httpClient: HttpClient) {
     ReferenceService,
     GoogleMapsService,
     Geolocation,
+    GoogleAnalytics,
   ],
 })
 export class AppModule {}
