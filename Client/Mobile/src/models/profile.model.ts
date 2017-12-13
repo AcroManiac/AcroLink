@@ -32,7 +32,7 @@ export class ProfileModel extends UserModel {
     this.practice_start_date = data.profile.practice_start_date;
     this.bio = data.profile.bio;
     this.avatar = data.profile.avatar;
-    // this.score = data.profile.score;
+    this.score = data.profile.score;
 
     this.location = data.location;
   }

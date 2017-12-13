@@ -11,9 +11,6 @@
 
 <ion-content class="settings-content">
 
-
-
-
   <div class="user-image-content">
     <ion-row no-padding class="user-image-row">
       <ion-col no-padding width-40>
@@ -27,90 +24,128 @@
     </ion-row>
   </div>
 
-  <form [formGroup]="settingsForm" class="settings-form">
-    <section class="form-section">
-      <h2 class="section-title">{{'page.settings.person_data' | translate}}</h2>
-      <ion-list class="user-data-content">
-        <ion-item>
-          <ion-label stacked>{{ 'page.settings.first_name' | translate }}</ion-label>
-          <ion-input type="text" formControlName="first_name" [(ngModel)]="profile.first_name"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label stacked>{{ 'page.settings.last_name' | translate }}</ion-label>
-          <ion-input type="text" formControlName="last_name" [(ngModel)]="profile.last_name"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label stacked>{{ 'page.settings.birth_date' | translate }}</ion-label>
-          <ion-datetime formControlName="birth_date" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY" [(ngModel)]="profile.birth_date"></ion-datetime>
-        </ion-item>
+  <ion-segment class="user-content-segment" [(ngModel)]="section">
+    <!-- <ion-segment-button value="person" (ionSelect)="onSegmentSelected($event)"> -->
+    <ion-segment-button value="person" checked>
+      {{'page.settings.person_data' | translate}}
+    </ion-segment-button>
+    <ion-segment-button value="acroyoga">
+      {{'page.settings.acroyoga_data' | translate}}
+    </ion-segment-button>
+    <ion-segment-button value="application">
+      {{'page.settings.application' | translate}}
+    </ion-segment-button>
+  </ion-segment>
 
-        <div ngModelGroup="location">
-          <ion-item>
-            <ion-label stacked>Street address</ion-label>
-            <ion-input type="text" placeholder="Number" formControlName="location.street_number" [(ngModel)]="profile.location.street_number"></ion-input>
-            <ion-input type="text" placeholder="Route" formControlName="location.route" [(ngModel)]="profile.location.route"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label stacked>City</ion-label>
-            <ion-input type="text" placeholder="City" formControlName="location.locality" [(ngModel)]="profile.location.locality"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label stacked>State</ion-label>
-            <ion-input type="text" placeholder="State" formControlName="location.state" [(ngModel)]="profile.location.state"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label stacked>Zip code</ion-label>
-            <ion-input type="text" placeholder="Zip code" formControlName="location.postal_code" [(ngModel)]="profile.location.postal_code"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label stacked>Country</ion-label>
-            <ion-input type="text" placeholder="Country" formControlName="location.country" [(ngModel)]="profile.location.country"></ion-input>
-            <ion-input type="text" [readonly]="true" formControlName="location.country_code" [(ngModel)]="profile.location.country_code"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label stacked>Location</ion-label>
-            <ion-input type="text" [readonly]="true" formControlName="location.latitude" [(ngModel)]="profile.location.latitude"></ion-input>
-            <ion-input type="text" [readonly]="true" formControlName="location.longtitude" [(ngModel)]="profile.location.longtitude"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label stacked>Place Id</ion-label>
-            <ion-input type="text" [readonly]="true" formControlName="location.placeId" [(ngModel)]="profile.location.placeId"></ion-input>
-          </ion-item>
-        </div>
+  <form [formGroup]="settingsForm" class="settings-form">  
+    <div [ngSwitch]="section" class="forms-wrapper">
+      <div *ngSwitchCase="'person'" class="person-example-view">
 
-        <ion-item>
-          <ion-label stacked>{{ 'page.settings.phone' | translate }}</ion-label>
-          <ion-input type="text" formControlName="phone" [(ngModel)]="profile.phone"></ion-input>
-        </ion-item>
-        
-      </ion-list>
-    </section>
+        <section class="form-section">
+          <h2 class="section-title">{{'page.settings.person_data' | translate}}</h2>
+          <ion-list class="user-data-content">
+            <ion-item>
+              <ion-label stacked>{{ 'page.settings.first_name' | translate }}</ion-label>
+              <ion-input type="text" formControlName="first_name" [(ngModel)]="profile.first_name"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label stacked>{{ 'page.settings.last_name' | translate }}</ion-label>
+              <ion-input type="text" formControlName="last_name" [(ngModel)]="profile.last_name"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label stacked>{{ 'page.settings.birth_date' | translate }}</ion-label>
+              <ion-datetime formControlName="birth_date" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY" [(ngModel)]="profile.birth_date"></ion-datetime>
+            </ion-item>
+          </ion-list>
+        </section>
 
-    <section class="form-section">
-      <ion-list class="user-data-content">
-        <h2 class="section-title">{{'page.settings.acroyoga_data' | translate}}</h2>
-        <ion-item>
-          <ion-label stacked>{{ 'page.settings.practice_start_date' | translate }}</ion-label>
-          <ion-datetime formControlName="practice_start_date" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY"></ion-datetime>
-        </ion-item>
-        <ion-item>
-          <ion-label stacked>{{ 'page.settings.biography' | translate }}</ion-label>
-          <ion-textarea formControlName="bio" rows="5" placeholder="Your description here..."></ion-textarea>
-        </ion-item>
-      </ion-list>
-    </section>
+        <section class="form-section">
+          <h2 class="section-title">{{'page.settings.location' | translate}}</h2>
+          <ion-list class="user-data-content">
+            <div formGroupName="location">
+              <ion-item>
+                <ion-label stacked>Street address</ion-label>
+                <ion-input type="text" placeholder="Number" formControlName="street_number"></ion-input>
+                <ion-input type="text" placeholder="Route" formControlName="route"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label stacked>City</ion-label>
+                <ion-input type="text" placeholder="City" formControlName="locality"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label stacked>State</ion-label>
+                <ion-input type="text" placeholder="State" formControlName="state"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label stacked>Zip code</ion-label>
+                <ion-input type="text" placeholder="Zip code" formControlName="postal_code"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label stacked>Country</ion-label>
+                <ion-input type="text" placeholder="Country" formControlName="country"></ion-input>
+                <ion-input type="text" [readonly]="true" formControlName="country_code"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label stacked>Location</ion-label>
+                <ion-input type="text" [readonly]="true" formControlName="latitude"></ion-input>
+                <ion-input type="text" [readonly]="true" formControlName="longtitude"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label stacked>Place Id</ion-label>
+                <ion-input type="text" [readonly]="true" formControlName="placeId"></ion-input>
+              </ion-item>
+            </div>
+          </ion-list>
+        </section>
 
-    <section class="form-section">
-      <ion-list class="user-data-content">
-        <h2 class="section-title">{{'page.settings.application' | translate}}</h2>
-        <ion-item>
-          <ion-label>{{ 'page.settings.language' | translate }}</ion-label>
-          <ion-select formControlName="language" cancelText="{{ 'button.cancel' | translate }}" okText="{{ 'button.ok' | translate }}">
-            <ion-option *ngFor="let language of languages" [value]="language">{{ language.name }}</ion-option>
-          </ion-select>
-        </ion-item>
-      </ion-list>
-    </section>
+        <section class="form-section">
+          <h2 class="section-title">{{'page.settings.phone' | translate}}</h2>
+          <ion-list class="user-data-content">
+            <ion-item>
+              <ion-label stacked>{{ 'page.settings.phone' | translate }}</ion-label>
+              <ion-input type="text" formControlName="phone" [(ngModel)]="profile.phone"></ion-input>
+            </ion-item>
+          </ion-list>
+        </section>
+
+      </div>
+      <div *ngSwitchCase="'acroyoga'" class="person-example-view">
+
+        <section class="form-section">
+          <ion-list class="user-data-content">
+            <h2 class="section-title">{{'page.settings.acroyoga_data' | translate}}</h2>
+
+            <div formGroupName="acroyoga">
+              <ion-item>
+                <ion-label stacked>{{ 'page.settings.practice_start_date' | translate }}</ion-label>
+                <ion-datetime formControlName="practice_start_date" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY"></ion-datetime>
+              </ion-item>
+              <ion-item>
+                <ion-label stacked>{{ 'page.settings.biography' | translate }}</ion-label>
+                <ion-textarea formControlName="bio" rows="5" placeholder="Your description here..."></ion-textarea>
+              </ion-item>
+            </div>
+            
+          </ion-list>
+        </section>
+
+      </div>
+      <div *ngSwitchCase="'application'" class="person-example-view">
+
+        <section class="form-section">
+          <ion-list class="user-data-content">
+            <h2 class="section-title">{{'page.settings.application' | translate}}</h2>
+            <ion-item>
+              <ion-label>{{ 'page.settings.language' | translate }}</ion-label>
+              <ion-select formControlName="language" cancelText="{{ 'button.cancel' | translate }}" okText="{{ 'button.ok' | translate }}">
+                <ion-option *ngFor="let language of languages" [value]="language">{{ language.name }}</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </section>
+
+      </div>
+    </div>
 
   </form>
 
@@ -120,9 +155,5 @@
     <ion-icon name="log-out"></ion-icon>
     {{'button.logout' | translate }}
   </button>
-
-
-
-
 
 </ion-content>

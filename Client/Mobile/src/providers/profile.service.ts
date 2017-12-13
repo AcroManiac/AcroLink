@@ -62,7 +62,7 @@ export class ProfileService {
       .map(res => res.json())
       .toPromise()
       .then(data => {
-        console.log(JSON.stringify(data));
+        console.log('ProfileService:update:data: ' + JSON.stringify(data));
         return data;
       });
   }

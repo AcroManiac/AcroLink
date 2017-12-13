@@ -89,6 +89,8 @@ export class SettingsPage extends ProtectedPage {
       }),
 
     });
+
+    this.section = 'person';
   }
 
   ionViewDidLoad() {
@@ -111,16 +113,16 @@ export class SettingsPage extends ProtectedPage {
         language:             this.languages[0],
 
         location: {
-          street_number:      this.profile.location.street_number,
-          route:              this.profile.location.route,
-          locality:           this.profile.location.locality,
-          state:              this.profile.location.state,
-          country:            this.profile.location.country,
-          country_code:       this.profile.location.country_code,
-          postal_code:        this.profile.location.postal_code,
-          latitude:           this.profile.location.latitude,
-          longtitude:         this.profile.location.longtitude,
-          placeId:            this.profile.location.placeId
+          street_number:      this.profile.location != null ? this.profile.location.street_number : "",
+          route:              this.profile.location != null ? this.profile.location.route : "",
+          locality:           this.profile.location != null ? this.profile.location.locality : "",
+          state:              this.profile.location != null ? this.profile.location.state : "",
+          country:            this.profile.location != null ? this.profile.location.country : "",
+          country_code:       this.profile.location != null ? this.profile.location.country_code : "",
+          postal_code:        this.profile.location != null ? this.profile.location.postal_code : "",
+          latitude:           this.profile.location != null ? this.profile.location.latitude : "",
+          longtitude:         this.profile.location != null ? this.profile.location.longtitude : "",
+          placeId:            this.profile.location != null ? this.profile.location.placeId : ""
         },
 
         acroyoga: {
