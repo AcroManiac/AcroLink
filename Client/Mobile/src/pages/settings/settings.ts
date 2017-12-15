@@ -27,6 +27,7 @@ export class SettingsPage extends ProtectedPage {
   // make ProfilePage the root (or first) page
   rootPage: any = 'ProfilePage';
   loading: any;
+  section: any = 'person';
 
   profile: ProfileModel = new ProfileModel();
   languages: Array<LanguageModel> = [
@@ -89,8 +90,6 @@ export class SettingsPage extends ProtectedPage {
       }),
 
     });
-
-    this.section = 'person';
   }
 
   ionViewDidLoad() {

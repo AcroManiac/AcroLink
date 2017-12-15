@@ -42,7 +42,6 @@
       <div *ngSwitchCase="'person'" class="person-example-view">
 
         <section class="form-section">
-          <h2 class="section-title">{{'page.settings.person_data' | translate}}</h2>
           <ion-list class="user-data-content">
             <ion-item>
               <ion-label stacked>{{ 'page.settings.first_name' | translate }}</ion-label>
@@ -113,7 +112,6 @@
 
         <section class="form-section">
           <ion-list class="user-data-content">
-            <h2 class="section-title">{{'page.settings.acroyoga_data' | translate}}</h2>
 
             <div formGroupName="acroyoga">
               <ion-item>
@@ -134,7 +132,6 @@
 
         <section class="form-section">
           <ion-list class="user-data-content">
-            <h2 class="section-title">{{'page.settings.application' | translate}}</h2>
             <ion-item>
               <ion-label>{{ 'page.settings.language' | translate }}</ion-label>
               <ion-select formControlName="language" cancelText="{{ 'button.cancel' | translate }}" okText="{{ 'button.ok' | translate }}">

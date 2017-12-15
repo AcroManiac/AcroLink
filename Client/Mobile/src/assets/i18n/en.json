@@ -38,8 +38,7 @@
       "person_data": "Person",
       "acroyoga_data": "Acroyoga",
       "application": "Application",
-      "language": "Select your language",
-      "location": "Location",
+      "language": "Select your language"
     },
     "trainings" : "Trainings",
     "events" : "Events",
