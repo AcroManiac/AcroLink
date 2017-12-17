@@ -17,16 +17,16 @@ from django.db.models.signals import post_save
 # 		return self.url
 
 class Location(models.Model):
-	street_number = models.TextField(max_length=10, blank=True)
-	route = models.TextField(max_length=64, blank=True)
-	locality = models.TextField(max_length=32, blank=True)
-	state = models.TextField(max_length=32, blank=True)
-	country = models.TextField(max_length=64, blank=True)
-	postal_code = models.TextField(max_length=10, blank=True)
-	country_code = models.TextField(max_length=4, blank=True)
-	latitude = models.TextField(max_length=32, blank=True)
-	longtitude = models.TextField(max_length=32, blank=True)
-	place_id = models.TextField(max_length=256, blank=True)
+	street_number = models.TextField(max_length=10, null=True, blank=True)
+	route = models.TextField(max_length=64, null=True, blank=True)
+	locality = models.TextField(max_length=32, null=True, blank=True)
+	state = models.TextField(max_length=32, null=True, blank=True)
+	country = models.TextField(max_length=64, null=True, blank=True)
+	postal_code = models.TextField(max_length=10, null=True, blank=True)
+	country_code = models.TextField(max_length=4, null=True, blank=True)
+	latitude = models.TextField(max_length=32, null=True, blank=True)
+	longtitude = models.TextField(max_length=32, null=True, blank=True)
+	place_id = models.TextField(max_length=256, null=True, blank=True)
 
 
 class Profile(models.Model):
