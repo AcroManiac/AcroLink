@@ -2,7 +2,7 @@
   <ion-navbar>
     <ion-title>{{ 'page.settings.name' | translate }}</ion-title>
     <ion-buttons end [hidden]="!settingsForm.dirty">
-      <button ion-button>
+      <button ion-button (click)="saveFormData()">
         {{ 'button.save' | translate }}
       </button>
     </ion-buttons>
@@ -44,64 +44,79 @@
         <section class="form-section">
           <ion-list class="user-data-content">
             <ion-item>
-              <ion-label stacked>{{ 'page.settings.first_name' | translate }}</ion-label>
-              <ion-input type="text" formControlName="first_name" [(ngModel)]="profile.first_name"></ion-input>
+              <ion-label floating>{{ 'page.settings.first_name' | translate }}</ion-label>
+              <ion-input type="text" formControlName="first_name"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label stacked>{{ 'page.settings.last_name' | translate }}</ion-label>
-              <ion-input type="text" formControlName="last_name" [(ngModel)]="profile.last_name"></ion-input>
+              <ion-label floating>{{ 'page.settings.last_name' | translate }}</ion-label>
+              <ion-input type="text" formControlName="last_name"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label stacked>{{ 'page.settings.birth_date' | translate }}</ion-label>
-              <ion-datetime formControlName="birth_date" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY" [(ngModel)]="profile.birth_date"></ion-datetime>
+              <ion-label floating>{{ 'page.settings.birth_date' | translate }}</ion-label>
+              <ion-datetime formControlName="birth_date" displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY"></ion-datetime>
             </ion-item>
           </ion-list>
         </section>
 
         <section class="form-section">
           <h2 class="section-title">{{'page.settings.location' | translate}}</h2>
-          <ion-list class="user-data-content">
-            <div formGroupName="location">
-              <ion-item>
-                <ion-label stacked>Street address</ion-label>
-                <ion-input type="text" placeholder="Number" formControlName="street_number"></ion-input>
-                <ion-input type="text" placeholder="Route" formControlName="route"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label stacked>City</ion-label>
-                <ion-input type="text" placeholder="City" formControlName="locality"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label stacked>State</ion-label>
-                <ion-input type="text" placeholder="State" formControlName="state"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label stacked>Zip code</ion-label>
-                <ion-input type="text" placeholder="Zip code" formControlName="postal_code"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label stacked>Country</ion-label>
-                <ion-input type="text" placeholder="Country" formControlName="country"></ion-input>
-                <ion-input type="text" [readonly]="true" formControlName="country_code"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label stacked>Location</ion-label>
-                <ion-input type="text" [readonly]="true" formControlName="latitude"></ion-input>
-                <ion-input type="text" [readonly]="true" formControlName="longtitude"></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label stacked>Place Id</ion-label>
-                <ion-input type="text" [readonly]="true" formControlName="placeId"></ion-input>
-              </ion-item>
-            </div>
-          </ion-list>
+          <button ion-button round icon-start (click)="searchPlace()">
+            <ion-icon name="search"></ion-icon>
+            Find address
+          </button>
+          <div class="search-container">
+            <ion-list class="user-data-content">
+              <div formGroupName="location">
+                <ion-item>
+                  <ion-label floating>House number</ion-label>
+                  <ion-input type="text" formControlName="street_number"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Street route</ion-label>
+                  <ion-input type="text" formControlName="route"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>City</ion-label>
+                  <ion-input type="text" formControlName="locality"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>State</ion-label>
+                  <ion-input type="text" formControlName="state"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Zip code</ion-label>
+                  <ion-input type="text" formControlName="postal_code"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Country</ion-label>
+                  <ion-input type="text" formControlName="country"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Country code</ion-label>
+                  <ion-input type="text" [readonly]="true" formControlName="country_code"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Latitude</ion-label>
+                  <ion-input type="text" [readonly]="true" formControlName="latitude"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Longtitude</ion-label>
+                  <ion-input type="text" [readonly]="true" formControlName="longtitude"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Place Id</ion-label>
+                  <ion-input type="text" [readonly]="true" formControlName="placeId"></ion-input>
+                </ion-item>
+              </div>
+            </ion-list>
+          </div>
         </section>
 
         <section class="form-section">
           <h2 class="section-title">{{'page.settings.phone' | translate}}</h2>
           <ion-list class="user-data-content">
             <ion-item>
-              <ion-label stacked>{{ 'page.settings.phone' | translate }}</ion-label>
+              <ion-label floating>{{ 'page.settings.phone' | translate }}</ion-label>
               <ion-input type="text" formControlName="phone" [(ngModel)]="profile.phone"></ion-input>
             </ion-item>
           </ion-list>
@@ -115,11 +130,11 @@
 
             <div formGroupName="acroyoga">
               <ion-item>
-                <ion-label stacked>{{ 'page.settings.practice_start_date' | translate }}</ion-label>
-                <ion-datetime formControlName="practice_start_date" displayFormat="DD/MM/YY" pickerFormat="DD-MM-YYYY"></ion-datetime>
+                <ion-label floating>{{ 'page.settings.practice_start_date' | translate }}</ion-label>
+                <ion-datetime formControlName="practice_start_date" displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY"></ion-datetime>
               </ion-item>
               <ion-item>
-                <ion-label stacked>{{ 'page.settings.biography' | translate }}</ion-label>
+                <ion-label floating>{{ 'page.settings.biography' | translate }}</ion-label>
                 <ion-textarea formControlName="bio" rows="5" placeholder="Your description here..."></ion-textarea>
               </ion-item>
             </div>

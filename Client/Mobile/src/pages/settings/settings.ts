@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, ModalController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 import 'rxjs/Rx';
@@ -44,6 +44,7 @@ export class SettingsPage extends ProtectedPage {
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
+    public modalCtrl: ModalController,
     public storage: Storage,
     public translate: TranslateService,
     public languageService: LanguageService,
@@ -62,8 +63,8 @@ export class SettingsPage extends ProtectedPage {
     // this.referenceService.getData();
 
     this.settingsForm = this.formBuilder.group({
-      first_name: [''],
-      last_name: [''],
+      first_name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      last_name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       phone: [''],
       birth_date: [''],
       language: [''],
@@ -168,6 +169,21 @@ export class SettingsPage extends ProtectedPage {
 
     this.translate.setDefaultLang(language_to_set);
     this.translate.use(language_to_set);
+  }
+
+  searchPlace() {
+    let searchModal = this.modalCtrl.create('SearchPlacePage');
+    searchModal.onDidDismiss(data => {
+      if (typeof data != 'undefined') {
+        console.log('SettingsPage:searchPlace():data: ', JSON.stringify(data));
+        this.settingsForm.patchValue({location: data});
+      }
+    });
+    searchModal.present();
+  }
+
+  saveFormData() {
+    console.log('SettingsPage:saveFormData():value: ', JSON.stringify(this.settingsForm.value));
   }
 
   rateApp(){
