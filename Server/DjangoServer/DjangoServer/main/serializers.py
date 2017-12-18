@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import *
 from DjangoServer.reference.serializers import SexSerializer
 from DjangoServer.reference.serializers import LevelSerializer
 from DjangoServer.reference.serializers import PositionSerializer
@@ -12,7 +12,7 @@ from DjangoServer.reference.serializers import RoleSerializer
 class LocationSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Profile
+        model = Location
         fields = (
             'id', 'street_number', 'route', 'locality', 'state', 'country', 'postal_code',
             'country_code', 'latitude', 'longtitude', 'place_id')

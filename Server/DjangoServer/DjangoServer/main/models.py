@@ -39,7 +39,7 @@ class Profile(models.Model):
 	avatar = models.ImageField(upload_to='avatars/', blank=True)
 	score = models.IntegerField(null=False, blank=False, default=0)
 
-	location = models.OneToOneField('Location', null=True, blank=True, on_delete=models.CASCADE)
+	location = models.ForeignKey('Location', null=True, blank=True, on_delete=models.CASCADE)
 
 	level = models.ForeignKey('reference.Level', null=True, blank=True, on_delete=models.CASCADE)
 	position = models.ManyToManyField('reference.Position', blank=True)
