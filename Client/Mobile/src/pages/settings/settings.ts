@@ -177,6 +177,7 @@ export class SettingsPage extends ProtectedPage {
       if (typeof data != 'undefined') {
         console.log('SettingsPage:searchPlace():data: ', JSON.stringify(data));
         this.settingsForm.patchValue({location: data});
+        this.settingsForm.controls.location.markAsDirty();
       }
     });
     searchModal.present();
