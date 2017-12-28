@@ -1,23 +1,23 @@
 [
   {
-    "model": "reference.Sex",
+    "model": "reference.Gender",
     "pk": 1,
     "fields": {
       "name": "Male"
     }
   },
   {
-    "model": "reference.Sex",
+    "model": "reference.Gender",
     "pk": 2,
     "fields": {
       "name": "Female"
     }
   },
   {
-    "model": "reference.Sex",
+    "model": "reference.Gender",
     "pk": 3,
     "fields": {
-      "name": "Other"
+      "name": "Not specified"
     }
   }
 ]

@@ -1,10 +1,10 @@
 from rest_framework import serializers
 from .models import *
 
-class SexSerializer(serializers.ModelSerializer):
+class GenderSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Sex
+        model = Gender
         fields = ('id', 'name')
 
 class LevelSerializer(serializers.ModelSerializer):

@@ -15,12 +15,12 @@ from .serializers import *
 
 # Create your views here.
 
-class SexViewSet(viewsets.ReadOnlyModelViewSet):
+class GenderViewSet(viewsets.ReadOnlyModelViewSet):
     """
     This viewset automatically provides `list` and `detail` actions.
     """
-    queryset = Sex.objects.all()
-    serializer_class = SexSerializer
+    queryset = Gender.objects.all()
+    serializer_class = GenderSerializer
 
 class LevelViewSet(viewsets.ReadOnlyModelViewSet):
     """

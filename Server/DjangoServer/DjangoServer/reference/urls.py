@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 
 # Create a router and register our viewsets with it.
 router = DefaultRouter()
-router.register(r'reference/sex', LevelViewSet)
+router.register(r'reference/gender', GenderViewSet)
 router.register(r'reference/level', LevelViewSet)
 router.register(r'reference/position', PositionViewSet)
 router.register(r'reference/role', RoleViewSet)

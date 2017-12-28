@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import *
-from DjangoServer.reference.serializers import SexSerializer
+from DjangoServer.reference.serializers import GenderSerializer
 from DjangoServer.reference.serializers import LevelSerializer
 from DjangoServer.reference.serializers import PositionSerializer
 from DjangoServer.reference.serializers import RoleSerializer
@@ -20,7 +20,7 @@ class LocationSerializer(serializers.ModelSerializer):
 
 class ProfileSerializer(serializers.ModelSerializer):
     # user = UserSerializer(many=False, read_only=True)
-    sex = SexSerializer(many=False)
+    gender = GenderSerializer(many=False)
     location = LocationSerializer(many=False)
     level = LevelSerializer(many=False)
     position = PositionSerializer(many=True, read_only=True)
@@ -31,7 +31,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = (
-        	'id', 'phone', 'sex', 'birth_date', 'practice_start_date', 'bio', 'location', 'avatar',
+        	'id', 'phone', 'gender', 'birth_date', 'practice_start_date', 'bio', 'location', 'avatar',
         	'score', 'user', 'level', 'position', 'role')
         #, 'country', 'social_network')
 

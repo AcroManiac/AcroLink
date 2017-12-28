@@ -5,7 +5,7 @@ from django.db import models
 
 # Create your models here.
 
-class Sex(models.Model):
+class Gender(models.Model):
 	name = models.TextField(max_length=20, default='Male')
 
 	def __unicode__(self):
