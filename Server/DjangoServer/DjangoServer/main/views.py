@@ -12,17 +12,17 @@ from rest_framework.decorators import detail_route
 
 from .models import Profile
 from django.contrib.auth.models import User
-from .serializers import ProfileSerializer
+# from .serializers import ProfileSerializer
 
 
 # Create your views here.
 
-class ProfileViewSet(viewsets.ReadOnlyModelViewSet):
+class ProfileViewSet(viewsets.ModelViewSet):
     """
     This viewset automatically provides `list` and `detail` actions.
     """
     queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
+    # serializer_class = ProfileSerializer
 
 
 @api_view(['GET'])

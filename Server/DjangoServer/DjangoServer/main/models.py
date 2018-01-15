@@ -5,7 +5,6 @@ from django.db import models
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
-from annoying.fields import AutoOneToOneField
 
 # Create your models here.
 
@@ -32,27 +31,29 @@ class Location(models.Model):
 
 class Profile(models.Model):
 	user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
-	gender = models.ForeignKey('reference.Gender', null=True, blank=True, on_delete=models.CASCADE)
-	phone = models.TextField(max_length=20, blank=True)
-	birth_date = models.DateField(null=True, blank=True)
-	practice_start_date = models.DateField(null=True, blank=True)
-	bio = models.TextField(max_length=500, blank=True)
-	avatar = models.ImageField(upload_to='avatars/', blank=True)
-	score = models.IntegerField(null=False, blank=False, default=0)
+	
+	phone = models.CharField(max_length=30, blank=True, default=None)
+	birth_date = models.DateField(null=True, blank=True, default=None)
+	practice_start_date = models.DateField(null=True, blank=True, default=None)
+	bio = models.CharField(max_length=500, blank=True, default=None)
+	avatar = models.ImageField(upload_to='avatars/', null=True, blank=True, default=None)
+	score = models.IntegerField(default=0)
 
-	location = AutoOneToOneField('Location', null=True, on_delete=models.CASCADE)
+	# Nested relations to other tables
+	gender = models.ForeignKey('reference.Gender', null=True, on_delete=models.SET_NULL)
+	level = models.ForeignKey('reference.Level', default=1, on_delete=models.SET_DEFAULT)
 
-	level = models.ForeignKey('reference.Level', null=True, blank=True, on_delete=models.CASCADE)
+	# location = OneToOneField('Location', null=True, on_delete=models.CASCADE)
 	position = models.ManyToManyField('reference.Position', blank=True)
 	role = models.ManyToManyField('reference.Role', blank=True)
 	# social_network = models.ManyToManyField('reference.SocialNetwork', through='main.SocialNetworkLink')
 
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
+# @receiver(post_save, sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         Profile.objects.create(user=instance)
 
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
+# @receiver(post_save, sender=User)
+# def save_user_profile(sender, instance, **kwargs):
+#     instance.profile.save()
 

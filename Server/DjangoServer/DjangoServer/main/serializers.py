@@ -1,62 +1,45 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import *
+from DjangoServer.reference.models import Gender
 from DjangoServer.reference.serializers import GenderSerializer
 from DjangoServer.reference.serializers import LevelSerializer
 from DjangoServer.reference.serializers import PositionSerializer
 from DjangoServer.reference.serializers import RoleSerializer
 # from DjangoServer.reference.serializers import CountrySerializer
 # from DjangoServer.reference.serializers import SocialNetworkSerializer
+from drf_writable_nested import WritableNestedModelSerializer
+from rest_auth.serializers import UserDetailsSerializer
 
+class ProfileSerializer(WritableNestedModelSerializer): #serializers.ModelSerializer):
 
-class LocationSerializer(serializers.ModelSerializer):
+    # Direct FK relation
+    gender = GenderSerializer(allow_null=True)
+    level  = LevelSerializer()
 
-    class Meta:
-        model = Location
-        fields = (
-            'id', 'street_number', 'route', 'locality', 'state', 'country', 'postal_code',
-            'country_code', 'latitude', 'longtitude', 'place_id')
-
-
-class ProfileSerializer(serializers.ModelSerializer):
-    # user = UserSerializer(many=False, read_only=True)
-    gender = GenderSerializer(many=False)
-    location = LocationSerializer(many=False)
-    level = LevelSerializer(many=False)
-    position = PositionSerializer(many=True, read_only=True)
-    role = RoleSerializer(many=True, read_only=True)
-    # country = CountrySerializer(many=False, read_only=True)
-    # social_network = SocialNetworkSerializer(many=True, read_only=True)
+    # Direct ManyToMany relation
+    position = PositionSerializer(many=True, allow_null=True)
+    role = RoleSerializer(many=True, allow_null=True)
 
     class Meta:
-        model = Profile
-        fields = (
-        	'id', 'phone', 'gender', 'birth_date', 'practice_start_date', 'bio', 'location', 'avatar',
-        	'score', 'user', 'level', 'position', 'role')
-        #, 'country', 'social_network')
-
-    # Watch this to see how to update profile in one request:
-    # http://django-rest-auth.readthedocs.io/en/latest/faq.html
+        model   = Profile
+        fields  = ('pk', 'phone', 'birth_date', 'practice_start_date', 'bio', 'avatar', 'score')
+        fields += ('gender', 'level', 'position', 'role',)
 
 
-class UserSerializer(serializers.ModelSerializer):
-    # nest the profile inside the user serializer
+class UserSerializer(WritableNestedModelSerializer):
+
     profile = ProfileSerializer()
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'profile')
-        read_only_fields = ('email', )
+        fields = ('pk', 'profile', 'username',)
 
-    def update(self, instance, validated_data):
-        """Update user and profile. Assumes there is a profile for every user."""
-        profile_data = validated_data.pop('profile')
-        instance = super(UserSerializer, self).update(instance, validated_data)
 
-        # get and update user profile
-        profile = instance.profile
-        if profile_data:
-            for attr, value in profile_data.items():
-                setattr(profile, attr, value)
-            profile.save()
-        return instance
+# class UserSerializer(UserDetailsSerializer):
+
+#     profile = ProfileSerializer()
+
+#     class Meta(UserDetailsSerializer.Meta):
+#         fields = UserDetailsSerializer.Meta.fields + (
+#             'profile',)

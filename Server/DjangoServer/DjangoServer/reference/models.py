@@ -40,10 +40,9 @@ class Role(models.Model):
 # 		return self.name
 
 
-# class SocialNetwork(models.Model):
-# 	name = models.TextField(max_length=20)
-# 	url = models.URLField(null=True)
-# 	logo_url = models.URLField(null=True)
+class SocialNetwork(models.Model):
+	type = models.IntegerField(default=0)
+	url = models.URLField(null=True, blank=True)
 
-# 	def __unicode__(self):
-# 		return self.name
+	def __unicode__(self):
+		return self.name
