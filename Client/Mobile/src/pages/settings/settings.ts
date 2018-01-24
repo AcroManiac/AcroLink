@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 import { ProfileModel } from '../../models/profile.model';
 import { ProfileService } from '../../providers/profile.service';
 // import { ReferenceService } from '../../providers/reference.service';
-import { CountryModel, LevelModel, PositionModel, RoleModel } from '../../models/reference.model';
+import { GenderModel, CountryModel, LevelModel, PositionModel, RoleModel } from '../../models/reference.model';
 import { ProtectedPage } from '../protected/protected';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from '../../providers/language.service';
@@ -34,6 +34,11 @@ export class SettingsPage extends ProtectedPage {
       { name: 'English', code: 'en' },
       { name: 'Русский', code: 'ru' }
     ];
+  genders: Array<GenderModel> = [
+    { id: 1, name: 'Male'   },
+    { id: 2, name: 'Female' },
+    { id: 3, name: 'Not specified' }
+  ];
   // countries: Array<CountryModel>;
   // levels: Array<LevelModel>;
   // positions: Array<PositionModel>;
@@ -68,6 +73,7 @@ export class SettingsPage extends ProtectedPage {
       phone: [''],
       birth_date: [''],
       language: [''],
+      gender: [''],
 
       location: this.formBuilder.group({
         street_number: [''],
@@ -111,6 +117,7 @@ export class SettingsPage extends ProtectedPage {
         phone:                this.profile.phone,
         birth_date:           this.profile.birth_date,
         language:             this.languages[0],
+        gender:               this.genders[0],
 
         location: {
           street_number:      this.profile.location != null ? this.profile.location.street_number : "",

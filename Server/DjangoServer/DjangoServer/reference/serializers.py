@@ -37,7 +37,7 @@ class RoleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Role
-        fields = ('name',)
+        fields = ('pk','name',)
         read_only_fields = ('name',)
 
 

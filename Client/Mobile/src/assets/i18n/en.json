@@ -38,7 +38,8 @@
       "person_data": "Person",
       "acroyoga_data": "Acroyoga",
       "application": "Application",
-      "language": "Select your language"
+      "language": "Language",
+      "gender": "Gender"
     },
     "trainings" : "Trainings",
     "events" : "Events",

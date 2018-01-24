@@ -52,6 +52,12 @@
               <ion-input type="text" formControlName="last_name"></ion-input>
             </ion-item>
             <ion-item>
+              <ion-label>{{ 'page.settings.gender' | translate }}</ion-label>
+              <ion-select formControlName="gender" cancelText="{{ 'button.cancel' | translate }}" okText="{{ 'button.ok' | translate }}">
+                <ion-option *ngFor="let gender of genders" [value]="gender">{{ gender.name }}</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
               <ion-label floating>{{ 'page.settings.birth_date' | translate }}</ion-label>
               <ion-datetime formControlName="birth_date" displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY"></ion-datetime>
             </ion-item>
