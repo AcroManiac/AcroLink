@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('ACROLINK_SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'acrolink.org', '192.168.1.80', '10.0.0.88', 'ec2-52-57-67-183.eu-central-1.compute.amazonaws.com' ]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'acrolink.org', '192.168.1.108', '10.0.0.88', 'ec2-52-57-67-183.eu-central-1.compute.amazonaws.com' ]
 
 
 # Application definition
