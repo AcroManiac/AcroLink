@@ -10,21 +10,37 @@
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
-$white: #FFFFFF;
-$white-a: darken($white, 3%);
-$white-b: darken($white, 6%);
-$white-c: darken($white, 12%);
-$white-d: darken($white, 24%);
+$white: #272822;
+$white-a: lighten($white, 3%);
+$white-b: lighten($white, 6%);
+$white-c: lighten($white, 12%);
+$white-d: lighten($white, 24%);
 
-$black: rgba(#000000, .8);
-$black-a: lighten($black, 10%);
-$black-b: lighten($black, 20%);
-$black-c: lighten($black, 40%);
-$black-d: lighten($black, 60%);
+$black: rgba(#ebedef, .8);
+$black-a: darken($black, 10%);
+$black-b: darken($black, 20%);
+$black-c: darken($black, 40%);
+$black-d: darken($black, 60%);
 
-$theme-color-1: #00e9d5;
-$theme-color-2: #ae75e7;
-$theme-color-3: #5e5874;
+$theme-color-1: darken($white, 10%);
+$theme-color-2: #FB8C00;
+$theme-color-3: #FF9800;
+
+// $white: #FFFFFF;
+// $white-a: darken($white, 3%);
+// $white-b: darken($white, 6%);
+// $white-c: darken($white, 12%);
+// $white-d: darken($white, 24%);
+
+// $black: rgba(#000000, .8);
+// $black-a: lighten($black, 10%);
+// $black-b: lighten($black, 20%);
+// $black-c: lighten($black, 40%);
+// $black-d: lighten($black, 60%);
+
+// $theme-color-1: #00e9d5;
+// $theme-color-2: #ae75e7;
+// $theme-color-3: #5e5874;
 
 // Named Color Variables
 // --------------------------------------------------
@@ -55,7 +71,7 @@ $colors: (
   ),
   header:(
     base: $theme-color-1,
-    contrast: $white
+    contrast: $black-a
   ),
   header-alt:(
     base: $theme-color-2,
@@ -99,7 +115,7 @@ $colors: (
 // so that the above variables are used and Ionic's
 // default are overridden.
 
-@import "ionic.theme.default";
+@import "ionic.theme.dark"; //default";
 
 
 // Ionicons
