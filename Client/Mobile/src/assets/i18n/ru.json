@@ -24,8 +24,8 @@
     "register" : "Новая регистрация",
     "forgotten_password" : "Восстановление пароля",
     "profile" : "Профиль",
-    "settings": {
-      "name": "Редактировать профиль",
+    "profile-edit": {
+      "name": "Редактирование профиля",
       "change_avatar": "Другое фото",
       "first_name": "Имя",
       "last_name": "Фамилия",
@@ -38,8 +38,27 @@
       "person_data": "Личная информация",
       "acroyoga_data": "Акройога",
       "application": "Настройки приложения",
+      "gender": "Пол",
+      "position": {
+        "name": "Положение",
+        "base": "Base",
+        "flyer": "Flyer",
+        "spotter": "Spotter"
+      },
+      "role": {
+        "name": "Роль",
+        "student": "Ученик",
+        "teacher": "Преподаватель",
+        "organizer": "Организатор"
+      }
+    },
+    "settings": {
+      "name": "Настройки",
       "language": "Язык интерфейса",
-      "gender": "Пол"
+      "rate": "Оценить приложение",
+      "privacy": "Политика конфиденциальности",
+      "terms": "Условия эксплуатации",
+      "version": "Версия"
     },
     "trainings" : "Тренировки",
     "events" : "События",

@@ -1,4 +1,4 @@
-settings-page {
+profile-edit-page {
 
 	/*ion-header {
 		@include header-styles(color($colors, header-alt, base), color($colors, header-alt, contrast));
@@ -22,7 +22,7 @@ settings-page {
 		}
 	}
 
-	.settings-content
+	.profile-edit-content
 	{
 		background-color: color($colors, background, base);
 
@@ -123,7 +123,7 @@ settings-page {
 			}
 		}
 
-		.settings-form
+		.profile-edit-form
 		{
 			margin-bottom: 80px;
 		}

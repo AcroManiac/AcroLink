@@ -1,0 +1,186 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ 'page.profile-edit.name' | translate }}</ion-title>
+    <ion-buttons end [hidden]="!profileEditForm.dirty">
+      <button ion-button (click)="saveFormData()">
+        {{ 'button.save' | translate }}
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="profile-edit-content">
+
+  <div class="user-image-content">
+    <ion-row no-padding class="user-image-row">
+      <ion-col no-padding width-40>
+        <preload-image class="user-image" [ratio]="{w:1, h:1}" [src]="profile.avatar" alt="this is the image" title="IMAGE!"></preload-image>
+      </ion-col>
+    </ion-row>
+    <ion-row no-padding class="user-image-row">
+      <ion-col no-padding width-60>
+        <button class="image-action-button" ion-button outline block small (click)="openImagePicker()">{{ 'page.profile-edit.change_avatar' | translate}}</button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <ion-segment class="user-content-segment" [(ngModel)]="section">
+    <!-- <ion-segment-button value="person" (ionSelect)="onSegmentSelected($event)"> -->
+    <ion-segment-button value="person" checked>
+      {{'page.profile-edit.person_data' | translate}}
+    </ion-segment-button>
+    <ion-segment-button value="acroyoga">
+      {{'page.profile-edit.acroyoga_data' | translate}}
+    </ion-segment-button>
+  </ion-segment>
+
+  <form [formGroup]="profileEditForm" class="profile-edit-form">  
+    <div [ngSwitch]="section" class="forms-wrapper">
+      <div *ngSwitchCase="'person'">
+
+        <section class="form-section">
+          <ion-list class="user-data-content">
+            <ion-item>
+              <ion-label floating>{{ 'page.profile-edit.first_name' | translate }}</ion-label>
+              <ion-input type="text" formControlName="first_name"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>{{ 'page.profile-edit.last_name' | translate }}</ion-label>
+              <ion-input type="text" formControlName="last_name"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>{{ 'page.profile-edit.gender' | translate }}</ion-label>
+              <ion-select formControlName="gender" cancelText="{{ 'button.cancel' | translate }}" okText="{{ 'button.ok' | translate }}">
+                <ion-option *ngFor="let gender of genders" [value]="gender">{{ gender.name }}</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>{{ 'page.profile-edit.birth_date' | translate }}</ion-label>
+              <ion-datetime formControlName="birth_date" displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY"></ion-datetime>
+            </ion-item>
+          </ion-list>
+        </section>
+
+        <section class="form-section">
+          <h2 class="section-title">{{'page.profile-edit.location' | translate}}</h2>
+          <button ion-button round icon-start (click)="searchPlace()">
+            <ion-icon name="search"></ion-icon>
+            Find address
+          </button>
+          <div class="search-container">
+            <ion-list class="user-data-content">
+              <div formGroupName="location">
+                <ion-item>
+                  <ion-label floating>House number</ion-label>
+                  <ion-input type="text" formControlName="street_number"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Street route</ion-label>
+                  <ion-input type="text" formControlName="route"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>City</ion-label>
+                  <ion-input type="text" formControlName="locality"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>State</ion-label>
+                  <ion-input type="text" formControlName="state"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Zip code</ion-label>
+                  <ion-input type="text" formControlName="postal_code"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Country</ion-label>
+                  <ion-input type="text" formControlName="country"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Country code</ion-label>
+                  <ion-input type="text" [readonly]="true" formControlName="country_code"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Latitude</ion-label>
+                  <ion-input type="text" [readonly]="true" formControlName="latitude"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Longtitude</ion-label>
+                  <ion-input type="text" [readonly]="true" formControlName="longtitude"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-label floating>Place Id</ion-label>
+                  <ion-input type="text" [readonly]="true" formControlName="placeId"></ion-input>
+                </ion-item>
+              </div>
+            </ion-list>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h2 class="section-title">{{'page.profile-edit.phone' | translate}}</h2>
+          <ion-list class="user-data-content">
+            <ion-item>
+              <ion-label floating>{{ 'page.profile-edit.phone' | translate }}</ion-label>
+              <ion-input type="text" formControlName="phone" [(ngModel)]="profile.phone"></ion-input>
+            </ion-item>
+          </ion-list>
+        </section>
+
+      </div>
+      <div *ngSwitchCase="'acroyoga'">
+
+        <section class="form-section">
+          <ion-list class="user-data-content">
+
+            <div formGroupName="acroyoga">
+              <ion-item>
+                <ion-label floating>{{ 'page.profile-edit.practice_start_date' | translate }}</ion-label>
+                <ion-datetime formControlName="practice_start_date" displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY"></ion-datetime>
+              </ion-item>
+
+              <ion-item-divider>{{ 'page.profile-edit.position.name' | translate }}</ion-item-divider>
+              <ion-list class="checkbox-tags rounded-tags">
+                <ion-item class="checkbox-tag">
+                  <ion-label>{{ 'page.profile-edit.position.base' | translate }}</ion-label>
+                  <ion-checkbox formControlName="position_1"></ion-checkbox>
+                </ion-item>
+                <ion-item class="checkbox-tag">
+                  <ion-label>{{ 'page.profile-edit.position.flyer' | translate }}</ion-label>
+                  <ion-checkbox formControlName="position_2"></ion-checkbox>
+                </ion-item>
+                <ion-item class="checkbox-tag">
+                  <ion-label>{{ 'page.profile-edit.position.spotter' | translate }}</ion-label>
+                  <ion-checkbox formControlName="position_3"></ion-checkbox>
+                </ion-item>
+              </ion-list>
+
+              <ion-item-divider>{{ 'page.profile-edit.role.name' | translate }}</ion-item-divider>
+              <ion-list class="checkbox-tags rounded-tags">
+                <ion-item class="checkbox-tag">
+                  <ion-label>{{ 'page.profile-edit.role.student' | translate }}</ion-label>
+                  <ion-checkbox formControlName="role_1"></ion-checkbox>
+                </ion-item>
+                <ion-item class="checkbox-tag">
+                  <ion-label>{{ 'page.profile-edit.role.teacher' | translate }}</ion-label>
+                  <ion-checkbox formControlName="role_2"></ion-checkbox>
+                </ion-item>
+                <ion-item class="checkbox-tag">
+                  <ion-label>{{ 'page.profile-edit.role.organizer' | translate }}</ion-label>
+                  <ion-checkbox formControlName="role_3"></ion-checkbox>
+                </ion-item>
+              </ion-list>
+
+              <ion-item>
+                <ion-label floating>{{ 'page.profile-edit.biography' | translate }}</ion-label>
+                <ion-textarea formControlName="bio" rows="5" placeholder="Your description here..."></ion-textarea>
+              </ion-item>
+            </div>
+            
+          </ion-list>
+        </section>
+
+      </div>
+    </div>
+
+  </form>
+
+</ion-content>

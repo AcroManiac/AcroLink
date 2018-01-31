@@ -5,6 +5,13 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>{{'page.profile' | translate}}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button block small (click)="openProfileEditPage()">
+        {{ 'button.edit' | translate }}
+      </button>
+    </ion-buttons>
+
   </ion-navbar>
 
 </ion-header>
@@ -16,7 +23,7 @@
       <ion-col no-padding width-33>
         <preload-image class="user-image" [ratio]="{w:1, h:1}" [(src)]="profile.avatar" alt="profile.user.name" title="profile.avatar"></preload-image>
       </ion-col>
-      <ion-col no-padding>
+<!--       <ion-col no-padding>
         <ion-row class="social-presence-row">
           <ion-col width-50 class="social-presence-item">
             <a (click)="goToFollowersList()">
@@ -31,14 +38,7 @@
             </a>
           </ion-col>
         </ion-row>
-        <ion-row class="profile-action-row">
-          <ion-col no-padding>
-            <button ion-button block small (click)="openPage('SettingsPage')">
-              {{ 'button.edit' | translate }}
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
     <ion-row wrap class="user-bio-row">
       <ion-col no-padding width-50>

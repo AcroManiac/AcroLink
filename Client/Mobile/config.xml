@@ -98,7 +98,8 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Please, let AcroLink get your location" />
     </plugin>
     <plugin name="cordova-plugin-google-analytics" spec="^1.8.3" />
+    <allow-navigation href="http://192.168.1.108:8100" />
+    <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
     <engine name="android" spec="6.4.0" />
     <engine name="browser" spec="~5.0.1" />
-    <allow-navigation href="http://192.168.1.108:8100" />
 </widget>

@@ -1,173 +1,37 @@
 <ion-header>
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>{{ 'page.settings.name' | translate }}</ion-title>
-    <ion-buttons end [hidden]="!settingsForm.dirty">
-      <button ion-button (click)="saveFormData()">
-        {{ 'button.save' | translate }}
-      </button>
-    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="settings-content">
 
-  <div class="user-image-content">
-    <ion-row no-padding class="user-image-row">
-      <ion-col no-padding width-40>
-        <preload-image class="user-image" [ratio]="{w:1, h:1}" [src]="profile.avatar" alt="this is the image" title="IMAGE!"></preload-image>
-      </ion-col>
-    </ion-row>
-    <ion-row no-padding class="user-image-row">
-      <ion-col no-padding width-60>
-        <button class="image-action-button" ion-button outline block small (click)="openImagePicker()">{{ 'page.settings.change_avatar' | translate}}</button>
-      </ion-col>
-    </ion-row>
-  </div>
+  <form [formGroup]="settingsForm" class="settings-form">
+      <section class="form-section">
+        <ion-list class="user-data-content">
+          <ion-item>
+            <ion-label>{{ 'page.settings.language' | translate }}</ion-label>
+            <ion-select formControlName="language" cancelText="{{ 'button.cancel' | translate }}" okText="{{ 'button.ok' | translate }}">
+              <ion-option *ngFor="let language of languages" [value]="language">{{ language.name }}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </section>
+    </form>
 
-  <ion-segment class="user-content-segment" [(ngModel)]="section">
-    <!-- <ion-segment-button value="person" (ionSelect)="onSegmentSelected($event)"> -->
-    <ion-segment-button value="person" checked>
-      {{'page.settings.person_data' | translate}}
-    </ion-segment-button>
-    <ion-segment-button value="acroyoga">
-      {{'page.settings.acroyoga_data' | translate}}
-    </ion-segment-button>
-    <ion-segment-button value="application">
-      {{'page.settings.application' | translate}}
-    </ion-segment-button>
-  </ion-segment>
+  <button class="alt-button rate-app-button" ion-button full (click)="rateApp()">{{'page.settings.rate' | translate}}</button>
 
-  <form [formGroup]="settingsForm" class="settings-form">  
-    <div [ngSwitch]="section" class="forms-wrapper">
-      <div *ngSwitchCase="'person'" class="person-example-view">
+  <button class="alt-button" ion-button full (click)="showPrivacyModal()">{{'page.settings.privacy' | translate}}</button>
 
-        <section class="form-section">
-          <ion-list class="user-data-content">
-            <ion-item>
-              <ion-label floating>{{ 'page.settings.first_name' | translate }}</ion-label>
-              <ion-input type="text" formControlName="first_name"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label floating>{{ 'page.settings.last_name' | translate }}</ion-label>
-              <ion-input type="text" formControlName="last_name"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>{{ 'page.settings.gender' | translate }}</ion-label>
-              <ion-select formControlName="gender" cancelText="{{ 'button.cancel' | translate }}" okText="{{ 'button.ok' | translate }}">
-                <ion-option *ngFor="let gender of genders" [value]="gender">{{ gender.name }}</ion-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label floating>{{ 'page.settings.birth_date' | translate }}</ion-label>
-              <ion-datetime formControlName="birth_date" displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY"></ion-datetime>
-            </ion-item>
-          </ion-list>
-        </section>
+  <button class="alt-button" ion-button full (click)="showTermsModal()">{{'page.settings.terms' | translate }}</button>
 
-        <section class="form-section">
-          <h2 class="section-title">{{'page.settings.location' | translate}}</h2>
-          <button ion-button round icon-start (click)="searchPlace()">
-            <ion-icon name="search"></ion-icon>
-            Find address
-          </button>
-          <div class="search-container">
-            <ion-list class="user-data-content">
-              <div formGroupName="location">
-                <ion-item>
-                  <ion-label floating>House number</ion-label>
-                  <ion-input type="text" formControlName="street_number"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label floating>Street route</ion-label>
-                  <ion-input type="text" formControlName="route"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label floating>City</ion-label>
-                  <ion-input type="text" formControlName="locality"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label floating>State</ion-label>
-                  <ion-input type="text" formControlName="state"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label floating>Zip code</ion-label>
-                  <ion-input type="text" formControlName="postal_code"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label floating>Country</ion-label>
-                  <ion-input type="text" formControlName="country"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label floating>Country code</ion-label>
-                  <ion-input type="text" [readonly]="true" formControlName="country_code"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label floating>Latitude</ion-label>
-                  <ion-input type="text" [readonly]="true" formControlName="latitude"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label floating>Longtitude</ion-label>
-                  <ion-input type="text" [readonly]="true" formControlName="longtitude"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-label floating>Place Id</ion-label>
-                  <ion-input type="text" [readonly]="true" formControlName="placeId"></ion-input>
-                </ion-item>
-              </div>
-            </ion-list>
-          </div>
-        </section>
-
-        <section class="form-section">
-          <h2 class="section-title">{{'page.settings.phone' | translate}}</h2>
-          <ion-list class="user-data-content">
-            <ion-item>
-              <ion-label floating>{{ 'page.settings.phone' | translate }}</ion-label>
-              <ion-input type="text" formControlName="phone" [(ngModel)]="profile.phone"></ion-input>
-            </ion-item>
-          </ion-list>
-        </section>
-
-      </div>
-      <div *ngSwitchCase="'acroyoga'" class="person-example-view">
-
-        <section class="form-section">
-          <ion-list class="user-data-content">
-
-            <div formGroupName="acroyoga">
-              <ion-item>
-                <ion-label floating>{{ 'page.settings.practice_start_date' | translate }}</ion-label>
-                <ion-datetime formControlName="practice_start_date" displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY"></ion-datetime>
-              </ion-item>
-              <ion-item>
-                <ion-label floating>{{ 'page.settings.biography' | translate }}</ion-label>
-                <ion-textarea formControlName="bio" rows="5" placeholder="Your description here..."></ion-textarea>
-              </ion-item>
-            </div>
-            
-          </ion-list>
-        </section>
-
-      </div>
-      <div *ngSwitchCase="'application'" class="person-example-view">
-
-        <section class="form-section">
-          <ion-list class="user-data-content">
-            <ion-item>
-              <ion-label>{{ 'page.settings.language' | translate }}</ion-label>
-              <ion-select formControlName="language" cancelText="{{ 'button.cancel' | translate }}" okText="{{ 'button.ok' | translate }}">
-                <ion-option *ngFor="let language of languages" [value]="language">{{ language.name }}</ion-option>
-              </ion-select>
-            </ion-item>
-          </ion-list>
-        </section>
-
-      </div>
-    </div>
-
-  </form>
-
-  <button class="alt-button rate-app-button" ion-button full (click)="rateApp()">{{'RATE_APP' | translate}}</button>
+  <ion-item>
+    <ion-label>{{ 'page.settings.version' | translate }}</ion-label>
+    <ion-label>{{ versionNumber }}</ion-label>
+  </ion-item>
 
   <button class="alt-button logout-button" ion-button full icon-left (click)="logout()">
     <ion-icon name="log-out"></ion-icon>

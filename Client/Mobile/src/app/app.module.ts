@@ -10,6 +10,7 @@ import { AuthService } from '../providers/auth-service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRate } from '@ionic-native/app-rate';
+import { AppVersion } from '@ionic-native/app-version';
 import { Crop } from '@ionic-native/crop';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Geolocation } from '@ionic-native/geolocation';
@@ -23,6 +24,9 @@ import { LanguageService } from '../providers/language.service';
 import { ReferenceService } from '../providers/reference.service';
 import { GoogleMapsService } from '../providers/google-maps.service';
 
+// For modal pages
+import { PrivacyPolicyPage } from '../pages/privacy-policy/privacy-policy';
+import { TermsOfServicePage } from '../pages/terms-of-service/terms-of-service';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions, storage: Storage) {
   return new AuthHttp(new AuthConfig({
@@ -35,12 +39,14 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions, stor
 }
 
 export function createTranslateLoader(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(httpClient); //, './assets/i18n/', '.json');
 }
 
 @NgModule({
   declarations: [
     AcroLinkApp,
+    PrivacyPolicyPage,
+    TermsOfServicePage
   ],
   imports: [
     IonicStorageModule.forRoot({
@@ -62,9 +68,12 @@ export function createTranslateLoader(httpClient: HttpClient) {
   bootstrap: [IonicApp],
   entryComponents: [
     AcroLinkApp,
+    PrivacyPolicyPage,
+    TermsOfServicePage
   ],
   providers: [
     AppRate,
+    AppVersion,
     Crop,
     ImagePicker,
     StatusBar,

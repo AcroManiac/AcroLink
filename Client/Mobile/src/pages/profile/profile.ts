@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, AlertController, LoadingController } from 'ionic-angular';
 import { ProtectedPage } from '../protected/protected';
-import { SettingsPage } from '../settings/settings';
 import { Storage } from '@ionic/storage';
 import { ProfileService } from '../../providers/profile.service';
 import { ProfileModel } from '../../models/profile.model';
@@ -53,7 +52,7 @@ export class ProfilePage extends ProtectedPage {
           });
           alert.present();
 
-          this.openPage('LoginPage');
+          this.navCtrl.push('LoginPage');
         });
   }
 
@@ -73,13 +72,10 @@ export class ProfilePage extends ProtectedPage {
   //   });
   // }
 
-  /**
-   * Opens a page
-   * 
-   * @param page string Page name
-   */
-  openPage(page: string) {
-    this.navCtrl.push(page);
+  openProfileEditPage() {
+    this.navCtrl.push('ProfileEditPage', {
+      'profile': this.profile
+    });
   }
 
   // onSegmentChanged(segmentButton: SegmentButton) {

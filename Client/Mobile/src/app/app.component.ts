@@ -36,6 +36,7 @@ export class AcroLinkApp {
       {
         Observable.forkJoin(
           this.translate.get('page.profile'),
+          this.translate.get('page.settings.name'),
           this.translate.get('page.trainings'),
           this.translate.get('page.events'),
           this.translate.get('page.places'),
@@ -46,13 +47,14 @@ export class AcroLinkApp {
         ).subscribe(data => {
           this.pages = [
             { title: data[0], icon: 'person', component: 'ProfilePage' },
-            { title: data[1], icon: 'calendar', component: 'TrainingsPage' },
-            { title: data[2], icon: 'clock', component: 'EventsPage' },
-            { title: data[3], icon: 'ion-location', component: 'PlacesPage' },
-            { title: data[4], icon: 'grid', component: 'PosesPage' },
-            { title: data[5], icon: 'person-stalker', component: 'CommunityPage' },
-            { title: data[6], icon: 'information-circled', component: 'AboutPage' },
-            { title: data[7], icon: 'log-out', component: 'LoginPage', method: 'logout' }
+            { title: data[1], icon: 'settings', component: 'SettingsPage' },
+            { title: data[2], icon: 'calendar', component: 'TrainingsPage' },
+            { title: data[3], icon: 'clock', component: 'EventsPage' },
+            { title: data[4], icon: 'ion-location', component: 'PlacesPage' },
+            { title: data[5], icon: 'grid', component: 'PosesPage' },
+            { title: data[6], icon: 'person-stalker', component: 'CommunityPage' },
+            { title: data[7], icon: 'information-circled', component: 'AboutPage' },
+            { title: data[8], icon: 'log-out', component: 'LoginPage', method: 'logout' }
           ];
         });
       });

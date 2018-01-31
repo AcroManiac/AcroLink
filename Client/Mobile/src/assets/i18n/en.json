@@ -24,8 +24,8 @@
     "register" : "New registration",
     "forgotten_password" : "Password recovery",
     "profile" : "Profile",
-    "settings": {
-      "name": "Settings",
+    "profile-edit": {
+      "name": "Edit profile",
       "change_avatar": "Change profile image",
       "first_name": "Name",
       "last_name": "Last name",
@@ -38,8 +38,27 @@
       "person_data": "Person",
       "acroyoga_data": "Acroyoga",
       "application": "Application",
+      "gender": "Gender",
+      "position": {
+        "name": "Position",
+        "base": "Base",
+        "flyer": "Flyer",
+        "spotter": "Spotter"
+      },
+      "role": {
+        "name": "Role",
+        "student": "Student",
+        "teacher": "Teacher",
+        "organizer": "Organizer"
+      }
+    },
+    "settings": {
+      "name": "Settings",
       "language": "Language",
-      "gender": "Gender"
+      "rate": "Rate application",
+      "privacy": "Show privacy policy",
+      "terms": "Show terms of use",
+      "version": "Version"
     },
     "trainings" : "Trainings",
     "events" : "Events",
