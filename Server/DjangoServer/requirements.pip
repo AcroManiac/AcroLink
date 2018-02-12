@@ -7,6 +7,6 @@ django-rest-swagger>=2.1.0
 djangorestframework-jwt>=1.11.0
 django-annoying>=0.10.4
 #django-role-permissions>=2.2.0
-psycopg2>=2.7
+psycopg2-binary>=2.7
 Pillow>=4.2.1
 drf-writable-nested>=0.3.2
