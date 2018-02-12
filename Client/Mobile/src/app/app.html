@@ -6,6 +6,16 @@
   </ion-header>
 
   <ion-content class="menu-content">
+    <ion-avatar class="menu-avatar" (click)="openPage(profilePage)">
+        <img src="http://www.precision-spine.com/wp-content/uploads/2015/09/person-icon.png" height="128px" style="margin: auto;">
+<!--       <h3>Pretty Hate Machine</h3>
+      <p>Nine Inch Nails</p> -->
+    </ion-avatar>
+    <!-- <div class="item item-avatar" id="menu-avatar">
+      <img class="user-avatar round" src="http://ionicframework.com/img/docs/spengler.jpg">
+      <h2>Pretty Hate Machine</h2>
+      <p>Nine Inch Nails</p>
+    </div> -->
     <ion-list class="menu-list">
       <button menuClose ion-item detail-none *ngFor="let page of pages" (click)="openPage(page)">
         <ion-icon *ngIf="page.icon" name="{{page.icon}}" item-left></ion-icon>

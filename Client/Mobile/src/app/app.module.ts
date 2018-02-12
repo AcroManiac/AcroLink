@@ -13,6 +13,7 @@ import { AppRate } from '@ionic-native/app-rate';
 import { AppVersion } from '@ionic-native/app-version';
 import { Crop } from '@ionic-native/crop';
 import { ImagePicker } from '@ionic-native/image-picker';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
@@ -91,6 +92,7 @@ export function createTranslateLoader(httpClient: HttpClient) {
     GoogleMapsService,
     Geolocation,
     GoogleAnalytics,
+    ScreenOrientation,
   ],
 })
 export class AppModule {}

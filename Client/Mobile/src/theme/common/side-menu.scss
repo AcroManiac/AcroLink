@@ -4,9 +4,19 @@ ion-menu {
 		background-color: color($colors, background, base);
 	}
 
+	.menu-avatar{
+		margin: auto;
+	}
+
+	.img 
+	{
+		height: 128px;
+		margin: auto;
+	}
+
 	.menu-list
 	{
-		margin: 20vh 0px 0px !important;
+		margin: 0vh 0px 0px !important;
 
 		.item
 		{

@@ -29,6 +29,7 @@
     "@ionic-native/geolocation": "^4.5.3",
     "@ionic-native/google-analytics": "^4.5.3",
     "@ionic-native/image-picker": "^4.5.3",
+    "@ionic-native/screen-orientation": "^4.5.3",
     "@ionic-native/social-sharing": "^4.5.3",
     "@ionic-native/splash-screen": "^4.5.3",
     "@ionic-native/status-bar": "^4.5.3",
@@ -52,6 +53,7 @@
     "cordova-plugin-globalization": "^1.0.9",
     "cordova-plugin-google-analytics": "^1.8.3",
     "cordova-plugin-inappbrowser": "^1.7.2",
+    "cordova-plugin-screen-orientation": "^3.0.1",
     "cordova-plugin-splashscreen": "^4.1.0",
     "cordova-plugin-statusbar": "^2.4.1",
     "cordova-plugin-telerik-imagepicker": "^2.1.8",
@@ -104,7 +106,8 @@
         "GEOLOCATION_USAGE_DESCRIPTION": "Please, let AcroLink get your location"
       },
       "cordova-plugin-google-analytics": {},
-      "cordova-plugin-app-version": {}
+      "cordova-plugin-app-version": {},
+      "cordova-plugin-screen-orientation": {}
     },
     "platforms": [
       "browser",

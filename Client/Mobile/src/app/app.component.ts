@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 import { AuthService } from '../providers/auth-service';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
@@ -16,6 +17,7 @@ export class AcroLinkApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = 'ProfilePage';
+  profilePage: any = { title: '', icon: 'person', component: 'ProfilePage' };
 
   pages: Array<{title: string, icon: string, component: any, method?: any}>;
 
@@ -25,7 +27,13 @@ export class AcroLinkApp {
     public splashScreen: SplashScreen,
     public authService: AuthService,
     public translate: TranslateService,
+    private screenOrientation: ScreenOrientation,
     private googleAnalytics: GoogleAnalytics) {
+
+    // set to portrait orientation
+    if( !this.platform.is('core') ) {
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    }
 
     translate.setDefaultLang('en');
     translate.use('en');

@@ -157,7 +157,7 @@ export class ProfileEditPage extends ProtectedPage {
          this.imagePicker.requestReadPermission();
        }
        else if(result == true){
-         this.imagePicker.getPictures({ maximumImagesCount: 1 }).then(
+         this.imagePicker.getPictures({ maximumImagesCount: 1, width: 400, quality: 80 }).then(
            (results) => {
              for (var i = 0; i < results.length; i++) {
                this.cropService.crop(results[i] /*, {quality: 75}*/).then(
